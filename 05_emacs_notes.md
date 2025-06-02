@@ -133,8 +133,11 @@ The location of the cursor in the text is also called "point". To paraphrase, th
 **In Parenthesis Structure**
 
 `C-M-n` Move forward over a parenthetical group (**forward-list**).
+
 `C-M-p` Move backward over a parenthetical group (**backward-list**).
+
 `C-M-u` Move up in parenthesis structure (**backward-up-list**).
+
 `C-M-d` Move down in parenthesis structure (**down-list**).
 
 
