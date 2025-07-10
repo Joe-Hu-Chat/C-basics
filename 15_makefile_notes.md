@@ -101,6 +101,16 @@ Automatic variables are set by make after a rule is matched. There include:
 
 
 
+### Pattern rules
+
+You define an implicit rule by writing a *pattern rule*. A pattern rule looks like an ordinary rule, except that its target contains the character ‘%’ (exactly one of them). The target is considered a pattern for matching file names; the ‘`%`’ can match any **nonempty substring**, while other characters match only themselves. The prerequisites likewise use ‘%’ to show how their names relate to the target name.
+
+Thus, a pattern rule `%.o : %.c ; recipes...` says how to make any file `stem.o` from another file `stem.c`.
+
+A pattern rule need not have any prerequisites that contain `%`, or in fact any prerequisites at all. Such a rule is effectively a **general wildcard**. It provides a way to make any file that matches the target pattern.
+
+
+
 ## Expansion
 
 GNU make does its work in two distinct phases: a `read-in` phase and a `target-update` phase.

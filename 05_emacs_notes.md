@@ -91,6 +91,24 @@ The location of the cursor in the text is also called "point". To paraphrase, th
 
 - `M-n` `M-p` Scroll down/up one screen line (Customized elisp function and key binding)
 
+Add the following lines to `.emacs` if the shortcuts are not active.
+
+```
+;; Useful shortcut to scroll back and forth
+(defun scroll-up-keep-cursor ()
+  "Scroll up without moving cursor."
+  (interactive)
+  (scroll-up 1))
+
+(defun scroll-down-keep-cursor ()
+  "Scroll down without moving cursor."
+  (interactive)
+  (scroll-down 1))
+
+(global-set-key (kbd "M-n") 'scroll-up-keep-cursor)
+(global-set-key (kbd "M-p") 'scroll-down-keep-cursor)
+```
+
 
 
 - `C-v` `M-v` Scroll the display one screen forward/backward (**scroll-up-command**/**scroll-down-command**) 
@@ -190,7 +208,7 @@ The *kill ring* is a list of blocks of text that were previously killed. There i
 
 `M-d` Kill forward to the end of the next word (**kill-word**)
 
-`M-DEL` Kill one word backwards (**backward-kill-word**)
+`M-DEL` Kill back to the beginning of the previous word (**backward-kill-word**)
 
 
 
@@ -622,16 +640,6 @@ This is very useful to stop proceed command after pressing `C-x` prefix.
 
 
 
-## Help
-
-`C-h` Get help
-
-`C-h k` Learn what a key does
-
-`C-h f` Get information about a function
-
-
-
 ## Text-based Table
 
 `M-x table-fixed-width-mode`
@@ -641,7 +649,44 @@ This is very useful to stop proceed command after pressing `C-x` prefix.
 
 
 
-## Text Scale
+### Org Table mode
+
+Add the content below in `.emacs` to enable `orgtbl-mode` in rst file editing
+
+```
+;; First ensure Org is loaded
+(require 'org)
+;; enable ORG table mode in rst file
+(add-hook 'rst-mode-hook #'orgtbl-mode)
+```
+
+
+
+ref: https://orgmode.org/manual/Built_002din-Table-Editor.html
+
+`C-c C-c` 	re-align tables
+
+For **RST tables**, manual separator adjustment is often needed after content changes, while **Org tables** handle alignment automatically on `TAB`/`C-c C-c`.
+
+Convert Org table to RST table:
+
+`M-x orgtbl-to-rst`
+
+`C-c |`
+
+
+
+Convert RST table to Org table:
+
+`M-x org-table-convert_region`
+
+
+
+## Display
+
+
+
+### Text Scale
 
 **text-scale-adjust**
 
@@ -653,9 +698,36 @@ This is very useful to stop proceed command after pressing `C-x` prefix.
 
 
 
+### Theme display
+
+Accommodate to loading themes in un-known background mode, like from SSH terminal, which is normally dark.
+
+```
+;; Set default background mode (important for theme loading)
+(setq frame-background-mode 'dark)
+```
+
+
+
 ## Repeating
 
 `C-x z` Repeat a command
+
+
+
+## Help
+
+`C-h` Get help
+
+`C-h k` Learn what a key does what
+
+`C-h f` Get information about a function
+
+`M-x help` Open the help window
+
+​	Then there is a list of prompts for further manipulations. For example:
+
+​	`a PATTERN`: type `a` the a RegEx to show commands matching, like `apropos`
 
 
 
@@ -721,6 +793,8 @@ You cannot use `C-g` to get out of a recursive editing level. This is because `C
 `M-x recompile`
 
 `M-x kill-compilation` Kill the running compilation subprocess
+
+
 
 
 
