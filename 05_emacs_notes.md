@@ -295,22 +295,23 @@ The **region** is the portion of the buffer between the *mark* and the *current 
 
 ​	A second `C-SPC` will **deactivate** the mark
 
+
+
 **Mark Textual Objects**:
 
-`M-@` Set mark at the end of the next word (**mark-word**). This does not move point.
-**Repeated** invocations of this command extend the region by advancing the mark **one word at a time**.
+`M-@` Set mark at the end of the next word (**mark-word**). This does not move point. **Repeated** invocations of this command extend the region by advancing the mark **one word at a time**.
 
-`C-M-@` Set mark after end of following balanced expression (**mark-sexp**). This does
-not move point.
+`C-M-@` Set mark after end of following balanced expression (**mark-sexp**). This does not move point.
 
 `M-h` Put point and mark around this or next paragraph (**mark-paragraph**).
 
-`C-M-h` Move point to the beginning of the current defun, and set mark at the end
-(**mark-defun**).
+`C-M-h` Move point to the beginning of the current defun, and set mark at the end (**mark-defun**).
 
 `C-x C-p` Put point and mark around this page (or another page) (**mark-page**).
 
 `C-x h` Select the **whole buffer** as the region
+
+
 
 
 ## Balanced Expression
@@ -832,13 +833,13 @@ compilation-warning, for error and warning messages respectively. Note that sinc
 faces inherit from the error and warning faces, it is also possible to customize the parent
 face directly instead.
 
-`M-g n` Visit the locus of the next error message or match (next-error).
+`M-g n` Visit the locus of the next error message or match (**next-error**).
 
-`M-n` Move point to the next error message or match, without visiting its locus
-(compilation-next-error).
+`M-n` Move point to the next error message or match, without visiting its locus (**compilation-next-error**).
 
-`M-p` Move point to the previous error message or match, without visiting its locus
-(compilation-previous-error).
+`M-p` Move point to the previous error message or match, without visiting its locus (**compilation-previous-error**).
+
+
 
 **grep**:
 
@@ -847,6 +848,8 @@ Just as you can run a compiler from Emacs and then visit the lines with compilat
 `M-x grep` Run `grep` command like compiling
 
 `M-x grep-find` Run `grep` via `find`
+
+
 
 
 # File Handling
