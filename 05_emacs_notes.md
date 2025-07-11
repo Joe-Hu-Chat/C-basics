@@ -65,13 +65,13 @@ Case Sensitivity in Text Search Commands
 
 The location of the cursor in the text is also called "point". To paraphrase, the cursor shows on the screen where point is located in the text.
 
-- `C-f` `C-b` Move forward/backward one character (**forward-char**/**backward-char**)
-- `C-n` `C-p` Move down/up one screen line (**new-line**/**previous-line**)
-- `C-a` `C-e` Move to the beginning/end of **the** line (**move-beginning-of-line**/**move-end-of-line**)
-- `M-a` `M-e` Move to the beginning/end of **a** sentence, which means repetition works.
-- `M-f` `M-b` Move forward/backward one word (**forward-word**/**backward-word**)
-
-
+- `C-f` `C-b` Move forward/backward one **character** (**forward-char**/**backward-char**)
+- `C-n` `C-p` Move down/up one **screen line** (**new-line**/**previous-line**)
+- `C-a` `C-e` Move to the beginning/end of the **line** (**move-beginning-of-line**/**move-end-of-line**)
+- `M-a` `M-e` Move to the beginning/end of a **sentence**, which means repetition works.
+- `M-f` `M-b` Move forward/backward one **word** (**forward-word**/**backward-word**)
+- `M-<` `M->` Move to the beginning/end of the **buffer** (**beginning-of-buffer**/**end-of-buffer**)
+- `M-{` `M-}` Move back/forward to previous/next **paragraph** beginning/end (**backward-paragraph**/**forward-paragraph**).
 
 
 
@@ -287,11 +287,6 @@ Each buffer remembers previous locations of the mark, in the *mark ring*. Comman
 `C-x C-x` Set the mark at point, and activate it; then move point where the mark used to be (**exchange-point-and-mark**)
 
 
-
-`C-x h` Select the **whole buffer** as the region
-
-
-
 The **region** is the portion of the buffer between the *mark* and the *current point*.
 
 `C-SPC` 
@@ -300,6 +295,22 @@ The **region** is the portion of the buffer between the *mark* and the *current 
 
 ​	A second `C-SPC` will **deactivate** the mark
 
+**Mark Textual Objects**:
+
+`M-@` Set mark at the end of the next word (**mark-word**). This does not move point.
+**Repeated** invocations of this command extend the region by advancing the mark **one word at a time**.
+
+`C-M-@` Set mark after end of following balanced expression (**mark-sexp**). This does
+not move point.
+
+`M-h` Put point and mark around this or next paragraph (**mark-paragraph**).
+
+`C-M-h` Move point to the beginning of the current defun, and set mark at the end
+(**mark-defun**).
+
+`C-x C-p` Put point and mark around this page (or another page) (**mark-page**).
+
+`C-x h` Select the **whole buffer** as the region
 
 
 ## Balanced Expression
@@ -788,14 +799,54 @@ You cannot use `C-g` to get out of a recursive editing level. This is because `C
 
 ## Compiling in Emacs
 
+To run make or another compilation command, type M-x compile. This reads a shell
+command line using the minibuffer, and then executes the command by running a shell
+as a subprocess (or inferior process) of Emacs. The output is inserted in a buffer named
+*compilation*. The current buffer’s default directory is used as the working directory for
+the execution of the command, so by default compilation takes place in that directory.
+
+Starting a compilation displays the *compilation* buffer in another window but does
+**not** select it. While the compilation is running, the word ‘run’ is shown in the major mode
+indicator for the *compilation* buffer, and the word ‘Compiling’ appears in all mode lines.
+You do not have to keep the *compilation* buffer visible while compilation is running;
+it continues in any case. When the compilation ends, for whatever reason, the mode line
+of the *compilation* buffer changes to say ‘exit’ (followed by the exit code: ‘[0]’ for a
+normal exit), or ‘signal’ (if a signal terminated the process).
+
 `M-x compile`
 
 `M-x recompile`
 
 `M-x kill-compilation` Kill the running compilation subprocess
 
+**Compilation Mode**:
 
+The *compilation* buffer uses a major mode called Compilation mode. Compilation mode
+turns each error message in the buffer into a hyperlink; you can move point to it and type
+RET, to visit the locus of the error message in a separate window. The locus is the specific position in a
+file where that error occurred.
 
+The appearance of the *compilation* buffer can be controlled by customizing the faces
+which are used to highlight parts of the *compilation* buffer, e.g., compilation-error or
+compilation-warning, for error and warning messages respectively. Note that since those
+faces inherit from the error and warning faces, it is also possible to customize the parent
+face directly instead.
+
+`M-g n` Visit the locus of the next error message or match (next-error).
+
+`M-n` Move point to the next error message or match, without visiting its locus
+(compilation-next-error).
+
+`M-p` Move point to the previous error message or match, without visiting its locus
+(compilation-previous-error).
+
+**grep**:
+
+Just as you can run a compiler from Emacs and then visit the lines with compilation errors, you can also run grep and then visit the lines on which matches were found. This works by treating the matches reported by grep as if they were errors. The output buffer uses Grep mode, which is a variant of Compilation mode
+
+`M-x grep` Run `grep` command like compiling
+
+`M-x grep-find` Run `grep` via `find`
 
 
 # File Handling
