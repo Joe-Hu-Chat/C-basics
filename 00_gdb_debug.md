@@ -253,3 +253,46 @@ Miscellaneous:
 
 更好的网络调试跟踪工具
 
+
+## Basic GDB commands
+
+ref: https://www.sourceware.org/gdb/documentation/
+
+1. Start & Running
+   - `gdb <executable>` - Start GDB with executable
+   - `run` - Start program execution
+   - `start` - Run until `main()` function
+   - `starti` - Start program execution and stop at the very first executable instruction
+  
+2. Break points
+   - `break <function>` - Set a breakpoint at a function (e.g., `b main`)
+   - `break <file>:<line>` - Set a breakpoint at a specific line in a file
+   - `info breakpoints` - List all breakpoints
+   - `delete <num>` - Delete a breakpoint by its number
+   - `break _start` - Set a breakpoint at the entry point `_start`
+  
+3. Step through code
+   - `step` - Step into a function
+   - `next` - Step over a function
+   - `continue` - Resume exeution until the next breakpoint
+   - `finish` - Run until the current function returns
+   - `stepi` - Step one assembly instruction `si`
+   - `nexti` - Step over one instruction `ni`
+  
+4. Inspecting variables & memory
+   - `print <var>` - Display a variable's value
+   - `display <var>` - Continuously show a variable's value
+   - `info locals` - List all local variables
+   - `x/<format> <address>` - Examine memory (e.g., `x/4x $sp`)
+  
+5. Call Stack & Threads
+   - `backtrace`/`bt` - Show the call stack
+   - `frame <num>` - Switch to different stack frame
+   - `info threads` - List all threads in a multi-threaded program
+  
+6. Advanced Commands
+   - `watch <var>` - Pause execution when a variable changes
+   - `set var <var>=<value>` - Modify a variable's value when dubugging
+   - `disassemble` - Show assembly code for current function
+   - `disas /r <addr1>, <addr2>` - Disassemble code in an address range
+
