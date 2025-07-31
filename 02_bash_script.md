@@ -246,6 +246,12 @@ Further more:
 `-d` option defines the delimiter of its input data.
 
 
+```shell
+find sdma_list/ -type f | xargs -I {} sh -c 'echo {}; grep "Skipped$" {} '
+```
+
+Multi-commands execution with `xargs`
+
 
 # basename
 
