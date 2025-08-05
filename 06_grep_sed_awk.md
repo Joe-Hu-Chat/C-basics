@@ -183,6 +183,10 @@ https://www.gnu.org/software/grep/manual/grep.html
 ref: https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php
 
 
+### Match multi-pattern
+
+`xargs -I {} sh -c 'grep "Failed$" {}; grep "Passed$" {}`
+
 
 # sed
 
@@ -682,3 +686,4 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
