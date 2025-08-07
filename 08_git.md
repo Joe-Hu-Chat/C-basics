@@ -1,3 +1,4 @@
+
 # Remedy commits
 
 Revert the full commit by creating a new commit:
@@ -14,7 +15,31 @@ git rebase -i hash_tag_to_remove^
 # There will be command prompt after edit and exit the editor
 ```
 
+## Rebase changes
 
+`git fetch origin`: Update local repo
+
+`git rebase origin/master`: Rebase the `featureX` branch onto remote tracking branch `origin/msater`
+
+Rebase changes with conflict resolution
+
+`git push origin HEAD:refs/for/master`: Commit for review
+
+
+
+`git rebase -i origin/master`: interactive rebase
+
+`pick` -> `edit`: rework certain commits
+
+`pick` -> `delete`: delete certain commits
+
+`git rebase --continue`: Continue after amending commits
+
+## Discard local changes diverged from remote
+
+`git reset --hard origin/main`
+
+`git pull origin/main`
 
 # reset git submodules to default commits
 
