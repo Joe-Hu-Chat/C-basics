@@ -658,7 +658,7 @@ auto multiply(_Tx x, _Ty y)->decltype(_Tx*_Ty)
 
 # Templates
 
-Allows to write **generic** code that can work with different data types
+Allows to write **generic** code that can work with **different data types**
 
 ## Function Templates:
 
@@ -704,6 +704,14 @@ Stack::~Stack() {
     delete[] elements;
     elements = nullptr;
 }
+```
+
+## Object templates
+
+Templated member function, when the object it itself is a template
+
+```c++
+const auto comandToTest = m_parameters.template get<CommandToTest>();
 ```
 
 
