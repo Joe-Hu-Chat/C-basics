@@ -8,8 +8,8 @@ C++ 20
   - encapsulate `data`
   - define `behaviors` in an organized manner
 - encapsulation, inheritance, and polymorphism
-  - Compile-Time Polymorphism: Function `Overloading`, Operator Overloading
-  - Run-Time Polymorphism: Function `Overriding` and `virtual function`
+  - Compile-Time Polymorphism: Function `overloading`, Operator `overloading`
+  - Run-Time Polymorphism: Function `overriding` and `virtual function`
   - Advantage: Code reusability, Modularity, Flexibility
   practice OOP concepts
 
