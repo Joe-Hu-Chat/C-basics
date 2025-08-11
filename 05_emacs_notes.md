@@ -1114,11 +1114,6 @@ All commands that display information in a window, including (for example) `C-h 
 
 Each window has its own mode line, which displays the buffer name, modification status and major and minor modes of the buffer that is displayed in the window.
 
-`C-x 0` Delete the selected window (**delete-window**)
-
-`C-x 1` Delete all windows in the selected frame expect the selected window (**delete-other-windows**)
-
-
 
 `C-x 2` Split the selected window into two windows, one above the other (**split-window-below**)
 
@@ -1150,6 +1145,22 @@ Each window has its own mode line, which displays the buffer name, modification 
 
 ​	Select a **Dired buffer** for directory *directory* in another window (**dired-other-window**)
 
+
+Deleting and Resizing:
+
+`C-x 0` Delete the selected window (**delete-window**)
+
+`C-x 1` Delete all windows in the selected frame expect the selected window (**delete-other-windows**)
+
+`C-x ^` Make selected window taller (**enlarge-window**)
+
+`C-x }` Make selected window wider (**enlarge-window-horizontally**)
+
+`C-x {` Make selected window narrower (**shrink-window-horizontally**)
+
+`C-x -` Shrink this window if its buffer doesn't need so many lines (**shrink-window-if-larger-than-buffer**)
+
+`C-x +` Balance the sizes of all the windows of the selected frame (**balance-windows**)
 
 
 # Mode
