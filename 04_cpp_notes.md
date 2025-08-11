@@ -46,6 +46,19 @@ map<string, int> myMap;
 
 ## set
 
+`std::set` is an associative container that contains a sorted set of unique objects of type Key. Sorting is done using the key comparison function *Compare*. Search, removal, and insertion operations have logarithmic complexity. Sets are usually implemented as **Red-black tress**.
+
+Everywhere the standard library uses the *Compare* requirements, uniqueness is determined by using the equivalence relation. In imprecise terms, two objects `a` and `b` are considered equivalent if neither compares ess than the other: `!comp(a, b) && !comp(b, a)`.
+
+
+
+## vector
+
+`std::vector`: A sequence container that stores elements in a dynamically allocated array.
+
+Store elements in **contiguous** memory locations, allowing fast random access using indexes like regular arrays.
+
+Preferred when random access to elements is required
 
 
 
@@ -57,16 +70,6 @@ map<string, int> myMap;
 Store elements in a **non-contiguous** way
 
 Preferred when random access to elements is not needed
-
-
-
-## vector
-
-`std::vector`: A sequence container that stores elements in a dynamically allocated array.
-
-Store elements in **contiguous** memory locations, allowing fast random access using indexes like regular arrays.
-
-Preferred when random access to elements is required
 
 
 
