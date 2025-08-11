@@ -84,6 +84,36 @@ class template: `template <class T1, class T2> struct pair;`
 Pairs are a particular case of `tuple` (元组)
 
 
+## algorithm
+
+### sort
+
+The `std::sort` function is part of the `<algorithm>` header in C++ and is used to sort elements in a specified range. It is efficient and works on containers that provide **random access iterators**, such as arrays and vectors. The function uses the **IntroSort algorithm**, which is a hybrid of QuickSort, HeapSort, and InsertionSort, ensuring an average time complexity of **O(n log n)**.
+
+```c++
+std::sort(RandomIt first, RandomIt last);
+std::sort(RandomIt first, RnadomIt last, Compare comp);
+```
+
+**Parameters**: A comparison function or lambda expression that defines the sorting order. By default, it uses the `<` operator for ascending order.
+
+**Return Value**: The function does not return any value. It directly modifies the range in place.
+
+```c++
+#include <algorithm>
+#include <iostream>
+
+int main() {
+int arr[] = {5, 3, 2, 1, 4};
+int n = sizeof(arr) / sizeof(arr[0]);
+
+std::sort(arr, arr + n); // Sort in ascending order
+
+for (int i : arr)
+std::cout << i << " "; // Output: 1 2 3 4 5
+return 0;
+}
+```
 
 # class
 
