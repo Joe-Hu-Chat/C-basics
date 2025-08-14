@@ -13,14 +13,23 @@ range expressions: '[a-d]' = '[abcd]'
 **named POSIX classes**
 
 '[:alnum:]' = '[:alpha:]' + '[:digit:]'
+
 '[:alpha:]' = '[:lower:]' + '[:upper:]' = '[A-Za-z]'
+
 '[:blank:]' = blank characters: space and tab
+
 '[:cntrl:]' = control characters, in ASCII, octal codes 000 through 037, and 177 (DEL)
+
 '[:digit:]' = digits: 0 1 2 3 4 5 6 7 8 9
+
 '[:graph:]' = graphical characters: '[:alnum:]' and '[:punct:]'
+
 '[:print:]' = printable characters: '[:graph:]' and space, in the range of ASCII 32-126
+
 '[:punct:]' = punctuation characters: ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~ 
+
 '[:space:]' = space characters: tab, newline, vertical tab, form feed, carriage return, and space
+
 '[:xdigit:]' = hexadecimal digits: 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f
 
 ref: https://www.regular-expressions.info/posixbrackets.html
@@ -662,8 +671,11 @@ beginning with a backslash (`\`), only list uncommon once:
 
 ### meta-characters
 `\`: suppresses the special meaning of a character when matching. ## example: `\$` matches character`$`
+
 `^`: anchor matching to the beginning
+
 `$`: anchor matching to the end
+
 `.`(period): match single character
 
 
@@ -686,4 +698,5 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
