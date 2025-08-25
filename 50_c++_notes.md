@@ -110,10 +110,11 @@ In C++, the `iostream` library is a fundamental part of the `standard library` t
 - **cerr**: Standard error stream for unbuffered error messages
 - **clog**: Standard error stream for buffered logging
 
-`>>`: **Extraction operator**, used with `cin` to retrieve input from the user or other sources
-`<<`: **Insertion operator**, used with `cout` to output data to the console or other dest.
-`endl`: **Manipulator**, insert a newline and flush the output buffer
-`\n`: newline character, without flushing the buffer
+Operators:
+- `>>`: **Extraction operator**, used with `cin` to retrieve input from the user or other sources
+- `<<`: **Insertion operator**, used with `cout` to output data to the console or other dest.
+- `endl`: **Manipulator**, insert a newline and flush the output buffer
+- `\n`: newline character, without flushing the buffer
 
 The iostream library operates through a hierarchy of classes:
 - **ios_base**: Base class defining common properties of all streams, such as state flags
