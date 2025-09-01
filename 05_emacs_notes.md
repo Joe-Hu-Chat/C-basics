@@ -118,6 +118,11 @@ Add the following lines to `.emacs` if the shortcuts are not active.
 - `M-<` `M->` Move to the top/end of the buffer (**beginning-of-buffer**/**end-of-buffer**)
 
 
+**Synchronise scrolling**:
+- `M-x scroll-all-mode`
+
+Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirroed in all others
+
 
 **Window**
 
