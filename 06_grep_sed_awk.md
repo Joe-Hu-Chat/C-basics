@@ -511,7 +511,7 @@ t label
 
 Branch to label only if there has been a successful substitution since the last input line was read or conditional branch was taken. The label may be omitted, in which case the next cycle is start.
 
-example: sed ':x;N;/middle/tx;s/\n/,/g'
+example: `sed ':x;N;/middle/tx;s/\n/,/g'`
 
 
 
@@ -704,6 +704,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
