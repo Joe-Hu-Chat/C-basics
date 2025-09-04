@@ -497,16 +497,18 @@ example: ```sed -i '/^[[:space:]]*$/d' input.file``` ## `-i`: update the file
 
 ### explanation
 This will read the whole file in a loop (':a;N;$!ba'), then replaces the newline(s) with a space (`s/\n/ /g`).
-0 sed starts by reading the first line excluding the newline into pattern space.
-1 create a label via ':a'.
-2 append a newline and next line to the pattern space via 'N'.
-3 If we are before the last line, branch to the created label '$!ba' ('$!' means not to do it on the last line. This is necessary to avoid executing 'N' again, which which would terminate the script if there is no more input!).
-4 Finally the substitution replaces every newline with a space on the pattern space (which is the whole file).
+
+0. sed starts by reading the first line excluding the newline into pattern space.
+1. create a label via ':a'.
+2. append a newline and next line to the pattern space via 'N'.
+3. If we are before the last line, branch to the created label '$!ba' ('$!' means not to do it on the last line. This is necessary to avoid executing 'N' again, which which would terminate the script if there is no more input!).
+4. Finally the substitution replaces every newline with a space on the pattern space (which is the whole file).
 
 `sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' file` # cross-platform compatible syntax
 
 ## conditional branch
 t label
+
 Branch to label only if there has been a successful substitution since the last input line was read or conditional branch was taken. The label may be omitted, in which case the next cycle is start.
 
 example: sed ':x;N;/middle/tx;s/\n/,/g'
@@ -514,13 +516,17 @@ example: sed ':x;N;/middle/tx;s/\n/,/g'
 
 
 ## how sed works
-sed maintains 2 data buffers: the active '`pattern space`', and auxiliary '`hold space`'. Both are initially empty.
+sed maintains 2 data buffers: the active `pattern space`, and auxiliary `hold space`. Both are initially empty.
 
-sed operates by performing the following cycle on each line of input: first, sed reads one line form the input stream, removes any trailing newline, and places it in the '`pattern space`'. Then commands are executed; each command can have an address associated to it:addresses are a kind of condition code, and a command is only executed if the condition is verified before the command is to be executed.
+sed operates by performing the following cycle on each line of input: 
+- first, sed reads one line form the input stream, removes any trailing newline, and places it in the `pattern space`. 
+- Then commands are executed; 
+  - each command can have an address associated to it:
+  - addresses are a kind of condition code, and a command is only executed if the condition is verified before the command is to be executed.
 
-When the end of the script is reached, unless the '-n' option is in use, the contents of '`pattern space`' are printed out ot the output stream, adding back the trailing newline if it was removed. Then the next cycle starts for the next input line.
+When the end of the script is reached, unless the '-n' option is in use, the contents of `pattern space` are printed out ot the output stream, adding back the trailing newline if it was removed. Then the next cycle starts for the next input line.
 
-Unless special commands (like 'D') are used, the '`pattern space`' is detected between two cycles. The '`hold space`', on the other hand, keeps its data between cycles.
+Unless special commands (like 'D') are used, the `pattern space` is detected between two cycles. The `hold space`, on the other hand, keeps its data between cycles.
 
 ### pattern space
 
@@ -698,5 +704,6 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
