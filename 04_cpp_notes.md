@@ -167,6 +167,22 @@ Advantages:
 
 
 
+
+## overloading
+
+Compile-Time polymorphism, including `function overloading` and `operator overloading`. Doing different operation depending parameter numbers or objects' class type.
+
+### operator overloading
+
+```c++
+`object_type` operator`op`(argument-list)
+// overload `op` 
+```
+
+## overriding
+
+Run-Time polymorphism, with keywords `virtual` and `override`. Doing different operation through overriding the virtual functions. (Changes the virtual function tables in objests)
+
 ## struct
 
 Compatible with `class` and C type `struct`.
@@ -305,20 +321,6 @@ It is optional as the compiler evaluates it. Though, in some complex cases compi
 ## Throw specification
 
 Throw Specifications (also called Exceptions) are optional to mention in the lambda function in C++. We can specify which exceptions our lambda expression throws. As we are passing this to another function as an argument, this function expects only a certain set of exceptions to be thrown by lambda. It is written after a mutable keyword and after parameters in the absence of a mutable keyword.
-
-
-
-# overloading
-
-Compile-Time polymorphism, including function overloading and operator overloading. Doing different operation depending parameter numbers or objects' class type.
-
-## operator overloading
-
-```c++
-`object_type` operator`op`(argument-list)
-// overload `op` 
-```
-
 
 
 # Structured Binding
