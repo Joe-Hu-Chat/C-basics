@@ -848,6 +848,53 @@ int main() {
 
 ```
 
+## keyword typename
+
+**Specifying template type parameters**
+
+Used to declare type parameters in template definitions:
+```c++
+template <typename T>  // T is a type parameter
+class Container {
+private:
+    T value;
+public:
+    Container(T val) : value(val) {}
+    T getValue() { return value; }
+};
+
+// Usage
+Container<int> intContainer(42);
+Container<std::string> stringContainer("Hello");
+```
+
+This is equivalent to using `class` keyword, but `typename` is preferred for clarity.
+
+
+**Disambiguating Dependent Types (Most Important Usage)**
+
+Used to tell the compiler that a dependent name refers to a type (**to refer to dependent types**), not a value:
+
+```c++
+template <typename T>
+class MyClass {
+public:
+    // Without typename - ERROR: compiler doesn't know if ::type is a type or value
+    // typename T::type member1; 
+    
+    // With typename - CORRECT: explicitly tells compiler it's a type
+    typename T::type member2;
+    
+    void method() {
+        // Without typename - ERROR
+        // T::iterator iter;
+        
+        // With typename - CORRECT
+        typename T::iterator iter;
+    }
+};
+```
+
 
 
 # Reference
