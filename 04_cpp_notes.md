@@ -137,20 +137,109 @@ public:
 };
 ```
 
-`= default` explicitly request compiler-generated versions of these functions.
+`= default` **explicitly** request compiler-generated versions of these functions.
 
 Constructors in Inheritance:
 
 - Base class constructors are called before derived class constructors
 - Derived classes can specify which base class constructor to call
 
+### Default constructors
+
+A default constructor is a constructor that either:
+
+1. Has no parameters, OR
+2. Has parameters but all parameters have default values
+
+Implicitly declared default constructor:
+```c++
+class MyClass {
+    // No constructor declared
+    // Compiler provides implicit default constructor
+};
+
+MyClass obj;  // Uses implicit default constructor
+```
+
+Explicitly defined default constructor:
+```c++
+class MyClass {
+public:
+    MyClass() {  // No parameters
+        // initialization code
+    }
+};
+
+MyClass obj;  // Uses explicit default constructor
+```
+
+Default constructor with default parameters:
+```c++
+class MyClass {
+public:
+    MyClass(int x = 0, int y = 0) {  // All parameters have defaults
+        // initialization code
+    }
+};
+
+MyClass obj1;      // MyClass(0, 0)
+MyClass obj2(5);   // MyClass(5, 0)
+MyClass obj3(1,2); // MyClass(1, 2)
+```
+
+### Implicit default constructors
+
+The compiler does NOT generate a default constructor if:
+
+1. You define any constructor (default or parameterized)
+2. You have **const** or **reference** members without in-class initialization
+3. You delete the default constructor explicitly
+
+Explicitly delete default constructor:
+```c++
+class NonCopyable {
+public:
+    NonCopyable() = delete;  // Explicitly delete default constructor
+};
+
+// NonCopyable obj;  // Error: use of deleted function
+```
+
+**Best Practices**:
+- Always initialize all members in default constructors
+- Use **member initializer lists** for efficiency
+- Consider making classes default-constructible when possible
+- Use `= default` when you want the compiler-generated version
+- Use `= delete` when you want to prevent default construction
+
+Value Initialization:
+
+Aggregate Initialization:
+```c++
+struct OldSchoolPoint {
+    int x;
+    int y;
+    // No constructor defined
+};
+
+int main() {
+    // Aggregate initialization (works when no constructors are defined)
+    OldSchoolPoint p1 = {10, 20};
+    OldSchoolPoint p2{30, 40};
+    
+    std::cout << "p1: (" << p1.x << ", " << p1.y << ")" << std::endl;
+    std::cout << "p2: (" << p2.x << ", " << p2.y << ")" << std::endl;
+    
+    return 0;
+}
+```
 
 
-## Initialization list
+### Initialization list
 
 The initialization list appears after the constructor's parameter list, separated by a colon. It consists of a comma-separated list of member initialization.
 
-Usage: It's used to initialize member variables before the constructor body executes.
+Usage: It's used to initialize **member variables** before the constructor body executes.
 
 ```c++
 ClassName::ClassName(parameters) : member1(value1), member2(value2), ... 
@@ -165,7 +254,15 @@ Advantages:
 - Required for initializing `const` members and `reference` members.
 - Necessary for calling base class constructors with arguments.
 
+### initialization style
 
+
+```c++
+// Different initialization styles
+Car car1("Ford", 2020, 22000.0);      // Traditional
+Car car2 = Car("Chevy", 2022, 26000.0); // Copy initialization
+Car car3{"Nissan", 2021, 24000.0};    // Uniform initialization
+```
 
 
 ## overloading
