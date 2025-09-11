@@ -137,7 +137,7 @@ public:
 };
 ```
 
-`= default` **explicitly** request compiler-generated versions of these functions.
+`= default` **explicitly** request compiler-generated versions of these functions (These are actually **implicit constructors**, kind of confusing).
 
 Constructors in Inheritance:
 
@@ -187,8 +187,6 @@ MyClass obj2(5);   // MyClass(5, 0)
 MyClass obj3(1,2); // MyClass(1, 2)
 ```
 
-### Implicit default constructors
-
 The compiler does NOT generate a default constructor if:
 
 1. You define any constructor (default or parameterized)
@@ -212,27 +210,180 @@ public:
 - Use `= default` when you want the compiler-generated version
 - Use `= delete` when you want to prevent default construction
 
-Value Initialization:
 
-Aggregate Initialization:
+### Implicit constructors
+
+The compiler generates implicit constructors only when:
+
+- No user-declared constructors are present
+- All members are **copyable/movable**
+- No special circumstances prevent generation
+
+Implicit default constructor does not initialize primitive types (they contain garbage values)
+
+**Implicit Constructor Generation**:
+
 ```c++
-struct OldSchoolPoint {
-    int x;
-    int y;
-    // No constructor defined
+#include <iostream>
+#include <string>
+
+struct Employee {
+    int id;
+    std::string name;
+    double salary;
+    
+    // No constructors declared
+    // Compiler provides:
+    // - Employee() (default constructor)
+    // - Employee(const Employee&) (copy constructor)
+    // - Employee(Employee&&) (move constructor, C++11+)
 };
 
 int main() {
-    // Aggregate initialization (works when no constructors are defined)
-    OldSchoolPoint p1 = {10, 20};
-    OldSchoolPoint p2{30, 40};
+    // Default construction
+    Employee e1;  // id, salary: garbage values, name: empty
     
-    std::cout << "p1: (" << p1.x << ", " << p1.y << ")" << std::endl;
-    std::cout << "p2: (" << p2.x << ", " << p2.y << ")" << std::endl;
+    // Value initialization (zero-initializes primitives)
+    Employee e2{};  // id: 0, salary: 0.0, name: empty
+    
+    // Aggregate initialization
+    Employee e3{101, "Alice", 50000.0};
+    
+    // Copy construction
+    Employee e4 = e3;  // Copies all members
+    
+    // Move construction
+    Employee e5 = std::move(e3);  // Moves name, copies primitives
+    
+    std::cout << "e4: " << e4.id << ", " << e4.name << ", " << e4.salary << std::endl;
+    std::cout << "e5: " << e5.id << ", " << e5.name << ", " << e5.salary << std::endl;
     
     return 0;
 }
 ```
+
+**Non-copyable members prevent copy constructor**:
+
+```c++
+#include <memory>
+
+struct ResourceHolder {
+    int id;
+    std::unique_ptr<int> resource;  // Not copyable
+    
+    // No implicit copy constructor generated!
+};
+
+int main() {
+    ResourceHolder rh1{1, std::make_unique<int>(42)};
+    // ResourceHolder rh2 = rh1;  // Error: deleted copy constructor
+    
+    ResourceHolder rh3 = std::move(rh1);  // OK: move constructor still generated
+    
+    return 0;
+}
+```
+
+**Reference members without initialization**:
+
+```c++
+struct ReferenceHolder {
+    int& ref;  // Reference must be initialized
+    
+    // No implicit default constructor generated!
+};
+
+int main() {
+    int value = 42;
+    ReferenceHolder rh{value};  // Must use aggregate initialization
+    // ReferenceHolder rh2;     // Error: no default constructor
+    
+    return 0;
+}
+```
+
+#### Control implicit constructor generation
+
+**Using `= default`**:
+
+```c++
+struct ExplicitDefault {
+    int value;
+    std::string name;
+    
+    // Explicitly request default implementation
+    ExplicitDefault() = default;
+    ExplicitDefault(const ExplicitDefault&) = default;
+    ExplicitDefault(ExplicitDefault&&) = default;
+};
+
+int main() {
+    ExplicitDefault ed1;        // Uses default constructor
+    ExplicitDefault ed2 = ed1;  // Uses copy constructor
+    ExplicitDefault ed3 = std::move(ed1);  // Uses move constructor
+    
+    return 0;
+}
+```
+
+**Using `= delete`**:
+
+```c++
+struct NonCopyable {
+    int value;
+    
+    // Allow default construction
+    NonCopyable() = default;
+    
+    // Delete copy operations
+    NonCopyable(const NonCopyable&) = delete;
+    NonCopyable& operator=(const NonCopyable&) = delete;
+};
+
+int main() {
+    NonCopyable nc1;
+    // NonCopyable nc2 = nc1;  // Error: deleted copy constructor
+    // nc1 = NonCopyable();    // Error: deleted copy assignment
+    
+    return 0;
+}
+```
+
+**POD (Plain Old Data) struct**:
+
+```c++
+#include <iostream>
+
+// Traditional C-style struct (POD)
+struct Vector3D {
+    float x;
+    float y;
+    float z;
+    
+    // No constructors declared → implicit ones generated
+};
+
+void printVector(const Vector3D& vec) {
+    std::cout << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")" << std::endl;
+}
+
+int main() {
+    // All these work thanks to implicit constructors:
+    
+    Vector3D v1;           // Default construction (garbage values)
+    Vector3D v2{};         // Value initialization (0, 0, 0)
+    Vector3D v3{1.0f, 2.0f, 3.0f};  // Aggregate initialization
+    
+    Vector3D v4 = v3;      // Copy construction
+    Vector3D v5 = std::move(v3);  // Move construction (C++11+)
+    
+    printVector(v2);  // (0, 0, 0)
+    printVector(v4);  // (1, 2, 3)
+    
+    return 0;
+}
+```
+
 
 
 ### Initialization list
@@ -262,6 +413,53 @@ Advantages:
 Car car1("Ford", 2020, 22000.0);      // Traditional
 Car car2 = Car("Chevy", 2022, 26000.0); // Copy initialization
 Car car3{"Nissan", 2021, 24000.0};    // Uniform initialization
+```
+
+#### Value Initialization:
+
+The use of braces (`{}`) ensures **all members are value-initialised**, which is a safe and modern C++ practice.
+This approach helps prevent uninitialised data, espacially for complex types or structs.
+
+```c+++
+struct Point {
+    int x;
+    int y;
+    // No constructor declared
+    // Compiler provides implicit default constructor
+};
+
+int main() {
+    Point p1;          // Uses implicit default constructor
+    Point p2{};        // Value initialization
+    Point p3 = Point();// Explicit default construction
+    
+    // p1.x and p1.y are uninitialized (contain garbage values)
+    // p2.x and p2.y are zero-initialized (0, 0)
+    // p3.x and p3.y are zero-initialized (0, 0)
+    
+    return 0;
+}
+```
+
+#### Aggregate Initialization:
+
+```c++
+struct OldSchoolPoint {
+    int x;
+    int y;
+    // No constructor defined
+};
+
+int main() {
+    // Aggregate initialization (works when no constructors are defined)
+    OldSchoolPoint p1 = {10, 20};
+    OldSchoolPoint p2{30, 40};
+    
+    std::cout << "p1: (" << p1.x << ", " << p1.y << ")" << std::endl;
+    std::cout << "p2: (" << p2.x << ", " << p2.y << ")" << std::endl;
+    
+    return 0;
+}
 ```
 
 
