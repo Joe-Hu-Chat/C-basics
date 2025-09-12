@@ -41,6 +41,25 @@ Rebase changes with conflict resolution
 
 `git pull origin/main`
 
+# Recover deleted files from Git history
+
+## Identify the commits deleting files:
+
+`git log --oneline --diff-filter=D --summary`
+
+or
+
+`git log --follow -- filename.txt`
+
+## Restore the files
+
+`git checkout <commit-hash> -- filename.txt`
+
+or
+
+`git restore --source <commit-hash>^ filename.txt`
+
+
 # reset git submodules to default commits
 
 Reset all submodule by `git submodule foreach`
