@@ -53,7 +53,7 @@ or
 
 ## Restore the files
 
-`git checkout <commit-hash> -- filename.txt`
+`git checkout <commit-hash>^ -- filename.txt`
 
 or
 
