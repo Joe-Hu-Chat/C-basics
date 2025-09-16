@@ -261,32 +261,6 @@ The difference between "killing" and "deleting" is that "killed" text can be rei
 
 
 
-## Filling Text
-
-(This seems designed for Human Languages, as opposed to, say, a computer programming language)
-
-Filling text means breaking it up into lines that fit a specified width. Emacs does filling in two ways. In Auto Fill mode, inserting text with self-inserting characters also automatically fills it. 
-
-`M-x auto-fill-mode`
-
-​	Enable or disable Auto Fill mode
-
-`SPC`
-
-`RET`
-
-​	In Auto Fill mode, break lines when appropriate
-
-
-
-`C-x f` Set the fill column (**set-fill-column**)
-
-`M-x fill-region` Fill each paragraph in the region (**fill-region**)
-
-`M-x center-line` Center a line
-
-
-
 ## Mark & Region
 
 Each buffer remembers previous locations of the mark, in the *mark ring*. Commands that set the mark also push the old mark onto this ring. One of the use of mark ring is to remember spots that you may want to go back to.
@@ -409,6 +383,34 @@ In Emacs, you can break long lines based on a maximum line width (e.g., 80 chara
 ;; For programming modes, use:
 (add-hook 'prog-mode-hook 'auto-fill-mode)
 ```
+
+
+
+#### Filling Text
+
+(This seems designed for Human Languages, as opposed to, say, a computer programming language)
+
+Filling text means breaking it up into lines that fit a specified width. Emacs does filling in two ways. In Auto Fill mode, inserting text with self-inserting characters also automatically fills it. 
+
+`M-x auto-fill-mode`
+
+​	Enable or disable Auto Fill mode
+
+`SPC`
+
+`RET`
+
+​	In Auto Fill mode, break lines when appropriate
+
+
+
+`C-x f` Set the fill column (**set-fill-column**)
+
+`M-x fill-region` Fill each paragraph in the region (**fill-region**)
+
+`M-x center-line` Center a line
+
+
 
 ## Rectangles
 
