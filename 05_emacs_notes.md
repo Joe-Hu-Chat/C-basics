@@ -179,7 +179,7 @@ Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirroed
 
 
 
-## Cursor Position
+### Cursor Position
 
 `C-x =` Show detailed cursor position information
 
@@ -187,6 +187,16 @@ Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirroed
 
 `M-x display-line-numbers-mode` Display line numbers next to each line
 
+
+### Relative line numbers
+
+Display relative line numbers to enhance navigation and editing efficiency
+
+```elisp
+;; Display relative line numbers
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+```
 
 
 ## Copy & Paste
