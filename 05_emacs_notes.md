@@ -371,6 +371,34 @@ To kill an entire non-blank line, go to the beginning and type `C-k` **twice**.
 `C-w` Kill the region (**kill-region**)
 
 
+### Wrap lines
+
+In Emacs, you can break long lines based on a maximum line width (e.g., 80 characters) using various built-in and external modes.
+
+`M-q` (**fill-paragraph**)
+
+	Wraps the current paragraph.
+
+`M-x fill-region`
+
+	Wraps the selected region.
+
+`M-x toggle-truncate-lines`
+
+	Emacs may truncate long lines with `$` markers in narrow terminals. This command toggles it with the wrapping display.
+
+`fill-column` settings:
+
+```elisp
+;; Set default fill-column width
+(setq fill-column 80)
+
+;; Enable auto-fill-mode for all buffers
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+;; For programming modes, use:
+(add-hook 'prog-mode-hook 'auto-fill-mode)
+```
 
 ## Rectangles
 
