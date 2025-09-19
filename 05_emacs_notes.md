@@ -721,21 +721,43 @@ Add the content below in `.emacs` to enable `orgtbl-mode` in rst file editing
 
 ref: https://orgmode.org/manual/Built_002din-Table-Editor.html
 
-`C-c C-c` 	re-align tables
+**Table example**
+
+```
+| Name  | Phone | Age |
+|-------+-------+-----|
+| Peter |  1234 |  17 |
+| Anna  |  4321 |  25 |
+```
+
+1. Any line with `|` as the first non-whitespace character is considered part of a table.
+2. `|` is also the column separator.
+3. A line starting with `|-` is a horizontal rule (i.e., `|-----+-----|`). It separates rows **explicitly**.
+
+
+**Alignment**
+
+A table is re-aligned automatically each time you press `TAB`, `RET` or `C-c C-c` inside the table.
+
+- `C-c C-c` 	re-align tables
+- `TAB` 		re-align tables, also moves to the next field
+- `RET`			re-align tables, also moves to the next row,
+ 				and creates new table rows at the end of the table or before horizontal lines.
+
+
+**Org table vs RST table**
 
 For **RST tables**, manual separator adjustment is often needed after content changes, while **Org tables** handle alignment automatically on `TAB`/`C-c C-c`.
 
 Convert Org table to RST table:
 
-`M-x orgtbl-to-rst`
-
-`C-c |`
-
+- `M-x orgtbl-to-rst`
+- `C-c |`
 
 
 Convert RST table to Org table:
 
-`M-x org-table-convert_region`
+- `M-x org-table-convert_region`
 
 
 
