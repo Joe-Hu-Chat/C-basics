@@ -1222,7 +1222,7 @@ Each window has its own mode line, which displays the buffer name, modification 
 ​	Select a **Dired buffer** for directory *directory* in another window (**dired-other-window**)
 
 
-Deleting and Resizing:
+### Deleting and Resizing
 
 `C-x 0` Delete the selected window (**delete-window**)
 
