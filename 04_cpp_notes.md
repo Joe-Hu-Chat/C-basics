@@ -1396,7 +1396,7 @@ This approach simplifies code for filtering, transforming, and combining sequenc
 
 
 ### std::views
-
+In C++20, a view is a lightweight, non-owning range adaptor that provides a way to transform or filter data from an existing range (like a container) without copying it. Views are part of the Ranges library, which aims to make range-based programming more expressive, efficient, and composable.
 
 
 ### `|`
