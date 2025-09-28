@@ -626,7 +626,12 @@ Throw Specifications (also called Exceptions) are optional to mention in the lam
 auto [var1, var2, ..., varN] = expression;
 ```
 
-
+Structured bindings use reference binding by default unless you explicitly copy:
+```c++
+auto [a, b] = pair;       // copies
+auto& [x, y] = pair;      // binds by reference
+const auto& [m, n] = pair; // binds by const reference
+```
 
 # keywords
 
