@@ -406,7 +406,8 @@ Advantages:
 - Necessary for calling base class constructors with arguments.
 
 ### initialization style
-
+**Value Initialization** and **Aggregate Initialization** are two important concepts in C++ that
+descripbes how objects are initialized using braces `{}` or other syntax.
 
 ```c++
 // Different initialization styles
@@ -417,8 +418,10 @@ Car car3{"Nissan", 2021, 24000.0};    // Uniform initialization
 
 #### Value Initialization:
 
-The use of braces (`{}`) ensures **all members are value-initialised**, which is a safe and modern C++ practice.
+The use of empty braces (`{}`) ensures **all members are value-initialised**, which is a safe and modern C++ practice.
 This approach helps prevent uninitialised data, espacially for complex types or structs.
+
+For **primitive types**, this means *zero-initialization*; for **class types**, it means calling the **default** constructor.
 
 ```c+++
 struct Point {
@@ -431,6 +434,7 @@ struct Point {
 int main() {
     Point p1;          // Uses implicit default constructor
     Point p2{};        // Value initialization
+    MyClass obj{};     // obj is value-initialized (default constructor called)
     Point p3 = Point();// Explicit default construction
     
     // p1.x and p1.y are uninitialized (contain garbage values)
@@ -442,6 +446,10 @@ int main() {
 ```
 
 #### Aggregate Initialization:
+Aggregate Initialization is used for initializing **aggregates**, which are arrays or
+classes/structs **with only public members and no user-provided constructors, base classes,
+or virtual functions**. When you use braces `{}` with a list of values, each member is
+initialized **in order**.
 
 ```c++
 struct OldSchoolPoint {
@@ -462,6 +470,9 @@ int main() {
 }
 ```
 
+If fewer values are provided than members, the remaining members are value-initialized (typically zeroed).
+
+If a class has a user-provided constructor that matches the argument types, then that constructor will be called instead.
 
 ## overloading
 
