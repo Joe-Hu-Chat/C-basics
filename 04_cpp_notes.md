@@ -26,6 +26,11 @@ Containers are implemented as **class templates**, allowing them to work with di
 
 Containers **handle memory allocation and deallocation automatically**, simplifying resource management.
 
+## std
+
+`std::remove_pointer_t<FacadePtr>`: obtain the type that `FacadePtr` points to.
+
+
 ## map
 
 `std::map`: **Key-Value** Storage, each element in a map consists of a unique key and its associated value.
