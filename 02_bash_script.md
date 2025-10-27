@@ -4,7 +4,7 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
 
 # (...)
 
-sub-shell command in bash script:
+**sub-shell** command in bash script:
 
 ```bash
   # do something in current dir
@@ -18,7 +18,7 @@ sub-shell command in bash script:
 
 ## ((...))
 
-Double parentheses function is preferred to do arithmetic in Bash scripts.
+**Double parentheses** function is preferred to do **arithmetic** in Bash scripts.
 
 ![image-20240816144552040](./.02_bash_script/image-20240816144552040.png)
 
@@ -34,7 +34,23 @@ Allows arithmetic to be performed on shell variables
 
 ## expr
 
+All-purpose **expression evaluator**: Concatenates and evaluates the arguments according to the **operation** given (arguments must be separated by spaces). 
+
+Operations may be `arithmetic`, `comparison`, `string`, or `logical`.
+
+![image-20240816115854521](./.02_bash_script/image-20240816115854521.png)
+
+**example**:
+
 ![image-20240816141602829](./.02_bash_script/image-20240816141602829.png)
+
+
+### expr substr
+extract substring, starting position & length specified
+
+Extract substring of $length characters, starting at $position:
+
+z=`expr substr $string $position $length`
 
 
 
@@ -121,24 +137,6 @@ Mandatory arguments to long options are mandatory for short options too.
   -a, --multiple       support multiple arguments and treat each as a NAME
   -s, --suffix=SUFFIX  remove a trailing SUFFIX; implies -a
   -z, --zero           end each output line with NUL, not newline
-
-
-
-# expr
-
-All-purpose **expression evaluator**: Concatenates and evaluates the arguments according to the **operation** given (arguments must be separated by spaces). 
-
-Operations may be arithmetic, comparison, string, or logical.
-
-![image-20240816115854521](./.02_bash_script/image-20240816115854521.png)
-
-## expr substr
-extract substring, starting position & length specified
-
-Extract substring of $length characters, starting at $position:
-
-z=`expr substr $string $position $length`
-
 
 
 # redirection
@@ -1054,6 +1052,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
