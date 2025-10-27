@@ -547,6 +547,9 @@ Record the representative commands in practical useage.
 ```rdesktop -g 1920x1080 -a 16 -u tsinghuaic -p tsinghuaic -0 10.21.0.167:3389```
 
 ## change file names in batch
+
+Remove `prefix_` of file names:
+
 `for file in prefix_*; do mv "$file" "${file#prefix_}"; done`
 
 
@@ -1056,5 +1059,6 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
