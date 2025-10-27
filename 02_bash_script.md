@@ -117,25 +117,24 @@ It is actually **bash** that does the wildcards translation for us.
 Putting wildcards inside **quotes** makes them not recognized by the shell. (Similar to wrap file names with spaces in quotes or escape the spaces with `\`)
 
 
-
-# <
-
-`<(some commands)` treats the output of `some commands` as a file.
-
-
-
 # basename
 
 Print NAME with any leading directory components removed.
 
 Usage: `basename` NAME [SUFFIX]
+
   or:  `basename` OPTION... NAME...
+  
 Print NAME with any leading directory components **removed**.
+
 If specified, also remove a trailing SUFFIX.
 
 Mandatory arguments to long options are mandatory for short options too.
+
   -a, --multiple       support multiple arguments and treat each as a NAME
+  
   -s, --suffix=SUFFIX  remove a trailing SUFFIX; implies -a
+  
   -z, --zero           end each output line with NUL, not newline
 
 
@@ -176,6 +175,9 @@ Appending to a file
 ##  <
 
 Redirecting from a file
+
+`<(some commands)` treats the output of `some commands` as a file.
+
 
 ## 2>
 
@@ -1052,6 +1054,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
