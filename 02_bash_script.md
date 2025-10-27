@@ -110,10 +110,17 @@ Putting wildcards inside **quotes** makes them not recognized by the shell. (Sim
 
 # basename
 
+Print NAME with any leading directory components removed.
+
 Usage: `basename` NAME [SUFFIX]
   or:  `basename` OPTION... NAME...
 Print NAME with any leading directory components **removed**.
 If specified, also remove a trailing SUFFIX.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --multiple       support multiple arguments and treat each as a NAME
+  -s, --suffix=SUFFIX  remove a trailing SUFFIX; implies -a
+  -z, --zero           end each output line with NUL, not newline
 
 
 
@@ -251,18 +258,6 @@ find sdma_list/ -type f | xargs -I {} sh -c 'echo {}; grep "Skipped$" {} '
 ```
 
 Multi-commands execution with `xargs`
-
-
-# basename
-
-Print NAME with any leading directory components removed.
-
-If specified, also remove a trailing SUFFIX.
-
-Mandatory arguments to long options are mandatory for short options too.
-  -a, --multiple       support multiple arguments and treat each as a NAME
-  -s, --suffix=SUFFIX  remove a trailing SUFFIX; implies -a
-  -z, --zero           end each output line with NUL, not newline
 
 
 
@@ -1059,6 +1054,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
