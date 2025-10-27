@@ -542,11 +542,12 @@ Manual pages is like `less` command, so you can use `/` to trigger a search insi
 Record the representative commands in practical useage.
 
 
-
 ## remote desktop for windows
 
 ```rdesktop -g 1920x1080 -a 16 -u tsinghuaic -p tsinghuaic -0 10.21.0.167:3389```
 
+## change file names in batch
+`for file in prefix_*; do mv "$file" "${file#prefix_}"; done`
 
 
 ## find
@@ -1055,4 +1056,5 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
