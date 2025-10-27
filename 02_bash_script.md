@@ -138,6 +138,41 @@ Mandatory arguments to long options are mandatory for short options too.
   -z, --zero           end each output line with NUL, not newline
 
 
+# parameter expansion
+
+**string manipulation**
+
+``` bash
+${parameter#pattern}      # Remove shortest match from beginning
+${parameter##pattern}     # Remove longest match from beginning  
+${parameter%pattern}      # Remove shortest match from end
+${parameter%%pattern}     # Remove longest match from end
+${parameter:start:length} # Substring extraction
+```
+
+Remove specific prefix:
+``` bash
+for file in prefix_*; do
+    mv "$file" "${file#prefix_}"
+done
+```
+
+Default value:
+``` bash
+${variable:-default}        # Use default if variable is unset or empty
+${variable:=default}        # Set variable to default if unset or empty
+```
+
+Pattern replacement:
+``` bash
+${variable/pattern/replacement}  # Replace first occurrence
+${variable//pattern/replacement} # Replace all occurrences
+
+filename="hello_world.txt"
+echo "${filename/_/-}"           # "hello-world.txt"
+echo "${filename//l/L}"          # "heLLo_worLd.txt"
+```
+
 # redirection
 
 Some Unix **conventions** suggest that if no input is specified, commands should read from `stdin`, and if no output is specified, they should write to `stdout`.
@@ -1054,6 +1089,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
