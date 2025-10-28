@@ -203,6 +203,26 @@ sed, a stream editor
 
 https://www.gnu.org/software/sed/manual/sed.html#Common-Commands
 
+## how sed works
+sed maintains 2 data buffers: the active `pattern space`, and auxiliary `hold space`. Both are initially empty.
+
+sed operates by performing the following cycle on each line of input: 
+- first, sed reads one line form the input stream, removes any trailing newline, and places it in the `pattern space`. 
+- Then commands are executed; 
+  - each command can have an address associated to it:
+  - addresses are a kind of condition code, and a command is only executed if the condition is verified before the command is to be executed.
+
+When the end of the script is reached, unless the '-n' option is in use, the contents of `pattern space` are printed out ot the output stream, adding back the trailing newline if it was removed. Then the next cycle starts for the next input line.
+
+Unless special commands (like 'D') are used, the `pattern space` is detected between two cycles. The `hold space`, on the other hand, keeps its data between cycles.
+
+### pattern space
+
+sed works like this: sed reads one line at a time, chops off the terminating newline, puts what is left into the '`pattern space`' where the sed script can address or change it, and when the '`pattern space`' is printed, appends a new line to stdout (or to a file). If the '`pattern space`' is entirely or partially detected with 'd' or 'D', the newline is not added in such cases. Thus scripts like 
+`sed 's/\n//' file`       # to delete newlines from each line             
+`sed 's/\n/foo\n/' file`  # to add a word to the end of each line 
+will NEVER work, because the trailing newline is removed before the line is put into the '`pattern space`'. 
+
 ### options
 
 `sed [OPTION]... 'operations' [input-file]...`
@@ -524,26 +544,6 @@ example: `sed ':x;N;/middle/tx;s/\n/,/g'`
 
 
 
-## how sed works
-sed maintains 2 data buffers: the active `pattern space`, and auxiliary `hold space`. Both are initially empty.
-
-sed operates by performing the following cycle on each line of input: 
-- first, sed reads one line form the input stream, removes any trailing newline, and places it in the `pattern space`. 
-- Then commands are executed; 
-  - each command can have an address associated to it:
-  - addresses are a kind of condition code, and a command is only executed if the condition is verified before the command is to be executed.
-
-When the end of the script is reached, unless the '-n' option is in use, the contents of `pattern space` are printed out ot the output stream, adding back the trailing newline if it was removed. Then the next cycle starts for the next input line.
-
-Unless special commands (like 'D') are used, the `pattern space` is detected between two cycles. The `hold space`, on the other hand, keeps its data between cycles.
-
-### pattern space
-
-sed works like this: sed reads one line at a time, chops off the terminating newline, puts what is left into the '`pattern space`' where the sed script can address or change it, and when the '`pattern space`' is printed, appends a new line to stdout (or to a file). If the '`pattern space`' is entirely or partially detected with 'd' or 'D', the newline is not added in such cases. Thus scripts like 
-`sed 's/\n//' file`       # to delete newlines from each line             
-`sed 's/\n/foo\n/' file`  # to add a word to the end of each line 
-will NEVER work, because the trailing newline is removed before the line is put into the '`pattern space`'. 
-
 # awk
 https://www.gnu.org/software/gawk/manual/gawk.html
 
@@ -713,6 +713,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
