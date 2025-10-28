@@ -378,9 +378,9 @@ z
 
 ## sed [-nefr] [operation]
 
-The `n1-n2` line match **operation** would be like: `'[n1[,n2]]function'`. There are also other forms of selecting line, e.g. the regular expression match.
+The `n1-n2` line match **operation** would be like: `'[n1[,n2]]function'`. There are also other forms of **selecting lines**, e.g. the regular expression match.
 
-### **function**/command:
+### command (**function**)
 
 The `function` is also called `command` in a `operation`.
 
@@ -399,7 +399,7 @@ Addresses determine on which line(s) the `sed` command will be executed. The fol
 sed '144s/hello/world/' input.txt > output.txt
 ```
 
-If no addresses are given, the command is performed on all lines. The following command replaces the word ‘hello’ with ‘world’ on all lines in the input file:
+If no addresses are given, the command is performed on **all lines**. The following command replaces the word ‘hello’ with ‘world’ on all lines in the input file:
 
 ```bash
 sed 's/hello/world/' input.txt > output.txt
@@ -427,7 +427,7 @@ sed '4,17s/hello/world/' input.txt > output.txt
 
 
 
-### reverse selecting lines
+#### reverse selecting lines
 
 Appending the `!` character to the end of an address specification (before the command letter) negates the sense of the match.  That is, if the `!` character follows an address or an address range, then only lines which do *not* match the addresses will be selected. The following command replaces the word ‘hello’ with ‘world’ only in lines *not* containing the word ‘apple’:
 
@@ -473,11 +473,20 @@ The beginning backslash (`\`) is used to make the following character have a esc
 
 
 
-## The 's' Command
+## `s` Command
 
-`s/regexp/replacement/flags` ## supporting (`sed '/pattern/{ action }'`)
+Command format: `s/regexp/replacement/flags` ## supporting `sed '/pattern/{ action }'`
 
 Its basic concept is simple: the 's' command attempts to match the 'pattern space' against the supplied regular expression 'regexp'; if the match is successful, then that portion of the 'pattern space' which was matched is replaced with 'replacement'.
+
+In a substitution command, the `w` flag writes the substitution result to a file, and the `e` flag executes the subsitution result as a shell command. As with the `r/R/w/W/e` commands, these must be terminated with a newline. If whitespace, comments or semicolons are found, they will be included in the shell command or filename, leading to unexpected results:
+```bash
+$ echo a | sed 's/a/b/w1.txt#foo'
+b
+
+$ ls -1
+1.txt#foo
+```
 
 ### Replacement contain match portions:
 The 'replacement' can contain '\n' ('n' being a number of 1 to 9, inclusive) references, which will refer to the portion of the match which is contained between the nth \( and its matching \). Also, the 'replacement' can contain unescaped & characters which reference the whole matched portion of the pattern space.
@@ -704,6 +713,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
