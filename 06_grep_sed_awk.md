@@ -227,7 +227,7 @@ will NEVER work, because the trailing newline is removed before the line is put 
 
 `sed [OPTION]... 'operations' [input-file]...`
 
-`OPTION` is one of the following: (`-n` and `-i` are used more often, especially the `-n` is used with `p` operation as the latter will print the `pattern space` too )
+`OPTION` is one of the following: (`-n` and `-i` are used more often)
 
 ```shell
   -n, --quiet, --silent
@@ -508,6 +508,36 @@ $ ls -1
 1.txt#foo
 ```
 
+### flag
+The `s` command can be followed by **zero or more** of the following flags:
+
+`g`: 
+Apply the replacement to all matches to the regexp, not just the first.
+
+`number`: 
+Only replace the numberth match of the regexp.
+
+interaction in s command Note: the POSIX standard does not specify what should happen when you mix the g and number modifiers, and currently there is no widely agreed upon meaning across sed implementations. For GNU sed, the interaction is defined to be: ignore matches before the numberth, and then match and replace all matches from the numberth on.
+
+`p`: 
+If the substitution was made, then print the new `pattern space`.
+
+Note: when both the `p` and `e` options are specified, the relative ordering of the two produces very different results. In general, `ep` (evaluate then print) is what you want, but operating the other way round can be useful for debugging. For this reason, the current version of GNU `sed` interprets specially the presence of `p` options both before and after `e`, printing the pattern space before and after evaluation, while in general flags for the `s` command show their effect just once. This behavior, although documented, might change in future versions.
+
+`w filename`: 
+If the substitution was made, then write out the result to the named file. As a GNU sed extension, two special values of filename are supported: `/dev/stderr`, which writes the result to the standard error, and `/dev/stdout`, which writes to the standard output.
+
+`e`: 
+This command allows one to pipe input from a shell command into pattern space. If a substitution was made, the command that is found in pattern space is executed and pattern space is replaced with its output. A trailing newline is suppressed; results are undefined if the command to be executed contains a NUL character. This is a GNU sed extension.
+
+`I`
+`i`: 
+The `I` modifier to regular-expression matching is a GNU extension which makes sed match regexp in a `case-insensitive` manner.
+
+`M`
+`m`: 
+The `M` modifier to regular-expression matching is a GNU sed extension which directs GNU sed to match the regular expression in **multi-line mode**. The modifier causes `^` and `$` to match respectively (in addition to the normal behavior) the empty string after a newline, and the empty string before a newline. There are special character sequences (\` and \') which always match the beginning or the end of the buffer. In addition, the period character does not match a new-line character in multi-line mode.
+
 ### Replacement contain match portions:
 The 'replacement' can contain '\n' ('n' being a number of 1 to 9, inclusive) references, which will refer to the portion of the match which is contained between the nth \( and its matching \). Also, the 'replacement' can contain unescaped & characters which reference the whole matched portion of the pattern space.
 
@@ -713,6 +743,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
