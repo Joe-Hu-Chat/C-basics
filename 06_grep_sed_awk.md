@@ -227,7 +227,7 @@ will NEVER work, because the trailing newline is removed before the line is put 
 
 `sed [OPTION]... 'operations' [input-file]...`
 
-`OPTION` is one of: (`-n` and `-i` are used more often)
+`OPTION` is one of the following: (`-n` and `-i` are used more often, especially the `-n` is used with `p` operation as the latter will print the `pattern space` too )
 
 ```shell
   -n, --quiet, --silent
@@ -266,7 +266,7 @@ will NEVER work, because the trailing newline is removed before the line is put 
 
 
 
-### operations
+### operations (command)
 
 `operations` could be in form of `[n1[,n2]]command`, while `command` is mostly one of `[acdips]`.
 
@@ -713,6 +713,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
