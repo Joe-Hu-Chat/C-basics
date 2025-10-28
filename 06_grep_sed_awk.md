@@ -508,6 +508,11 @@ $ ls -1
 1.txt#foo
 ```
 
+### example
+`sed -n 's/^ *\* Command: //p'`
+
+`-n` option suppresses the automatic prining, while the `p` flag enables printing out substituted `partten space` content.
+
 ### flag
 The `s` command can be followed by **zero or more** of the following flags:
 
@@ -743,6 +748,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
