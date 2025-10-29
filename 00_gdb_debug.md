@@ -277,7 +277,9 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `continue` - Resume exeution until the next breakpoint
    - `finish` - Run until the current function returns
    - `stepi` - Step one assembly instruction `si`
+   - `stepi 5` - Step a specific number of instructions
    - `nexti` - Step over one instruction `ni`
+   - 'until *0x7d44210` - Step until specific address
   
 4. Inspecting variables & memory
    - `print <var>` - Display a variable's value
