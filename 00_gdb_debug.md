@@ -295,4 +295,7 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `set var <var>=<value>` - Modify a variable's value when dubugging
    - `disassemble` - Show assembly code for current function
    - `disas /r <addr1>, <addr2>` - Disassemble code in an address range
-
+   - `disassemble $pc,+20` - manually Display instructions around current point
+   - `layout asm` - Display disassembly automatically after each step
+   - `tui enable` - use TUI mode
+   - `tui layout asm` - To Display assembly
