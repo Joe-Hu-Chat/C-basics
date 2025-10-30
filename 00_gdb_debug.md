@@ -260,6 +260,7 @@ ref: https://www.sourceware.org/gdb/documentation/
 
 1. Start & Running
    - `gdb <executable>` - Start GDB with executable
+   - `gdb --arg <executable> <arguments>` - Start GDB executable with arguments
    - `run` - Start program execution
    - `start` - Run until `main()` function
    - `starti` - Start program execution and stop at the very first executable instruction
