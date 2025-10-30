@@ -299,6 +299,6 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `disas /r <addr1>, <addr2>` - Disassemble code in an address range
    - `disassemble $pc,+20` - manually Display instructions around current point
    - `layout asm` - Display disassembly automatically after each step
-   - `tui enable` - use TUI mode
+   - `tui enable` - use TUI (Text User Interface) mode
    - `tui layout asm` - To Display assembly
    - `tui disable` - To leave TUI mode
