@@ -301,3 +301,4 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `layout asm` - Display disassembly automatically after each step
    - `tui enable` - use TUI mode
    - `tui layout asm` - To Display assembly
+   - `tui disable` - To leave TUI mode
