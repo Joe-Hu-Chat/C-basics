@@ -292,6 +292,7 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `backtrace`/`bt` - Show the call stack
    - `frame <num>` - Switch to different stack frame
    - `info threads` - List all threads in a multi-threaded program
+   - `thread <ID>` - Switch to thread ID
   
 6. Advanced Commands
    - `watch <var>` - Pause execution when a variable changes
