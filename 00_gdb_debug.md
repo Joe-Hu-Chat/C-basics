@@ -1,55 +1,6 @@
 2023年8月17日星期四
 
 
-
-# Set up GDB on SPIKE
-
-
-
-### On spike:
-
-```bash
-./riscv-isa-sim/build/spike --initrd=initrd1.img -H --rbb-port=9824 --isa=RV32imafdc -m0x80000000:0x40000000 ./opensbi/build/platform/generic/firmware/fw_payload.elf
-```
-
-### On OpenOCD:
-
-```bash
-openocd -f openocd_spike.cfg
-```
-
-### On GDB client:
-
-```bash
-/opt/riscv/bin/riscv32-unknown-linux-gnu-gdb ./opensbi/build/platform/generic/firmware/fw_payload.elf
-```
-
-## monitor命令
-
-通过指令`monitor riscv set_ebreakm off`来关闭断点触发，可禁用semihosting并执行过相应的ebreak指令。
-
-![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_12f75553a8a05b9.png)
-
-执行`monitor riscv`可以使GDB列出所有能通过monitor发送给OpenOCD的命令。也可能通过查找OpenOCD的手册获取所有可以发送的指令。
-
-![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_36b90dba8272d5bc.png)
-
-### 设置软硬断点
-
-![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_204e47547d5823db.png)
-
-
-
-`hbreak *0x` 设置硬断点
-
-### 使能semihosting
-
-在GDB client中，通过`monitor`指令将如下命令发送给OpenOCD即可使能它的semihosting功能。其它指令可以参考OpenOCD文档（16 Architecture and Core Commands章节）
-
-![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_b586b04117da6516.png)
-
-
-
 # tools
 
 
@@ -306,3 +257,52 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `tui enable` - use TUI (Text User Interface) mode
    - `tui layout asm` - To Display assembly
    - `tui disable` - To leave TUI mode
+
+
+# Set up GDB on SPIKE
+
+
+
+### On spike:
+
+```bash
+./riscv-isa-sim/build/spike --initrd=initrd1.img -H --rbb-port=9824 --isa=RV32imafdc -m0x80000000:0x40000000 ./opensbi/build/platform/generic/firmware/fw_payload.elf
+```
+
+### On OpenOCD:
+
+```bash
+openocd -f openocd_spike.cfg
+```
+
+### On GDB client:
+
+```bash
+/opt/riscv/bin/riscv32-unknown-linux-gnu-gdb ./opensbi/build/platform/generic/firmware/fw_payload.elf
+```
+
+## monitor命令
+
+通过指令`monitor riscv set_ebreakm off`来关闭断点触发，可禁用semihosting并执行过相应的ebreak指令。
+
+![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_12f75553a8a05b9.png)
+
+执行`monitor riscv`可以使GDB列出所有能通过monitor发送给OpenOCD的命令。也可能通过查找OpenOCD的手册获取所有可以发送的指令。
+
+![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_36b90dba8272d5bc.png)
+
+### 设置软硬断点
+
+![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_204e47547d5823db.png)
+
+
+
+`hbreak *0x` 设置硬断点
+
+### 使能semihosting
+
+在GDB client中，通过`monitor`指令将如下命令发送给OpenOCD即可使能它的semihosting功能。其它指令可以参考OpenOCD文档（16 Architecture and Core Commands章节）
+
+![img](./.00_gdb_debug/lu3868306wnkuq0_tmp_b586b04117da6516.png)
+
+
