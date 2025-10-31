@@ -1,8 +1,64 @@
 2023年8月17日星期四
 
+# GDB
 
-# tools
 
+## Basic GDB commands
+
+ref: https://www.sourceware.org/gdb/documentation/
+
+1. Start & Running
+   - `gdb <executable>` - Start GDB with executable
+   - `gdb --arg <executable> <arguments>` - Start GDB executable with arguments
+   - `run` - Start program execution
+   - `start` - Run until `main()` function
+   - `starti` - Start program execution and stop at the very first executable instruction
+  
+2. Break points
+   - `break <function>` - Set a breakpoint at a function (e.g., `b main`)
+   - `break <file>:<line>` - Set a breakpoint at a specific line in a file
+   - `info breakpoints` - List all breakpoints
+   - `delete <num>` - Delete a breakpoint by its number
+   - `break _start` - Set a breakpoint at the entry point `_start`
+  
+3. Step through code
+   - `step` - Step into a function
+   - `next` - Step over a function
+   - `continue` - Resume exeution until the next breakpoint
+   - `finish` - Run until the current function returns
+   - `stepi` - Step one assembly instruction `si`
+   - `stepi 5` - Step a specific number of instructions
+   - `nexti` - Step over one instruction `ni`
+   - 'until *0x7d44210` - Step until specific address
+  
+4. Inspecting variables & memory
+   - `print <var>` - Display a variable's value
+   - `set variable <var> = <value>` - Set variable `var` to `value`
+   - `print <var> = <value>` - `print` with assignment, modify and see the new value
+   - `display <var>` - Continuously show a variable's value
+   - `info locals` - List all local variables
+   - `x/<format> <address>` - Examine memory (e.g., `x/4x $sp`)
+  
+5. Call Stack & Threads
+   - `backtrace`/`bt` - Show the call stack
+   - `frame <num>` - Switch to different stack frame
+   - `info threads` - List all threads in a multi-threaded program
+   - `thread <ID>` - Switch to thread ID
+  
+6. Advanced Commands
+   - `watch <var>` - Pause execution when a variable changes
+   - `set var <var>=<value>` - Modify a variable's value when dubugging
+   - `disassemble` - Show assembly code for current function
+   - `disas /r <addr1>, <addr2>` - Disassemble code in an address range
+   - `disassemble $pc,+20` - manually Display instructions around current point
+   - `layout asm` - Display disassembly automatically after each step
+   - `tui enable` - use TUI (Text User Interface) mode
+   - `tui layout asm` - To Display assembly
+   - `tui disable` - To leave TUI mode
+
+
+
+# debug tools
 
 
 ## strace
@@ -205,77 +261,23 @@ Miscellaneous:
 更好的网络调试跟踪工具
 
 
-## Basic GDB commands
-
-ref: https://www.sourceware.org/gdb/documentation/
-
-1. Start & Running
-   - `gdb <executable>` - Start GDB with executable
-   - `gdb --arg <executable> <arguments>` - Start GDB executable with arguments
-   - `run` - Start program execution
-   - `start` - Run until `main()` function
-   - `starti` - Start program execution and stop at the very first executable instruction
-  
-2. Break points
-   - `break <function>` - Set a breakpoint at a function (e.g., `b main`)
-   - `break <file>:<line>` - Set a breakpoint at a specific line in a file
-   - `info breakpoints` - List all breakpoints
-   - `delete <num>` - Delete a breakpoint by its number
-   - `break _start` - Set a breakpoint at the entry point `_start`
-  
-3. Step through code
-   - `step` - Step into a function
-   - `next` - Step over a function
-   - `continue` - Resume exeution until the next breakpoint
-   - `finish` - Run until the current function returns
-   - `stepi` - Step one assembly instruction `si`
-   - `stepi 5` - Step a specific number of instructions
-   - `nexti` - Step over one instruction `ni`
-   - 'until *0x7d44210` - Step until specific address
-  
-4. Inspecting variables & memory
-   - `print <var>` - Display a variable's value
-   - `set variable <var> = <value>` - Set variable `var` to `value`
-   - `print <var> = <value>` - `print` with assignment, modify and see the new value
-   - `display <var>` - Continuously show a variable's value
-   - `info locals` - List all local variables
-   - `x/<format> <address>` - Examine memory (e.g., `x/4x $sp`)
-  
-5. Call Stack & Threads
-   - `backtrace`/`bt` - Show the call stack
-   - `frame <num>` - Switch to different stack frame
-   - `info threads` - List all threads in a multi-threaded program
-   - `thread <ID>` - Switch to thread ID
-  
-6. Advanced Commands
-   - `watch <var>` - Pause execution when a variable changes
-   - `set var <var>=<value>` - Modify a variable's value when dubugging
-   - `disassemble` - Show assembly code for current function
-   - `disas /r <addr1>, <addr2>` - Disassemble code in an address range
-   - `disassemble $pc,+20` - manually Display instructions around current point
-   - `layout asm` - Display disassembly automatically after each step
-   - `tui enable` - use TUI (Text User Interface) mode
-   - `tui layout asm` - To Display assembly
-   - `tui disable` - To leave TUI mode
-
-
 # Set up GDB on SPIKE
 
 
 
-### On spike:
+## On spike:
 
 ```bash
 ./riscv-isa-sim/build/spike --initrd=initrd1.img -H --rbb-port=9824 --isa=RV32imafdc -m0x80000000:0x40000000 ./opensbi/build/platform/generic/firmware/fw_payload.elf
 ```
 
-### On OpenOCD:
+## On OpenOCD:
 
 ```bash
 openocd -f openocd_spike.cfg
 ```
 
-### On GDB client:
+## On GDB client:
 
 ```bash
 /opt/riscv/bin/riscv32-unknown-linux-gnu-gdb ./opensbi/build/platform/generic/firmware/fw_payload.elf
