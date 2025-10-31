@@ -63,7 +63,7 @@ ref: https://www.sourceware.org/gdb/documentation/
 
 ## strace
 
-调试系统调用
+**调试**系统调用
 
 ```
 Usage: strace [-ACdffhikqqrtttTvVwxxyyzZ] [-I N] [-b execve] [-e EXPR]...
