@@ -56,7 +56,28 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `tui layout asm` - To Display assembly
    - `tui disable` - To leave TUI mode
 
+## DWARF format
 
+ref:https://dwarfstd.org/
+
+DWARF is a debugging information file format used by many compilers and debuggers to support source level debugging. It addresses the requirements of a number of procedural languages, such as C, C++, and Fortran, and is designed to be extensible to other languages. DWARF is architecture independent and applicable to any processor or operating system. It is widely used on Unix, Linux and other operating systems, as well as in stand-alone environments.
+
+ref: https://developer.ibm.com/articles/au-dwarf-debug-format/
+
+DWARF (debugging with attributed record formats) is a debugging file format used by many compilers and debuggers to support source-level debugging. It is the format of debugging information within an object file. The DWARF description of a program is a tree structure where each node can have children or siblings. The nodes might represent types, variables, or functions.
+
+DWARF uses a series of debugging information entries (DIEs) to define a low-level representation of a source program. Each debugging information entry consists of an identifying tag and a series of attributes. An entry or group of entries together, provides a description of a corresponding entity in the source program. The tag specifies the class to which an entry belongs and the attributes define the specific characteristics of the entry.
+
+Example of debug information contained in DWARF format:
+
+```c
+struct line_table_entry {
+    address_t memory_address;
+    unsigned int line_number;
+    string file_name;
+    // Plus column info, prologue/epilogue markers, etc.
+};
+```
 
 # debug tools
 
