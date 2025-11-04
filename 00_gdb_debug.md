@@ -56,6 +56,34 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `tui layout asm` - To Display assembly
    - `tui disable` - To leave TUI mode
 
+## GDB server
+
+On target machine:
+
+`gdbserver [HOST_IP]:PORT /path/to/program [program arguments]`
+
+If `HOST_IP` is omitted, `gdbserver` listen to connections.
+
+Attach to running process:
+
+`gdbserver --attach :PORT PID`
+
+Start the server without an initial program (waiting for instructions from the host GDB):
+
+`gdbserver --multi [HOST_IP]:PORT`
+
+On host machine:
+`gdb ./program_with_debug_symbols`
+
+Inside GDB:
+```bash
+(gdb) target extended-remote IP:PORT
+(gdb) file ./program_with_debug_symbols # Load the program symbol if not started with
+```
+
+On host machine: (connect directly)
+`gdb -ex "target extended-remote IP:PORT" ./program_with_debug_symbols`
+
 ## DWARF format
 
 ref:https://dwarfstd.org/
