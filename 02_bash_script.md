@@ -683,9 +683,9 @@ These filters often have various command line options that will modify their beh
 
 
 Some of them:
-
+```
 head, tail, sort, nl, wc, cut, sed, uniq, tac, awk, diff
-
+```
 
 
 ## nl
@@ -1120,6 +1120,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
