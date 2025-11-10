@@ -92,10 +92,11 @@ Note that, `=` will do string comparison while `-eq` does numerical.
 
 `mv foo.{txt,pdf} some-dir` -> will move file foo.txt and foo.pdf to some-dir
 
+`mv foo.{1..3}.log some-dir` -> will move file foo.1.log foo.2.log foo.3.log to some-dir
+
 `cp somefile{,.back}` -> will copy somefile to somefile.back
 
 `mkdir -p test-{a,b,c}/subtest-{1,2,3}` -> will create a directory tree
-
 
 
 Putting script in braces can prevent executing partial scripts.
@@ -1091,6 +1092,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
