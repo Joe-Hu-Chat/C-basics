@@ -2,7 +2,7 @@
 
 ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
 
-# (...)
+# Sub-shell (...)
 
 **sub-shell** command in bash script:
 
@@ -73,6 +73,41 @@ Putting script in braces can prevent executing partial scripts:
 {
 	# Scripting here
 }
+```
+
+# Parameter Expansion ${...}
+
+**string manipulation**
+
+``` bash
+${parameter#pattern}      # Remove shortest match from beginning
+${parameter##pattern}     # Remove longest match from beginning  
+${parameter%pattern}      # Remove shortest match from end
+${parameter%%pattern}     # Remove longest match from end
+${parameter:start:length} # Substring extraction
+```
+
+Remove specific prefix:
+``` bash
+for file in prefix_*; do
+    mv "$file" "${file#prefix_}"
+done
+```
+
+Default value:
+``` bash
+${variable:-default}        # Use default if variable is unset or empty
+${variable:=default}        # Set variable to default if unset or empty
+```
+
+Pattern replacement:
+``` bash
+${variable/pattern/replacement}  # Replace first occurrence
+${variable//pattern/replacement} # Replace all occurrences
+
+filename="hello_world.txt"
+echo "${filename/_/-}"           # "hello-world.txt"
+echo "${filename//l/L}"          # "heLLo_worLd.txt"
 ```
 
 # Shell Arithmetic
@@ -168,41 +203,6 @@ Mandatory arguments to long options are mandatory for short options too.
   
   -z, --zero           end each output line with NUL, not newline
 
-
-# parameter expansion
-
-**string manipulation**
-
-``` bash
-${parameter#pattern}      # Remove shortest match from beginning
-${parameter##pattern}     # Remove longest match from beginning  
-${parameter%pattern}      # Remove shortest match from end
-${parameter%%pattern}     # Remove longest match from end
-${parameter:start:length} # Substring extraction
-```
-
-Remove specific prefix:
-``` bash
-for file in prefix_*; do
-    mv "$file" "${file#prefix_}"
-done
-```
-
-Default value:
-``` bash
-${variable:-default}        # Use default if variable is unset or empty
-${variable:=default}        # Set variable to default if unset or empty
-```
-
-Pattern replacement:
-``` bash
-${variable/pattern/replacement}  # Replace first occurrence
-${variable//pattern/replacement} # Replace all occurrences
-
-filename="hello_world.txt"
-echo "${filename/_/-}"           # "hello-world.txt"
-echo "${filename//l/L}"          # "heLLo_worLd.txt"
-```
 
 # redirection
 
@@ -1120,6 +1120,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
