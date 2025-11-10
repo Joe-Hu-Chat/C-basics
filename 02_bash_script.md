@@ -12,6 +12,20 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
   # continue in original dir
 ```
 
+# Brace Expansion
+
+```bash
+# Generate multiple patterns
+echo {apple,banana,cherry}.txt
+# Output: apple.txt banana.txt cherry.txt
+
+# Number sequences
+echo file{1..5}.txt
+# Output: file1.txt file2.txt file3.txt file4.txt file5.txt
+
+# Combined with wildcards
+ls *.{jpg,png,gif}  # All image files
+```
 
 
 # Shell Arithmetic
@@ -1092,6 +1106,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
