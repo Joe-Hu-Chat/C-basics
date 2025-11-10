@@ -14,6 +14,12 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
 
 # Basic Wildcard characters
 
+- `*` - represents zero or more characters
+- `?` - represents a single character
+- `[]` - represents a range of characters, the caret (`^`) inside the brackets means characters not in the range
+
+It is actually the **shell** that does the wildcards translation for us. Putting wildcards inside **quotes** makes them **not** recognized by bash. (Similar to wrap file names with spaces in quotes or escape the spaces with `\`)
+
 ```
 Wildcard	Meaning									Example			Matches
 *			Zero or more characters					*.txt			file.txt, notes.txt, .txt
@@ -41,7 +47,7 @@ file[[:alpha:]].txt  # any letter (a-z, A-Z)
 file[[:alnum:]].txt  # any alphanumeric character
 ```
 
-# Brace Expansion
+# Brace Expansion {...}
 
 ```bash
 # Generate multiple patterns
@@ -56,6 +62,18 @@ echo file{1..5}.txt
 ls *.{jpg,png,gif}  # All image files
 ```
 
+- `mv foo.{txt,pdf} some-dir` -> will move file foo.txt and foo.pdf to some-dir
+- `mv foo.{1..3}.log some-dir` -> will move file foo.1.log foo.2.log foo.3.log to some-dir
+- `cp somefile{,.back}` -> will copy somefile to somefile.back
+- `mkdir -p test-{a,b,c}/subtest-{1,2,3}` -> will create a directory tree
+
+
+Putting script in braces can prevent executing partial scripts:
+```bash
+{
+	# Scripting here
+}
+```
 
 # Shell Arithmetic
 
@@ -128,39 +146,6 @@ Note that, `=` will do string comparison while `-eq` does numerical.
 - **$SECONDS** - The number of seconds since the script was started.
 - **$RANDOM** - Returns a different random number each time is it referred to.
 - **$LINENO** - Returns the current line number in the Bash script.
-
-
-
-# {...}
-
-`mv foo.{txt,pdf} some-dir` -> will move file foo.txt and foo.pdf to some-dir
-
-`mv foo.{1..3}.log some-dir` -> will move file foo.1.log foo.2.log foo.3.log to some-dir
-
-`cp somefile{,.back}` -> will copy somefile to somefile.back
-
-`mkdir -p test-{a,b,c}/subtest-{1,2,3}` -> will create a directory tree
-
-
-Putting script in braces can prevent executing partial scripts.
-
-```bash
-{
-	# Scripting here
-}
-```
-
-
-
-# wildcards
-
-- ***** - represents zero or more characters
-- **?** - represents a single character
-- **[]** - represents a range of characters, the caret (^) inside the brackets means characters not in the range
-
-It is actually **bash** that does the wildcards translation for us.
-
-Putting wildcards inside **quotes** makes them not recognized by the shell. (Similar to wrap file names with spaces in quotes or escape the spaces with `\`)
 
 
 # basename
@@ -1135,6 +1120,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
