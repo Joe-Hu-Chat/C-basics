@@ -12,6 +12,35 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
   # continue in original dir
 ```
 
+# Basic Wildcard characters
+
+```
+Wildcard	Meaning									Example			Matches
+*			Zero or more characters					*.txt			file.txt, notes.txt, .txt
+?			Exactly one character					file?.txt		file1.txt, fileA.txt
+[ ]			Any single character in brackets		file[123].txt	file1.txt, file2.txt, file3.txt
+[! ]		Any single character NOT in brackets	file[!123].txt	file4.txt, fileA.txt
+```
+
+Character Ranges and Classes
+```bash
+# Number ranges
+file[0-9].txt        # file0.txt through file9.txt
+file[1-5].txt        # file1.txt through file5.txt
+
+# Letter ranges
+file[a-z].txt        # filea.txt through filez.txt
+file[A-Z].txt        # fileA.txt through fileZ.txt
+
+# Multiple ranges
+file[0-9a-z].txt     # digits or lowercase letters
+
+# Character classes (in some shells)
+file[[:digit:]].txt  # any digit (0-9)
+file[[:alpha:]].txt  # any letter (a-z, A-Z)
+file[[:alnum:]].txt  # any alphanumeric character
+```
+
 # Brace Expansion
 
 ```bash
@@ -1106,6 +1135,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
