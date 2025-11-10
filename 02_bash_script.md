@@ -18,7 +18,9 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
 
 ## ((...))
 
-**Double parentheses** function is preferred to do **arithmetic** in Bash scripts.
+**Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This looks like a comination
+of `$()` and `()`. The former is to get the value of a variable, while the latter is a **sub-shell** commnad,
+which will generate a temporary middle variable.
 
 ![image-20240816144552040](./.02_bash_script/image-20240816144552040.png)
 
@@ -1089,6 +1091,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
