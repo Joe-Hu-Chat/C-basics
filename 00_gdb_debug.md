@@ -62,7 +62,7 @@ On target machine:
 
 `gdbserver [HOST_IP]:PORT /path/to/program [program arguments]`
 
-If `HOST_IP` is omitted, `gdbserver` listen to connections.
+If `HOST_IP` is omitted, `gdbserver` listen to any connections.
 
 Attach to running process:
 
