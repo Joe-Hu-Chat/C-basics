@@ -38,7 +38,32 @@ Rebase changes with conflict resolution
 ### precise rebase
 
 `git rebase --onto <newbase> <since> <until>`
+- `<newbase>`: The branch or commit onto which you will replay your commits (the new base).
+- `<since>`: The commit before the first commit you want to move (exclusive).
+- `<until>`: The commit where your sequence of changes ends, typically your current branch name (inclusive).
 
+A practical example:
+```
+# 1. Check out the branch containing the commits you want to move
+git checkout feature-branch
+
+# 2. Rebase a specific range of commits onto the new base
+git rebase --onto main <since> feature-branch
+```
+This command tells Git: "Find the commits from B (exclusive) to feature-branch (inclusive), and replay them onto main."
+
+To move commits E and F from feature-branch to be based on `main` instead of old-base:
+```
+A---B---C---D  main
+     \
+      E---F  feature-branch
+```
+The result is a cleaner history:
+```
+A---B---C---D  main
+             \
+              E'---F'  feature-branch
+```
 
 ## Discard local changes diverged from remote
 
