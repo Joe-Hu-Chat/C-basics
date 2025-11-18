@@ -35,6 +35,11 @@ Rebase changes with conflict resolution
 
 `git rebase --continue`: Continue after amending commits
 
+### precise rebase
+
+`git rebase --onto <newbase> <since> <until>`
+
+
 ## Discard local changes diverged from remote
 
 `git reset --hard origin/main`
