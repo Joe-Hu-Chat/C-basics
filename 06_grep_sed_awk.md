@@ -509,9 +509,19 @@ $ ls -1
 ```
 
 ### example
+
+#### Print
 `sed -n 's/^ *\* Command: //p'`
 
-`-n` option suppresses the automatic prining, while the `p` flag enables printing out substituted `partten space` content.
+This command is usually only used in conjunction with the `-n` command-line option. 
+The `-n` option suppresses the automatic prining, while the `p` flag enables printing out substituted `partten space` content.
+
+#### Append text to the end of lines
+The Append command will append text the next line and the Insert command will append text to the previous line.
+```
+# Append "text_to_append" to each line
+sed 's/$/text_to_append/' input.txt
+```
 
 ### flag
 The `s` command can be followed by **zero or more** of the following flags:
@@ -748,6 +758,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
