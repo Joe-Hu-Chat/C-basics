@@ -90,7 +90,17 @@ or
 `git restore --source <commit-hash>^ filename.txt`
 
 
-# reset git submodules to default commits
+# Discard local commits and pull from remote
+```bash
+# Fetch the latest changes from remote
+git fetch origin
+
+# Reset your local branch to match the remote branch exactly
+git reset --hard origin/main
+```
+`--hard` flag: This discards all local changes, including uncommitted changes and all local commits. Use with caution!
+
+# Reset git submodules to default commits
 
 Reset all submodule by `git submodule foreach`
 
