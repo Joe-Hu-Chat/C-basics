@@ -2,6 +2,21 @@
 
 ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
 
+
+
+# Debug Script
+
+`sh [-nvx] script.sh`
+
+```
+选项与参数：
+-n  ：不要运行 script，仅查询语法的问题；
+-v  ：再运行 sccript 前，先将 scripts 的内容输出到萤幕上；
+-x  ：将使用到的 script 内容显示到萤幕上，这是很有用的参数！
+```
+
+
+
 # Sub-shell (...)
 
 **sub-shell** command in bash script:
@@ -11,6 +26,8 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
   (cd /some/other/dir && other-command)
   # continue in original dir
 ```
+
+
 
 # Basic Wildcard characters
 
@@ -152,7 +169,7 @@ z=`expr substr $string $position $length`
 
 
 
-# test / [] 
+# test vs []
 
 中括号与test几乎一模一样，只是中括号比较常用在条件判断式`if ... then ... fi`的情况中。
 
@@ -202,268 +219,6 @@ Mandatory arguments to long options are mandatory for short options too.
   -s, --suffix=SUFFIX  remove a trailing SUFFIX; implies -a
 
   -z, --zero           end each output line with NUL, not newline
-
-
-# redirection
-
-Some Unix **conventions** suggest that if no input is specified, commands should read from `stdin`, and if no output is specified, they should write to `stdout`.
-
-## `-`
-
-Redirected dependently to `stdin`, `stdout` or `stderr`.
-
-The `-` can be used as a special file name to represent `stdin` or `stdout` in such cases. The interpretation of whether - means `stdin` or `stdout` depends on the specific command and context. There is **no universal** rule that dictates whether it represents `stdin` or `stdout` across all programs.
-
-The decision to use `-` for `stdin`, `stdout`, or both is up to the program's design and user interface conventions. There are no widely adopted standards that dictate a single approach. Programs can detect if their `stdin/stdout` is connected to a terminal or being **piped/redirected**, and **may change behavior accordingly**, such as switching to single-column output when piped.
-
-
-
-With bash *redirection*, `-` is not recognized as a special filename, so bash will use that as the literal filename.
-
-When cat sees the string `-` as a filename, it treats it as a synonym for `stdin`. To get around this, you need to alter the string that cat sees in such a way that it still refers to a file called `-`. The usual way of doing this is to prefix the filename with a path - `./-`, or `/home/Tim/-`. This technique is also used to get around similar issues where command line **options** clash with filenames, so a file referred to as `./-e` does not appear as the `-e` command line option to a program. 
-
-## `--`
-
-`man bash`:
-
-![image-20240530101716555](./.02_bash_script/image-20240530101716555.png)
-
-
-
-## >
-
-Saving to a file
-
-## >>
-
-Appending to a file
-
-##  <
-
-Redirecting from a file
-
-`<(some commands)` treats the output of `some commands` as a file.
-
-
-## 2>
-
-Redirecting STDERR (to STDOUT `2>&1`)
-
-
-
-# curl vs wget
-
-`curl` supports more protocol than `wget`. `curl` output to `stdout` in **default**, while `wget` download a file to current directory. So the command before equals to `curl <url> | bash`.
-ref: (https://linuxhint.com/what-is-the-difference-between-wget-vs-curl/)
-
-## curl-bash pipe
-
-`curl <url>  -o -| bash -`
-
-This equals to `curl <url> | bash`, as `curl` outputs to `stdout` in default, while `bash` takes from `stdin` if there is no input specified.
-
-curl https://www.opscode.com/chef/install.sh | sudo bash
-This curl-bash pipe is from https://gist.github.com/btm/6700524
-
-
-
-# cron
-
-Cron stands for **C**ommand **R**un **ON**, used to do Task Scheduling. It is a mechanism that allows you to tell the system to run certain commands at a certain times.
-
-
-## crontab
-
-```bash
-***** command to execute
-```
-
-Where the `*`'s represent (in order from left to right):
-- Minutes (0 - 59)
-- Hours (0 - 23)
-- Day of Month (1 - 31)
-- Months (1 - 12)
-- Day of week (0 - 7) (0 and 7 are Sunday) 			
-
-`crontab -l` To view a list of what tasks you currently have scheduled
-
-`crontab -e` To edit your scheduled tasks in a text editor you like
-
-
-
-# xargs
-
-Xargs is a great command that **reads streams of data from standard input**, then generates and executes command lines; meaning it can take output of a command and passes it as argument of another command. If no command is specified, **xargs executes echo by default**. You many also instruct it to read data from a file instead of `stdin`.
-
-```shell
-find . -name "*.txt" | xargs -I '{}' mv '{}' /foo/'{}'.bar
-
-  -I R                         same as --replace=R (R must be specified)
-  -i,--replace=[R]             Replace R in initial arguments with names
-                               read from standard input. If R is
-                               unspecified, assume {}
-```
-
-
-
-One side effect of `xargs` is to concatenate multiple lines into **one line**. For example, there are multi lines in `test.txt` file, the following commands will output them in one line:
-
-`cat test.txt | xargs`
-
-Further more:
-
-`-n` option can specify column of a line in output.
-
-`-d` option defines the delimiter of its input data.
-
-
-```shell
-find sdma_list/ -type f | xargs -I {} sh -c 'echo {}; grep "Skipped$" {} '
-```
-
-Multi-commands execution with `xargs`
-
-
-
-# find
-
-Find is a great tool for fine grained control over searching for files.  Like with **xargs**, the man page is the best place to discover them all.  
-
-Ref: http://linux.51yip.com/search/find
-
-
-# tar
-
-Tar stands for **T**ape **AR**chive and is a popular means for combining and  compressing several files into a single file.  It was originally created for making backups on **tape** but is still commonly used today.
-
-
-
-# Secure Copy (scp)
-
-Scp is a quick, easy and secure way to copy files between different  machines.  It is part of the SSH (Secure SHell) suite of tools.  With it you may copy files to and from your local machine and a remote machine.
-
-
-
-# sort -u
-
-unique items
-
-# return vs exit
-
-We can call exit anywhere in the script, either inside a function or outside a function. This stops the execution of the script immediately.
-
-We can call return in a function. This stops the execution of the function immediately. Using return for exiting from a script gives error. However, sourcing the script doesn’t give an error.
-
-The shell executes the action in the trap command on EXIT for exit, but it doesn’t run it for return.
-
-
-
-# diff & patch
-
-Source code comparison and merge. `diffstat` can be used to show change statistics.
-
-
-
-# cut, past, join
-
-cut: separate content into fields (columns), then get certain fields.
-
-```cut -f 1,2 -d ' ' mysampledata.txt```
-
-
-
-# tac
-
-The reverse of `cat`
-
-example to change endian-ness manually:
-
-```
-xxd -g 16 test.bin | cut -d" " -f2 | xargs -I% sh -c 'echo  % | tac -rs ..' | head
-```
-
-A side effect is that the new line symbol is at the beginning of a line, instead of the end of the line.
-
-
-
-## rev
-
-reverse the order of characters in every line.
-
-
-
-# stat
-
-file info
-
-
-
-# time
-
-Execution time period
-
-
-
-# strings
-
-Extract strings from **binary** file
-
-
-
-# tr
-
-Characters transformation
-
-```Usage: tr [OPTION]... SET1 [SET2]
-Translate, squeeze, and/or delete characters from standard input,
-writing to standard output.
-
-  -c, -C, --complement    use the complement of SET1
-  -d, --delete            delete characters in SET1, do not translate
-  -s, --squeeze-repeats   replace each sequence of a repeated character
-                            that is listed in the last specified SET,
-                            with a single occurrence of that character
-  -t, --truncate-set1     first truncate SET1 to length of SET2
-      --help     display this help and exit
-      --version  output version information and exit
-
-SETs are specified as strings of characters.  Most represent themselves.
-Interpreted sequences are:
-
-  \NNN            character with octal value NNN (1 to 3 octal digits)
-  \\              backslash
-  \a              audible BEL
-  \b              backspace
-  \f              form feed
-  \n              new line
-  \r              return
-  \t              horizontal tab
-  \v              vertical tab
-  CHAR1-CHAR2     all characters from CHAR1 to CHAR2 in ascending order
-  [CHAR*]         in SET2, copies of CHAR until length of SET1
-  [CHAR*REPEAT]   REPEAT copies of CHAR, REPEAT octal if starting with 0
-  [:alnum:]       all letters and digits
-  [:alpha:]       all letters
-  [:blank:]       all horizontal whitespace
-  [:cntrl:]       all control characters
-  [:digit:]       all digits
-  [:graph:]       all printable characters, not including space
-  [:lower:]       all lower case letters
-  [:print:]       all printable characters, including space
-  [:punct:]       all punctuation characters
-  [:space:]       all horizontal or vertical whitespace
-  [:upper:]       all upper case letters
-  [:xdigit:]      all hexadecimal digits
-  [=CHAR=]        all characters which are equivalent to CHAR
-```
-
-
-
-# ls*
-
-`lsblk`, 	`lshw`, 	`lscpu`, 	`lspci`, 	`lsusb`, 	`lsmod`
-
-块，		 硬件，	CPU， 	PCI， 		USB， 	内核模块
 
 
 
@@ -556,6 +311,41 @@ for ((expr1; expr2; expr3)); do <commands>; done
 
 
 
+
+# redirection
+
+Some Unix **conventions** suggest that if no input is specified, commands should read from `stdin`, and if no output is specified, they should write to `stdout`.
+
+- `-` - Redirected dependently to `stdin`, `stdout` or `stderr`.
+
+The `-` can be used as a special file name to represent `stdin` or `stdout` in such cases. The interpretation of whether - means `stdin` or `stdout` depends on the specific command and context. There is **no universal** rule that dictates whether it represents `stdin` or `stdout` across all programs.
+
+The decision to use `-` for `stdin`, `stdout`, or both is up to the program's design and user interface conventions. There are no widely adopted standards that dictate a single approach. Programs can detect if their `stdin/stdout` is connected to a terminal or being **piped/redirected**, and **may change behavior accordingly**, such as switching to single-column output when piped.
+
+
+
+With bash *redirection*, `-` is not recognized as a special filename, so bash will use that as the literal filename.
+
+When `cat` sees the string `-` as a filename, it treats it as a synonym for `stdin`. To get around this, you need to alter the string that cat sees in such a way that it still refers to a file called `-`. The usual way of doing this is to prefix the filename with a path `./-`, or `/home/Tim/-`. This technique is also used to get around similar issues where command line **options** clash with filenames, so a file referred to as `./-e` does not appear as the `-e` command line option to a program. 
+
+
+
+- `--` - end of options
+
+`man bash`:
+
+![image-20240530101716555](./.02_bash_script/image-20240530101716555.png)
+
+
+
+- `>` - Saving to a file
+- `>>` - Appending to a file
+- `<` - Redirecting from a file
+  - `<(some commands)` treats the output of `some commands` as a file.
+- `2>` -  Redirecting STDERR (to STDOUT `2>&1`)
+
+
+
 # man
 
 Manual pages
@@ -568,36 +358,224 @@ Manual pages is like `less` command, so you can use `/` to trigger a search insi
 
 
 
-# Permissions for Directories
+# xargs
 
-- **r** - you have the ability to read the contents of the directory (ie do an `ls`)
-- **w** - you have the ability to write into the directory (ie create files and directories)
-- **x** - you have the ability to enter that directory (ie `cd`)
+Xargs is a great command that **reads streams of data from standard input**, then generates and executes command lines; meaning it can take output of a command and passes it as argument of another command. If no command is specified, **xargs executes echo by default**. You many also instruct it to read data from a file instead of `stdin`.
 
+```shell
+find . -name "*.txt" | xargs -I '{}' mv '{}' /foo/'{}'.bar
 
-
-# debug script
-
-`sh [-nvx] script.sh`
-
-```
-选项与参数：
--n  ：不要运行 script，仅查询语法的问题；
--v  ：再运行 sccript 前，先将 scripts 的内容输出到萤幕上；
--x  ：将使用到的 script 内容显示到萤幕上，这是很有用的参数！
+  -I R                         same as --replace=R (R must be specified)
+  -i,--replace=[R]             Replace R in initial arguments with names
+                               read from standard input. If R is
+                               unspecified, assume {}
 ```
 
 
 
-# hash value
+One side effect of `xargs` is to concatenate multiple lines into **one line**. For example, there are multi lines in `test.txt` file, the following commands will output them in one line:
 
-`md5sum`
+`cat test.txt | xargs`
 
-`sha256sum`
+Further more:
+
+`-n` option can specify column of a line in output.
+
+`-d` option defines the delimiter of its input data.
+
+
+```shell
+find sdma_list/ -type f | xargs -I {} sh -c 'echo {}; grep "Skipped$" {} '
+```
+
+Multi-commands execution with `xargs`
 
 
 
-# Bash example
+# find
+
+Find is a great tool for fine grained control over searching for files.  Like with **xargs**, the man page is the best place to discover them all.  
+
+Ref: http://linux.51yip.com/search/find
+
+
+# tar
+
+Tar stands for **T**ape **AR**chive and is a popular means for combining and  compressing several files into a single file.  It was originally created for making backups on **tape** but is still commonly used today.
+
+
+
+#  scp
+
+The `scp` (Secure Copy) is a quick, easy and secure way to copy files between different  machines.  It is part of the SSH (Secure SHell) suite of tools.  With it you may copy files to and from your local machine and a remote machine.
+
+
+
+# sort -u
+
+unique items
+
+# return vs exit
+
+We can call exit anywhere in the script, either inside a function or outside a function. This stops the execution of the script immediately.
+
+We can call return in a function. This stops the execution of the function immediately. Using return for exiting from a script gives error. However, sourcing the script doesn’t give an error.
+
+The shell executes the action in the trap command on EXIT for exit, but it doesn’t run it for return.
+
+
+
+# diff & patch
+
+Source code comparison and merge. `diffstat` can be used to show change statistics.
+
+
+
+# cut, past, join
+
+cut: separate content into fields (columns), then get certain fields.
+
+```cut -f 1,2 -d ' ' mysampledata.txt```
+
+
+
+# cat - tac
+
+`tac` is the reverse of `cat`
+
+example to change endian-ness manually:
+
+```
+xxd -g 16 test.bin | cut -d" " -f2 | xargs -I% sh -c 'echo  % | tac -rs ..' | head
+```
+
+A side effect is that the new line symbol is at the beginning of a line, instead of the end of the line.
+
+
+
+## rev
+
+reverse the order of characters in every line.
+
+
+
+# stat
+
+file info
+
+
+
+# time
+
+Execution time period
+
+
+
+# strings
+
+Extract strings from **binary** file
+
+
+
+# tr
+
+Characters transformation
+
+```Usage: tr [OPTION]... SET1 [SET2]
+Translate, squeeze, and/or delete characters from standard input,
+writing to standard output.
+
+  -c, -C, --complement    use the complement of SET1
+  -d, --delete            delete characters in SET1, do not translate
+  -s, --squeeze-repeats   replace each sequence of a repeated character
+                            that is listed in the last specified SET,
+                            with a single occurrence of that character
+  -t, --truncate-set1     first truncate SET1 to length of SET2
+      --help     display this help and exit
+      --version  output version information and exit
+
+SETs are specified as strings of characters.  Most represent themselves.
+Interpreted sequences are:
+
+  \NNN            character with octal value NNN (1 to 3 octal digits)
+  \\              backslash
+  \a              audible BEL
+  \b              backspace
+  \f              form feed
+  \n              new line
+  \r              return
+  \t              horizontal tab
+  \v              vertical tab
+  CHAR1-CHAR2     all characters from CHAR1 to CHAR2 in ascending order
+  [CHAR*]         in SET2, copies of CHAR until length of SET1
+  [CHAR*REPEAT]   REPEAT copies of CHAR, REPEAT octal if starting with 0
+  [:alnum:]       all letters and digits
+  [:alpha:]       all letters
+  [:blank:]       all horizontal whitespace
+  [:cntrl:]       all control characters
+  [:digit:]       all digits
+  [:graph:]       all printable characters, not including space
+  [:lower:]       all lower case letters
+  [:print:]       all printable characters, including space
+  [:punct:]       all punctuation characters
+  [:space:]       all horizontal or vertical whitespace
+  [:upper:]       all upper case letters
+  [:xdigit:]      all hexadecimal digits
+  [=CHAR=]        all characters which are equivalent to CHAR
+```
+
+
+
+# ls*
+
+`lsblk`, 	`lshw`, 	`lscpu`, 	`lspci`, 	`lsusb`, 	`lsmod`
+
+块，		 硬件，	CPU， 	PCI， 		USB， 	内核模块
+
+
+
+# curl vs wget
+
+`curl` supports more protocol than `wget`. `curl` output to `stdout` in **default**, while `wget` download a file to current directory. So the command before equals to `curl <url> | bash`.
+ref: (https://linuxhint.com/what-is-the-difference-between-wget-vs-curl/)
+
+## curl-bash pipe
+
+`curl <url>  -o -| bash -`
+
+This equals to `curl <url> | bash`, as `curl` outputs to `stdout` in default, while `bash` takes from `stdin` if there is no input specified.
+
+curl https://www.opscode.com/chef/install.sh | sudo bash
+This curl-bash pipe is from https://gist.github.com/btm/6700524
+
+
+
+# cron
+
+Cron stands for **C**ommand **R**un **ON**, used to do Task Scheduling. It is a mechanism that allows you to tell the system to run certain commands at a certain times.
+
+
+## crontab
+
+```bash
+***** command to execute
+```
+
+Where the `*`'s represent (in order from left to right):
+
+- Minutes (0 - 59)
+- Hours (0 - 23)
+- Day of Month (1 - 31)
+- Months (1 - 12)
+- Day of week (0 - 7) (0 and 7 are Sunday)
+
+`crontab -l` To view a list of what tasks you currently have scheduled
+
+`crontab -e` To edit your scheduled tasks in a text editor you like
+
+
+
+# Bash Example
 
 Record the representative commands in practical useage.
 
@@ -653,16 +631,6 @@ Display content of the zip file.
 
 
 
-## sed
-
-Extract PC values from PC stream log
-
-`cat log-opensbi-gmac_1028-1.txt | sed 's/^.*core0_pad_retire[0-9]: *\([0-f]\{16\}\).*$/\1/g' > pc_stream`
-
-
-
-
-
 ## split
 
 Split a big file by lines into files consist of 10000 lines each, and extend their file names with 4 digits.
@@ -699,7 +667,15 @@ number lines
 
 
 
-# network
+# hash value
+
+`md5sum`
+
+`sha256sum`
+
+
+
+# Network
 
 ref: https://www.cellstream.com/2010/09/10/what-is-the-arp-command/
 
