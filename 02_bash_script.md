@@ -190,7 +190,7 @@ Print NAME with any leading directory components removed.
 Usage: `basename` NAME [SUFFIX]
 
   or:  `basename` OPTION... NAME...
-  
+
 Print NAME with any leading directory components **removed**.
 
 If specified, also remove a trailing SUFFIX.
@@ -198,9 +198,9 @@ If specified, also remove a trailing SUFFIX.
 Mandatory arguments to long options are mandatory for short options too.
 
   -a, --multiple       support multiple arguments and treat each as a NAME
-  
+
   -s, --suffix=SUFFIX  remove a trailing SUFFIX; implies -a
-  
+
   -z, --zero           end each output line with NUL, not newline
 
 
@@ -267,19 +267,18 @@ This curl-bash pipe is from https://gist.github.com/btm/6700524
 
 
 
-# Cron - Task Scheduling
+# cron
 
-Cron stands for **C**ommand **R**un **ON**. It is a mechanism that allows you to tell the system to run certain commands at a certain times.
+Cron stands for **C**ommand **R**un **ON**, used to do Task Scheduling. It is a mechanism that allows you to tell the system to run certain commands at a certain times.
 
 
-
-### crontab
+## crontab
 
 ```bash
 ***** command to execute
 ```
 
-Where the `*`'s represent (in order from left to right:
+Where the `*`'s represent (in order from left to right):
 - Minutes (0 - 59)
 - Hours (0 - 23)
 - Day of Month (1 - 31)
@@ -1120,7 +1119,6 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
-
 
 
 
