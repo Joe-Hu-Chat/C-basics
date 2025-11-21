@@ -331,6 +331,7 @@ Multi-commands execution with `xargs`
 
 Find is a great tool for fine grained control over searching for files.  Like with **xargs**, the man page is the best place to discover them all.  
 
+Ref: http://linux.51yip.com/search/find
 
 
 # tar
@@ -1120,6 +1121,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
