@@ -275,12 +275,11 @@ Cron stands for **C**ommand **R**un **ON**. It is a mechanism that allows you to
 
 ### crontab
 
-```crontab
+```bash
 ***** command to execute
 ```
 
 Where the `*`'s represent (in order from left to right:
-
 - Minutes (0 - 59)
 - Hours (0 - 23)
 - Day of Month (1 - 31)
@@ -1121,6 +1120,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
