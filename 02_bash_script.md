@@ -340,7 +340,7 @@ When `cat` sees the string `-` as a filename, it treats it as a synonym for `std
 
 - `>` - Saving to a file
 - `>>` - Appending to a file
-- `<` - Redirecting from a file
+- `<` - Redirecting from a file (The file is opened by Bash, instead of the command redirected to)
   - `<(some commands)` treats the output of `some commands` as a file.
 - `2>` -  Redirecting STDERR (to STDOUT `2>&1`)
 
@@ -1095,6 +1095,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
