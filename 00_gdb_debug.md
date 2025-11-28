@@ -86,6 +86,9 @@ Inside GDB:
 On host machine: (connect directly)
 `gdb -ex "target extended-remote IP:PORT" ./program_with_debug_symbols`
 
+Stop GDBserver on host machine:
+`monitor exit`
+
 ## DWARF format
 
 ref:https://dwarfstd.org/
