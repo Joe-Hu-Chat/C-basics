@@ -19,6 +19,7 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `break <file>:<line>` - Set a breakpoint at a specific line in a file
    - `info breakpoints` - List all breakpoints
    - `delete <num>` - Delete a breakpoint by its number
+   - `disable <num>` - Disable a breakpoint by its number
    - `break _start` - Set a breakpoint at the entry point `_start`
   
 3. Step through code
@@ -35,6 +36,7 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `print <var>` - Display a variable's value
    - `set variable <var> = <value>` - Set variable `var` to `value`
    - `print <var> = <value>` - `print` with assignment, modify and see the new value
+   - `ptype <var>` - Print out the type of a variable
    - `display <var>` - Continuously show a variable's value
    - `info locals` - List all local variables
    - `x/<format> <address>` - Examine memory (e.g., `x/4x $sp`)
