@@ -67,6 +67,17 @@ Preferred when random access to elements is required
 
 
 
+## next
+
+`std::next` is a standard library **function** that returns an iterator pointing to an element a specified numbers of 
+positions ahead of a given iterator. It does not modify the orriginal iterator; instead, it creates a new one. 
+The function is useful for advancing through containers like `array`s, `vector`s, or `list`s without manually incrementing 
+the iterator in a loop.
+
+For example, `std::next(temp.begin(), n)` returns an `iterator` to the nth element after `temp.begin()`. If the 
+container has fewer than `n` elements, the returned iterator will be equal to the container's end iterator. This function 
+helps write clear and concise code when working with `range`s and iterators.
+
 
 ## list
 
