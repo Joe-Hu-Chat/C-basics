@@ -120,33 +120,6 @@ return 0;
 }
 ```
 
-## thread
-
-### std::async
-
-A function template that runs a function asynchronously (potentially in a new thread) and returns a `std::future` for its result.
-
-Usage:
-```c++
-std::future fut = std::async(std::launch::async, someFunction, args...);
-```
-
-- `std::launch::async`: An option for `std::async` that forces the function to run on a new thread immediatly
-- `std::launch::deferred`: Runs only when result is requested
-
-### std::future
-
-An object that represents a value that will be available at some point in the future, typically the result of an **asynchronous** operation.
-
-You can retrive the result using `.get()`, which will block until the result is ready.
-
-### std::latch
-
-A synchronization **primitive** that allows threads to wait until a counter reaches zero.
-
-Threads call `arrive_and_wait()` to **derement the counter and block** until all participating threads have arrived.
-
-
 # class
 
 ## constructor
@@ -1330,6 +1303,37 @@ ref: https://cplusplus.com/reference/utility/forward/
 
 ## async
 
+### std::async
+
+A function template that runs a function asynchronously (potentially in a new thread) and returns a `std::future` for its result.
+
+Usage:
+```c++
+std::future fut = std::async(std::launch::async, someFunction, args...);
+```
+
+- `std::launch::async`: An option for `std::async` that forces the function to run on a new thread immediatly
+- `std::launch::deferred`: Runs only when result is requested
+
+### std::future
+
+An object that represents a value that will be available at some point in the future, typically the result of an **asynchronous** operation.
+
+You can retrive the result using `.get()`, which will block until the result is ready.
+
+### std::latch
+
+A synchronization **primitive** that allows threads to wait until a counter reaches zero.
+
+Threads call `arrive_and_wait()` to **derement the counter and block** until all participating threads have arrived.
+
+```c++
+std:: latch start{static_cast<ptrdiff_t>(m_threads)}; // The constructor for std::latch expects its count parameter to be of type ptrdiff_t
+
+//...
+
+start.arrive_and_wait(); // Wait all threads reaching before proceeding
+```
 
 
 ## mutex
