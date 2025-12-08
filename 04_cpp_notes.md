@@ -1332,6 +1332,8 @@ An object that represents a value that will be available at some point in the fu
 
 You can retrive the result using `.get()`, which will block until the result is ready.
 
+If a `std::future` is associated with an asynchronous task launched using std::async and you do not explicitly call `.get()` or `.wait()` on it, the **destructor** of the `std::future` will block until the task completes. This ensures that the asynchronous operation finishes before the future object is destroyed, preventing premature termination of the thread. This behavior only applies to futures returned by `std::async`, not to those from `std::promise` or other sources.
+
 ### std::latch
 
 A synchronization **primitive** that allows threads to wait until a counter reaches zero.
