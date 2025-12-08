@@ -1329,9 +1329,7 @@ Threads call `arrive_and_wait()` to **derement the counter and block** until all
 
 ```c++
 std:: latch start{static_cast<ptrdiff_t>(m_threads)}; // The constructor for std::latch expects its count parameter to be of type ptrdiff_t
-
 //...
-
 start.arrive_and_wait(); // Wait all threads reaching before proceeding
 ```
 
