@@ -88,6 +88,14 @@ Store elements in a **non-contiguous** way
 Preferred when random access to elements is not needed
 
 
+## union-like template
+
+`std::optional` vs `std::variant`
+
+`std::optional` template is a standard C++ feature that allows a variable to either contain a value of the specified type, 
+or to be empty, representing the absence of a value. The presence or absence of a value can be checked using the 
+`has_value()` method or by comparing to `std::nullopt`.
+
 
 ## utility
 
