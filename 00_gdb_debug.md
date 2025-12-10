@@ -58,6 +58,9 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `tui layout asm` - To Display assembly
    - `tui disable` - To leave TUI mode
 
+If the TUI display gets garbled, you can often fix it by running the `refresh` command or pressing `Ctrl+L`.
+
+
 ## GDB server
 
 On target machine:
