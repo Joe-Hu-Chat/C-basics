@@ -60,6 +60,20 @@ ref: https://www.sourceware.org/gdb/documentation/
 
 If the TUI display gets garbled, you can often fix it by running the `refresh` command or pressing `Ctrl+L`.
 
+Custom layout:
+
+Permanently define a layout in `~/.gdbinit` or temporarily in GDB
+```bash
+# Open or create the .gdbinit file
+vi ~/.gdbinit
+# Define a custom layout with source and assembly
+tui new-layout mysrcasm src 1 asm 1 status 0 cmd 1
+```
+
+```
+# switch to layout mysrcasm
+(gdb) layout mysrcasm
+```
 
 ## GDB server
 
