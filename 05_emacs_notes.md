@@ -308,6 +308,7 @@ The **region** is the portion of the buffer between the *mark* and the *current 
 Each programming language mode has its own definition of a balanced expression. Balanced expressions typically include **individual symbols, numbers, and string constants, as well as pieces of code enclosed in a matching pair of delimiters**.
 
 `C-M-f` Move forward over a balanced expression (**forward-sexp**).
+
 `C-M-b` Move backward over a balanced expression (**backward-sexp**).
 
 `C-M-k` Kill balanced expression forward (**kill-sexp**).
