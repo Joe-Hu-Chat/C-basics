@@ -30,6 +30,11 @@ Containers **handle memory allocation and deallocation automatically**, simplify
 
 `std::remove_pointer_t<FacadePtr>`: obtain the type that `FacadePtr` points to.
 
+## dynamic_cast
+
+In C++, dynamic_cast is an operator used to safely convert pointers or references to classes up, down, or across an inheritance hierarchy, particularly when working with polymorphic types (classes with at least one virtual function). It performs a runtime check to ensure that the cast is valid.
+
+If the cast if valid, it returns a valid pointer, If not, it returns `nullptr`.
 
 ## map
 
