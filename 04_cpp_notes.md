@@ -96,6 +96,11 @@ Preferred when random access to elements is not needed
 or to be empty, representing the absence of a value. The presence or absence of a value can be checked using the 
 `has_value()` method or by comparing to `std::nullopt`.
 
+### std::variant
+
+`std::getif` is a utility function by the C++ standard library for working with `std:variant`. It allows you to safely access
+the value stored in a `std::variatnt` if it currently holds a specific type. The function takes a pointer to a `std::variant`
+and returns a pointer to the value of the requested type if the variant holds that type; otherwise it returns `nullptr`.
 
 ## utility
 
