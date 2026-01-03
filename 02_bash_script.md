@@ -1,5 +1,6 @@
 `#!/bin/bash`
 
+ref: https://web.archive.org/web/20230406205817/https://wiki.bash-hackers.org/
 ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
 
 
@@ -338,10 +339,11 @@ When `cat` sees the string `-` as a filename, it treats it as a synonym for `std
 
 
 
-- `>` - Saving to a file
+- `>` - Redirecting/Saving to a file
 - `>>` - Appending to a file
 - `<` - Redirecting from a file (The file is opened by Bash, instead of the command redirected to)
-  - `<(some commands)` treats the output of `some commands` as a file.
+  - `<(some commands)` Process Substitution: treats output of "some commands" as a file.
+  - `>(some commands)` Process Substitution: treats input of "some commands" as a file.
 - `2>` -  Redirecting STDERR (to STDOUT `2>&1`)
 
 
@@ -1095,6 +1097,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
