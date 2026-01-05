@@ -400,6 +400,9 @@ Find is a great tool for fine grained control over searching for files.  Like wi
 
 Ref: http://linux.51yip.com/search/find
 
+Using `-exec` with multiple commands in a *shell*:
+
+`find . -name "*.txt" -exec sh -c 'echo "File: {}"; wc -l {}' \;`
 
 # tar
 
@@ -1097,6 +1100,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
