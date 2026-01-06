@@ -72,9 +72,9 @@ Preferred when random access to elements is required
 
 ## std::span
 
-The use of std::span is significant: it creates a lightweight, non-owning view over the contents of m_srcBuffer, which is typically a container like std::vector, std::array, or a raw array. By passing a std::span instead of the container itself, the code allows setData to access the buffer's data and size without copying the underlying elements. This approach improves efficiency and flexibility, as std::span can adapt to various container types and array sources.
+The use of `std::span` is significant: it creates a lightweight, non-owning view over the contents of m_srcBuffer, which is typically a container like `std::vector`, `std::array`, or a raw array. By passing a `std::span` instead of the container itself, the code allows setData to access the buffer's data and size **without** copying the underlying elements. This approach improves efficiency and flexibility, as `std::span` can adapt to various container types and array sources.
 
-A potential 'gotcha' is that std::span does not manage the lifetime of the data it points to. The underlying buffer (m_srcBuffer) must remain valid for as long as the std::span is used inside setData. If setData stores the span or its data pointer for later use, you must ensure that m_srcBuffer is not destroyed or modified in a way that invalidates the data.
+A potential 'gotcha' is that `std::span` does not manage the lifetime of the data it points to. The underlying buffer (m_srcBuffer) must remain valid for as long as the `std::span` is used inside setData. If setData stores the span or its data pointer for later use, you must ensure that m_srcBuffer is not destroyed or modified in a way that invalidates the data.
 
 ## next
 
