@@ -76,6 +76,8 @@ The use of `std::span` is significant: it creates a lightweight, non-owning view
 
 A potential 'gotcha' is that `std::span` does not manage the lifetime of the data it points to. The underlying buffer (m_srcBuffer) must remain valid for as long as the `std::span` is used inside setData. If setData stores the span or its data pointer for later use, you must ensure that m_srcBuffer is not destroyed or modified in a way that invalidates the data.
 
+`std::span` works like a non-owning view or lightweight pointer to a sequence of elements. Declaring a `std::span` as `const` (e.g., const std::span<T> buf) only prevents you from modifying the span itself (such as changing its size or reassigning it), but it does not make the underlying data immutable.
+
 ## next
 
 `std::next` is a standard library **function** that returns an iterator pointing to an element a specified numbers of 
