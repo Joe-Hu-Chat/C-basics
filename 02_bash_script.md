@@ -185,8 +185,24 @@ Note that, `=` will do string comparison while `-eq` does numerical.
 ![image-20240819145218057](./.02_bash_script/image-20240819145218057.png)
 
 
+# variables
 
-# special variables
+## local variables
+Local variables are variables that exist only within a single script. They are inaccessible to other programs and scripts.
+
+A local variable can be declared using = sign (as a rule, there should not be any spaces between a variable's name, = and its value) and its value can be retrieved using the $ sign. For example:
+```bash
+username="denysdovhan"  # declare variable
+echo $username          # display value
+unset username          # delete variable
+```
+
+We can also declare a variable **local to a single function** using the local keyword. Doing so causes the variable to disappear when the function exits.
+```bash
+local local_var="I'm a local value"
+```
+
+## special variables
 
 - **$0** - The name of the Bash script.
 - **$1 - $9** - The first 9 arguments to the Bash script. (As mentioned above.)
@@ -1100,6 +1116,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
