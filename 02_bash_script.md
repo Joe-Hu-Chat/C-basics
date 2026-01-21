@@ -186,9 +186,10 @@ Note that, `=` will do string comparison while `-eq` does numerical.
 
 
 # variables
+There are three kinds of variables you can create: local variables, environment variables and variables as *positional parameters*.
 
 ## local variables
-Local variables are variables that exist only within a single script. They are inaccessible to other programs and scripts.
+Local variables are variables that exist only **within a single script**. They are inaccessible to other programs and scripts.
 
 A local variable can be declared using = sign (as a rule, there should not be any spaces between a variable's name, = and its value) and its value can be retrieved using the $ sign. For example:
 ```bash
@@ -200,6 +201,12 @@ unset username          # delete variable
 We can also declare a variable **local to a single function** using the local keyword. Doing so causes the variable to disappear when the function exits.
 ```bash
 local local_var="I'm a local value"
+```
+
+## environment variables
+Environment variables are variables accessible to any program or script running in current shell session. They are created just like local variables, but using the keyword `export` instead.
+```bash
+export GLOBAL_VAR="I'm a global variable"
 ```
 
 ## special variables
@@ -1116,6 +1123,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
