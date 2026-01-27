@@ -456,9 +456,16 @@ Car car2 = Car("Chevy", 2022, 26000.0); // Copy initialization
 Car car3{"Nissan", 2021, 24000.0};    // Uniform initialization
 ```
 
+### Uniform Initialization
+
+The use of braces `{}` for initialization is a modern C++ practice known as **uniform initialization**, which prevent
+**narrowing conversions** and is generally preferred for `class` and `struct` types.
+
+The use of **brace-initialization** ensures the correct constructor is called, or all members are **value-initialized**.
+
 #### Value Initialization:
 
-The use of empty braces (`{}`) ensures **all members are value-initialised**, which is a safe and modern C++ practice.
+The use of **empty braces** (`{}`) ensures **all members are value-initialised**, which is a safe and modern C++ practice.
 This approach helps prevent uninitialised data, espacially for complex types or structs.
 
 For **primitive types**, this means *zero-initialization*; for **class types**, it means calling the **default** constructor.
