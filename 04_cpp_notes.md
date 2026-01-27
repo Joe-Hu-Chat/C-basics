@@ -456,7 +456,7 @@ Car car2 = Car("Chevy", 2022, 26000.0); // Copy initialization
 Car car3{"Nissan", 2021, 24000.0};    // Uniform initialization
 ```
 
-### Uniform Initialization
+#### Uniform Initialization
 
 The use of braces `{}` for initialization is a modern C++ practice known as **uniform initialization**, which prevent
 **narrowing conversions** and is generally preferred for `class` and `struct` types.
