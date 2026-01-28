@@ -73,7 +73,7 @@ The location of the cursor in the text is also called "point". To paraphrase, th
 - `M-<` `M->` Move to the beginning/end of the **buffer** (**beginning-of-buffer**/**end-of-buffer**)
 - `M-{` `M-}` Move back/forward to previous/next **paragraph** beginning/end (**backward-paragraph**/**forward-paragraph**).
 
-
+- `M-m` Move (forward or back) to the first non-whitespace character on the current line (**back-to-indentation**)
 
 ### Scroll
 
