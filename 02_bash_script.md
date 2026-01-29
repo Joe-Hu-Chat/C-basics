@@ -134,7 +134,8 @@ echo "${filename//l/L}"          # "heLLo_worLd.txt"
 
 ## $((...))
 
-**Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This is similar to `$()`, which is to invoke a sub-command.
+**Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This is similar to `$()`, which is a **command** substitution.
+Also, it looks like a combination of `$()` and `()`, while the latter is **sub-shell** execution.
 
 ![image-20240816144552040](./.02_bash_script/image-20240816144552040.png)
 
@@ -1123,6 +1124,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
