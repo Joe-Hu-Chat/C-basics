@@ -200,12 +200,14 @@ There are three kinds of variables you can create: local variables, environment 
 ## local variables
 Local variables are variables that exist only **within a single script**. They are inaccessible to other programs and scripts.
 
-A local variable can be declared using = sign (as a rule, there should not be any spaces between a variable's name, = and its value) and its value can be retrieved using the $ sign. For example:
+A local variable can be declared using `=` sign (as a rule, there should not be any spaces between a variable's name, `=` and its value) and its value can be retrieved using the `$` sign. For example:
 ```bash
 username="denysdovhan"  # declare variable
 echo $username          # display value
 unset username          # delete variable
 ```
+
+Using `unset` to revert the declaration of a variable.
 
 We can also declare a variable **local to a single function** using the local keyword. Doing so causes the variable to disappear when the function exits.
 ```bash
@@ -1149,6 +1151,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
