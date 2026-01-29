@@ -137,7 +137,7 @@ echo "${filename/_/-}"           # "hello-world.txt"
 echo "${filename//l/L}"          # "heLLo_worLd.txt"
 ```
 
-## Command Substitution
+## Command Substitution $(...)
 Command substitution allow us to **evaluate** a command and **substitute** its value into another command or variable assignment.
 Command substitution is performed when a command is enclosed by ```` or `$()`. For example, we can use it as follows:
 ```bash
@@ -1148,6 +1148,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
