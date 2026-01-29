@@ -629,9 +629,9 @@ Where the `*`'s represent (in order from left to right):
 
 
 
-# Bash Example
+# Bash Command Examples
 
-Record the representative commands in practical useage.
+Mark down useful commands.
 
 
 ## remote desktop for windows
@@ -1149,6 +1149,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
