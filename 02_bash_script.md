@@ -148,9 +148,7 @@ now=$(date +%T)
 echo $now # 19:08:26
 ```
 
-## Arithmetic Expansion
-
-### $((...))
+## Arithmetic Expansion $((...))
 
 **Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This is similar to `$()`, which is a **command** substitution.
 Also, it looks like a combination of `$()` and `()`, while the latter is **sub-shell** execution.
@@ -187,7 +185,7 @@ Extract substring of $length characters, starting at $position:
 
 z=`expr substr $string $position $length`
 
-### Double and Single Quotes
+## Double and Single Quotes
 
 There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
 ```bash
@@ -1148,6 +1146,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
