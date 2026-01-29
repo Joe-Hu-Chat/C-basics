@@ -65,7 +65,9 @@ file[[:alpha:]].txt  # any letter (a-z, A-Z)
 file[[:alnum:]].txt  # any alphanumeric character
 ```
 
-# Brace Expansion {...}
+# Expansions
+
+## Brace Expansion {...}
 
 ```bash
 # Generate multiple patterns
@@ -95,7 +97,11 @@ Putting script in braces can prevent executing partial scripts:
 }
 ```
 
-# Parameter Expansion ${...}
+## Variable Expansion ${...}
+
+Generally, variables are expanded by `$variable` or with crully embraces to separate from its adjacent string letters `${variable}`
+
+Parameter expansion for variables:
 
 string trimming:
 
@@ -130,7 +136,7 @@ echo "${filename/_/-}"           # "hello-world.txt"
 echo "${filename//l/L}"          # "heLLo_worLd.txt"
 ```
 
-# Command Substitution
+## Command Substitution
 Command substitution allow us to **evaluate** a command and **substitute** its value into another command or variable assignment.
 Command substitution is performed when a command is enclosed by ```` or `$()`. For example, we can use it as follows:
 ```bash
@@ -141,9 +147,9 @@ now=$(date +%T)
 echo $now # 19:08:26
 ```
 
-# Shell Arithmetic
+## Arithmetic Expansion
 
-## $((...))
+### $((...))
 
 **Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This is similar to `$()`, which is a **command** substitution.
 Also, it looks like a combination of `$()` and `()`, while the latter is **sub-shell** execution.
@@ -152,7 +158,7 @@ Also, it looks like a combination of `$()` and `()`, while the latter is **sub-s
 
 
 
-## let
+### let
 
 Allows arithmetic to be performed on shell variables
 
@@ -160,7 +166,7 @@ Allows arithmetic to be performed on shell variables
 
 
 
-## expr
+### expr
 
 All-purpose **expression evaluator**: Concatenates and evaluates the arguments according to the **operation** given (arguments must be separated by spaces). 
 
@@ -173,7 +179,7 @@ Operations may be `arithmetic`, `comparison`, `string`, or `logical`.
 ![image-20240816141602829](./.02_bash_script/image-20240816141602829.png)
 
 
-### expr substr
+#### expr substr
 extract substring, starting position & length specified
 
 Extract substring of $length characters, starting at $position:
@@ -1135,6 +1141,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
