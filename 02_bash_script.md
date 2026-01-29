@@ -97,7 +97,7 @@ Putting script in braces can prevent executing partial scripts:
 
 # Parameter Expansion ${...}
 
-**string manipulation**
+string trimming:
 
 ``` bash
 ${parameter#pattern}      # Remove shortest match from beginning
@@ -128,6 +128,17 @@ ${variable//pattern/replacement} # Replace all occurrences
 filename="hello_world.txt"
 echo "${filename/_/-}"           # "hello-world.txt"
 echo "${filename//l/L}"          # "heLLo_worLd.txt"
+```
+
+# Command Substitution
+Command substitution allow us to **evaluate** a command and **substitute** its value into another command or variable assignment.
+Command substitution is performed when a command is enclosed by ```` or `$()`. For example, we can use it as follows:
+```bash
+now=`date +%T`
+# or
+now=$(date +%T)
+
+echo $now # 19:08:26
 ```
 
 # Shell Arithmetic
@@ -1124,6 +1135,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
