@@ -194,21 +194,6 @@ echo "Your home: $HOME" # Your home: /Users/<username>
 echo 'Your home: $HOME' # Your home: $HOME
 ```
 
-# test vs []
-
-中括号与test几乎一模一样，只是中括号比较常用在条件判断式`if ... then ... fi`的情况中。
-
-![image-20240814175806755](./.02_bash_script/image-20240814175806755.png)
-
-![image-20240814175826210](./.02_bash_script/image-20240814175826210.png)
-
-
-
-Note that, `=` will do string comparison while `-eq` does numerical.
-
-![image-20240819145218057](./.02_bash_script/image-20240819145218057.png)
-
-
 # variables
 There are three kinds of variables you can create: local variables, environment variables and variables as *positional parameters*.
 
@@ -271,6 +256,21 @@ Mandatory arguments to long options are mandatory for short options too.
 
 
 # statements
+
+
+## test vs []
+
+中括号与test几乎一模一样，只是中括号比较常用在条件判断式`if ... then ... fi`的情况中。
+
+![image-20240814175806755](./.02_bash_script/image-20240814175806755.png)
+
+![image-20240814175826210](./.02_bash_script/image-20240814175826210.png)
+
+
+
+Note that, `=` will do string comparison while `-eq` does numerical.
+
+![image-20240819145218057](./.02_bash_script/image-20240819145218057.png)
 
 
 
@@ -1147,6 +1147,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
