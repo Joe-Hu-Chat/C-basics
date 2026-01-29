@@ -578,15 +578,19 @@ Interpreted sequences are:
 
 # ls*
 
-`lsblk`, 	`lshw`, 	`lscpu`, 	`lspci`, 	`lsusb`, 	`lsmod`
-
-块，		 硬件，	CPU， 	PCI， 		USB， 	内核模块
+| `lsblk` |	`lshw` | `lscpu` | `lspci` | `lsusb` |	`lsmod`  |
+| ------- | ------ | ------- | ------- | ------- | ----------|
+| 块      | 硬件    | CPU     | PCI	   | USB     | 内核模块   |
 
 
 
 # curl vs wget
 
-`curl` supports more protocol than `wget`. `curl` output to `stdout` in **default**, while `wget` download a file to current directory. So the command before equals to `curl <url> | bash`.
+`curl` supports more protocol than `wget`.
+`curl` output to `stdout` in **default**, while `wget` download a file to current directory.
+
+So the command before equals to `curl <url> | bash`.
+
 ref: (https://linuxhint.com/what-is-the-difference-between-wget-vs-curl/)
 
 ## curl-bash pipe
@@ -1145,6 +1149,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
