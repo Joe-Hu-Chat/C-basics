@@ -114,6 +114,13 @@ ${parameter%%pattern}     # Remove longest match from end
 ${parameter:start:length} # Substring extraction
 ```
 
+`expr substr`: Extract substring with starting position & length specified
+
+Extract substring of $length characters, starting at $position:
+```bash
+substring=expr substr $string $position $length
+```
+
 Remove specific prefix:
 ``` bash
 for file in prefix_*; do
@@ -178,12 +185,6 @@ Operations may be `arithmetic`, `comparison`, `string`, or `logical`.
 ![image-20240816141602829](./.02_bash_script/image-20240816141602829.png)
 
 
-#### expr substr
-extract substring, starting position & length specified
-
-Extract substring of $length characters, starting at $position:
-
-z=`expr substr $string $position $length`
 
 ## Double and Single Quotes
 
@@ -1146,6 +1147,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
