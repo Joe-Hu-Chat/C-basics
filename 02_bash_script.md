@@ -207,7 +207,7 @@ echo $username          # display value
 unset username          # delete variable
 ```
 
-Using `unset` to revert the declaration of a variable.
+Using `unset` to revert the declaration of a variable, or simply speaking, delete it.
 
 We can also declare a variable **local to a single function** using the local keyword. Doing so causes the variable to disappear when the function exits.
 ```bash
@@ -1151,6 +1151,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
