@@ -35,7 +35,7 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
 
 - `*` - represents zero or more characters
 - `?` - represents a single character
-- `[]` - represents a range of characters, the caret (`^`) or exclaimation mark (`!`) inside the brackets means characters not in the range
+- `[]` - represents a range of characters, the caret (`^`) or exclamation mark (`!`) inside the brackets means characters not in the range
 
 It is actually the **shell** that does the wildcards translation for us. Putting wildcards inside **quotes** makes them **not** recognized by bash. (Similar to wrap file names with spaces in quotes or escape the spaces with `\`)
 
@@ -1148,6 +1148,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
