@@ -75,6 +75,8 @@ echo {apple,banana,cherry}.txt
 # Number sequences
 echo file{1..5}.txt
 # Output: file1.txt file2.txt file3.txt file4.txt file5.txt
+echo {00..8..2} # 00 02 04 06 08
+# Note: the rule here is {00..8..2} represents {start..end..steps}
 
 # Combined with wildcards
 ls *.{jpg,png,gif}  # All image files
@@ -130,11 +132,9 @@ echo "${filename//l/L}"          # "heLLo_worLd.txt"
 
 # Shell Arithmetic
 
-## ((...))
+## $((...))
 
-**Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This looks like a comination
-of `$()` and `()`. The former is to get the value of a variable, while the latter is a **sub-shell** commnad,
-which will generate a temporary middle variable.
+**Double parentheses** function is preferred to do **arithmetic** in Bash scripts. This is similar to `$()`, which is to invoke a sub-command.
 
 ![image-20240816144552040](./.02_bash_script/image-20240816144552040.png)
 
@@ -1123,6 +1123,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
