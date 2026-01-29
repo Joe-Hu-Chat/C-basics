@@ -578,9 +578,9 @@ Interpreted sequences are:
 
 # ls*
 
-| `lsblk` |	`lshw` | `lscpu` | `lspci` | `lsusb` |	`lsmod`  |
-| ------- | ------ | ------- | ------- | ------- | ----------|
-| 块      | 硬件    | CPU     | PCI	   | USB     | 内核模块   |
+| `lsblk` |	`lshw`   | `lscpu` | `lspci` | `lsusb` | `lsmod`       |
+| ------- | -------- | ------- | ------- | ------- | --------------|
+| block   | hardware | CPU     | PCI	 | USB     | kernel module |
 
 
 
@@ -1149,6 +1149,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
