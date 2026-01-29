@@ -235,15 +235,13 @@ export GLOBAL_VAR="I'm a global variable"
 
 # basename
 
-Print NAME with any leading directory components removed.
-
 Usage: `basename` NAME [SUFFIX]
 
   or:  `basename` OPTION... NAME...
 
-Print NAME with any leading directory components **removed**.
+Print **NAME** with any leading directory components **removed**.
 
-If specified, also remove a trailing SUFFIX.
+If specified, also remove a trailing **SUFFIX**.
 
 Mandatory arguments to long options are mandatory for short options too.
 
@@ -1147,6 +1145,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
