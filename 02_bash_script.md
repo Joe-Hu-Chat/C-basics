@@ -1,6 +1,7 @@
 `#!/bin/bash`
 
 ref: https://web.archive.org/web/20230406205817/https://wiki.bash-hackers.org/
+
 ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
 
 
@@ -186,7 +187,13 @@ Extract substring of $length characters, starting at $position:
 
 z=`expr substr $string $position $length`
 
+### Double and Single Quotes
 
+There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
+```bash
+echo "Your home: $HOME" # Your home: /Users/<username>
+echo 'Your home: $HOME' # Your home: $HOME
+```
 
 # test vs []
 
@@ -1141,6 +1148,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
