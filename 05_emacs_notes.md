@@ -925,6 +925,36 @@ Just as you can run a compiler from Emacs and then visit the lines with compilat
 
 
 
+## Variables
+
+A *variable* is a Lisp symbol which has a value. The symbol's name is also called the *variable name*. A variable name can contain any characters that can appear in a file, but most variable names consist of ordinary words separated by hyphens.
+
+The name of the variable serves as a compact description of its role. Most variables also have a *documentation string*, which describes what the variable's purpose is, what kind of value it should have, and how the value will be used. You can view this documentation using the help command `C-h v` (**describe-variable**).
+
+`C-h v var RET` 
+
+​	Display the value and documentation of variable var (**describe-variable**)
+
+`M-x set-variable RET var RET value RET`
+
+​	Change the value of variable *var* to *value*
+
+
+
+### Hooks
+
+Hooks are an important mechanism for customizing Emacs. A hook is a Lisp variable which holds a list of functions, to be called on some well-defined occasion. (This is called *running* the hook.)
+
+Most hooks are normal hooks. This means that when Emacs runs the hook, it calls each hook function in turn, with no arguments. We have made an effort to keep most hooks normal, so that you can use them in a uniform way. Every variable whose name ends in **-hook** is a normal hook.
+
+A few hooks are *abnormal hooks*. Their names end in **-functions**, instead of **-hook** (some old code may also use the deprecated suffix **-hooks**). What makes these hooks abnormal is the way its functions are called -- perhaps they are given arguments, or perhaps the values they return are used in some way. For example, **find-file-not-found-functions** is abnormal because as soon as one hook function returns a non-nil value, the rest are not called at all. The documentation of each abnormal hook variables explains how its functions are used.
+
+Add a function to a hook:
+
+```(add-hook 'text-mode-hook 'auto-fill-mode)```
+
+
+
 
 # File Handling
 
@@ -1400,34 +1430,4 @@ Configuring TODOs, adding workflow states to the beginning of the file
 - **C-g** – stop doing what you are trying to do, escape
 
 
-
-
-
-# Variables
-
-A *variable* is a Lisp symbol which has a value. The symbol's name is also called the *variable name*. A variable name can contain any characters that can appear in a file, but most variable names consist of ordinary words separated by hyphens.
-
-The name of the variable serves as a compact description of its role. Most variables also have a *documentation string*, which describes what the variable's purpose is, what kind of value it should have, and how the value will be used. You can view this documentation using the help command `C-h v` (**describe-variable**).
-
-`C-h v var RET` 
-
-​	Display the value and documentation of variable var (**describe-variable**)
-
-`M-x set-variable RET var RET value RET`
-
-​	Change the value of variable *var* to *value*
-
-
-
-## Hooks
-
-Hooks are an important mechanism for customizing Emacs. A hook is a Lisp variable which holds a list of functions, to be called on some well-defined occasion. (This is called *running* the hook.)
-
-Most hooks are normal hooks. This means that when Emacs runs the hook, it calls each hook function in turn, with no arguments. We have made an effort to keep most hooks normal, so that you can use them in a uniform way. Every variable whose name ends in **-hook** is a normal hook.
-
-A few hooks are *abnormal hooks*. Their names end in **-functions**, instead of **-hook** (some old code may also use the deprecated suffix **-hooks**). What makes these hooks abnormal is the way its functions are called -- perhaps they are given arguments, or perhaps the values they return are used in some way. For example, **find-file-not-found-functions** is abnormal because as soon as one hook function returns a non-nil value, the rest are not called at all. The documentation of each abnormal hook variables explains how its functions are used.
-
-Add a function to a hook:
-
-```(add-hook 'text-mode-hook 'auto-fill-mode)```
 
