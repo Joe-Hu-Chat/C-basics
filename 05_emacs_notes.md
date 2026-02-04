@@ -334,6 +334,32 @@ Read, Eval, Print, Loop
 
 
 
+### Eval Lisp Expressions
+
+Emacs Lisp mode is the major mode for editing Emacs Lisp. Its mode command is `M-x emacs-lisp-mode`.
+
+Emacs provides several commands for evaluating Emacs Lisp expressions. You can use
+these commands in Emacs Lisp mode, to test your Emacs Lisp code as it is being written.
+For example, after re-writing a function, you can evaluate the function definition to make it
+take effect for subsequent function calls. These commands are also available globally, and
+can be used outside Emacs Lisp mode.
+
+- `M-:` Read a single Emacs Lisp expression in the minibuffer, evaluate it, and print the value in the echo area (**eval-expression**).
+- `C-x C-e` Evaluate the Emacs Lisp expression before point, and print the value in the echo area (**eval-last-sexp**).
+- `C-M-x` (in Emacs Lisp mode)
+  `M-x eval-defun`
+  Evaluate the defun containing or after point, and print the value in the echo area (**eval-defun**).
+- `M-x eval-region`
+  Evaluate all the Emacs Lisp expressions in the region.
+- `M-x eval-buffer`
+  Evaluate all the Emacs Lisp expressions in the buffer.
+
+
+
+`C-x C-a C-p` Evaluate the expression at point (**gud-print**). If Emacs does not print the exact expression that you want, mark it as a region first.
+
+
+
 ## Lines
 
 
