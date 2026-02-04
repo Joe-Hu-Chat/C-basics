@@ -1036,7 +1036,6 @@ All the usual Emacs cursor motion commands are available in Dired buffers. The k
 ​	Performs a forward incremental search in the Dired buffer, looking for matches only amongst the file names and ignoring the rest of the text in the buffer.
 
 - `M-s f M-C-s` (**dired-isearch-filenames-regexp**)
-
 ​	Does the same, using a regular expression search.
 
 ## Deleting
