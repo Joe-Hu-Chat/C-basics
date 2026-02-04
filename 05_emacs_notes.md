@@ -1033,7 +1033,6 @@ All the usual Emacs cursor motion commands are available in Dired buffers. The k
 - `SPC` and `n` in Dired are equivalent to `C-n`; `p` is equivalent to `C-p`.
 - `j` (**dired-goto-file**) prompts for a file name using minibuffer, and moves points to the line in the Dired buffer describing that file.
 - `M-s f C-s` (**dired-isearch-filenames**) 
-
 ​	Performs a forward incremental search in the Dired buffer, looking for matches only amongst the file names and ignoring the rest of the text in the buffer.
 
 - `M-s f M-C-s` (**dired-isearch-filenames-regexp**)
