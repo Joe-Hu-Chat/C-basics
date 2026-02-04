@@ -320,6 +320,14 @@ Each programming language mode has its own definition of a balanced expression. 
 
 
 
+Tips:
+
+`sexp` or `sexpr` means **S-expressions **or Symbol expressions
+
+**LISP** means List Processing
+
+
+
 ## Lines
 
 
@@ -743,6 +751,7 @@ A table is re-aligned automatically each time you press `TAB`, `RET` or `C-c C-c
 - `C-c C-c` 	re-align tables
 - `TAB` 		re-align tables, also moves to the next field
 - `RET`			re-align tables, also moves to the next row,
+
  				and creates new table rows at the end of the table or before horizontal lines.
 
 
