@@ -1024,33 +1024,31 @@ Dired makes an Emacs buffer containing a listing of a directory, and optionally 
 
 `C-x d` Invoke Dired (**dired**)
 
-​	This reads a directory's name using the minibuffer, and opens a *Dired buffer* listing the files in that directory.
+​	This reads a **directory's name** using the minibuffer, and opens a *Dired buffer* listing the files in that directory.
 
 ## Navigation
 
 All the usual Emacs cursor motion commands are available in Dired buffers. The keys `C-n` and `C-p` are redefined to run **dired-next-line** and **dired-previous-line**, respectively, and they put the cursor at the beginning of the file name on the line, rather than at the beginning of the line.
 
-`SPC` and `n` in Dired are equivalent to `C-n`, `p` is equivalent to `C-p`.
-
-`j` (**dired-goto-file**) prompts for a file name using minibuffer, and moves points to the line in the Dired buffer describing that file.
-
-`M-s f C-s` (**dired-isearch-filenames**) 
+- `SPC` and `n` in Dired are equivalent to `C-n`; `p` is equivalent to `C-p`.
+- `j` (**dired-goto-file**) prompts for a file name using minibuffer, and moves points to the line in the Dired buffer describing that file.
+- `M-s f C-s` (**dired-isearch-filenames**) 
 
 ​	Performs a forward incremental search in the Dired buffer, looking for matches only amongst the file names and ignoring the rest of the text in the buffer.
 
-`M-s f M-C-s` (**dired-isearch-filenames-regexp**)
+- `M-s f M-C-s` (**dired-isearch-filenames-regexp**)
 
 ​	Does the same, using a regular expression search.
 
 ## Deleting
 
-`d`	Flag this file for deletion (**dire-flag-file-deletion**)
+- `d`	Flag this file for deletion (**dire-flag-file-deletion**)
 
-`u`	Remove the deletion flag (**dired-unmark**)
+- `u`	Remove the deletion flag (**dired-unmark**)
 
-`DEL`	Move point to previous line and remove the deletion flag on that line (**dired-unmark-backward**)
+- `DEL`	Move point to previous line and remove the deletion flag on that line (**dired-unmark-backward**)
 
-`x`	Delete files flagged for deletion (**dired-do-flagged-delete**)
+- `x`	Delete files flagged for deletion (**dired-do-flagged-delete**)
 
 ## Visiting
 
