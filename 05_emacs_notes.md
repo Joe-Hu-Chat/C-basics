@@ -305,13 +305,13 @@ The **region** is the portion of the buffer between the *mark* and the *current 
 
 ## Balanced Expression
 
-Each programming language mode has its own definition of a balanced expression. Balanced expressions typically include **individual symbols, numbers, and string constants, as well as pieces of code enclosed in a matching pair of delimiters**.
+Each programming language mode has its own definition of a `balanced expression`. Balanced expressions typically include `individual symbols`, `numbers`, and `string constants`, as well as pieces of code enclosed in a `matching pair of delimiters`. (In Emacs, such expressions are referred to internally as `sexps`)
 
 `C-M-f` Move forward over a balanced expression (**forward-sexp**).
 
 `C-M-b` Move backward over a balanced expression (**backward-sexp**).
 
-`C-M-k` Kill balanced expression forward (**kill-sexp**).
+`C-M-k` Kill balanced expression forward (**kill-sexp**), it actually kill the text that `C-M-f` would move over.
 
 `C-M-t` Transpose expressions (**transpose-sexps**).
 
@@ -322,9 +322,15 @@ Each programming language mode has its own definition of a balanced expression. 
 
 Tips:
 
-`sexp` or `sexpr` means **S-expressions **or Symbol expressions
+`sexp` or `sexpr` means **S-expressions **or Symbol expressions in Lisp
 
-**LISP** means List Processing
+**Lisp** means List Processing
+
+
+
+### REPL driven
+
+Read, Eval, Print, Loop
 
 
 
