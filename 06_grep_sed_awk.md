@@ -621,15 +621,6 @@ awk -F "," 'BEGIN{OFS="\n"}; \
 ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$1}' | sed 's/.c$/.o/g' > objects.mk
 ```
 
-
-
-**omission**:
-
-In an `awk` rule, either the pattern or the action can be **omitted**, but not both. 
-
-- If the pattern is omitted, then the action is performed for *every input line*. 
-- If the action is omitted, the default action is to **print all lines** that match the pattern, i.e. `{ print $0 }`.
-
 **Interpreter**:
 
 The line beginning with `#!` lists the full file name of an **interpreter** to run and a single optional initial command-line **argument** to pass to that interpreter. 
@@ -639,6 +630,21 @@ The line beginning with `#!` lists the full file name of an **interpreter** to r
 There are **single quotes** around the `awk` program so that the shell won’t interpret any of it as special shell characters.
 
 
+
+
+### omission
+
+In an `awk` rule, either the pattern or the action can be **omitted**, but not both. 
+
+- If the pattern is omitted, then the action is performed for *every input line*. 
+- If the action is omitted, the default action is to **print all lines** that match the pattern, i.e. `{ print $0 }`.
+
+An **empty pattern** (i.e., nonexistent) is considered to match *every* input record:
+
+```bash
+# The below command will print the first element of all records in mail-list
+awk '{ print $1 }' mail-list
+```
 
 ## pattern elements
 
@@ -661,7 +667,6 @@ regular expression comparisons ( **match or not** ):
 The two operators `~` and `!~` perform **regular expression comparisons**.
 
 
-
 ### expression
 
 The pattern matches if the **expression**'s value is nonzero (if a number) or non-null (if a string).
@@ -669,14 +674,24 @@ The pattern matches if the **expression**'s value is nonzero (if a number) or no
 The expression is reevaluated each time the rule is tested against a new input record.
 
 ```
+# if the 1rst element equals "li", print the 2nd one
 awk '$1 == "li" { print $2 }' mail-list
 ```
 
 
+### range pattern
 
-### begpat, endpat
+A `range pattern` is made of two patterns separated by a **comma**, in the form `begpat, endpat`. It is used to match ranges of **consecutive** input records. The first pattern, `begpat`, controls where the range begins, while `endpat` controls where the pattern ends.
 
-A pair of patterns separated by a comma, specifying a *range* of records. The range includes both the initial record that matches begpat and the final record that matches endpat. 
+Output **records** between two patterns
+
+```bash
+# Default action for `awk` is to **Print current line**.
+awk '/pattern start/, /pattern end/' text.txt
+```
+
+In a range pattern, the comma (`,`) has the **lowest** precedence of all the operators (i.e., it is evaluated last).
+
 
 ### special patterns
 
@@ -688,15 +703,6 @@ BEGINFILE
 
 ENDFILE
 
-
-
-### empty
-
-An empty (i.e., nonexistent) pattern is considered to match *every* input record. 
-
-```
-awk '{ print $1 }' mail-list
-```
 
 
 
@@ -750,26 +756,13 @@ xxd -c 1 -ps test.bin | awk 'BEGIN{ i = 0; line = ""}; {i++; line = ($1 line); i
 xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk '{for(i=NF;i>0;i--) printf "%s", $i; print ""}' > test.uvhex
 ```
 
-## range pattern
-
-A `range pattern` is made of two patterns separated by a **comma**, in the form `begpat, endpat`. It is used to match ranges of **consecutive** input records. The first pattern, `begpat`, controls where the range begins, while `endpat` controls where the pattern ends.
-
-Output **records** between two patterns
-
-```bash
-# Default action for `awk` is to **Print current line**.
-awk '/pattern start/, /pattern end/' text.txt
-```
-
-In a range pattern, the comma (`,`) has the **lowest** precedence of all the operators (i.e., it is evaluated last).
-
-
 # Debug strategies
 
 1. Check typo's first
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
