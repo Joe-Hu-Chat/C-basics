@@ -750,12 +750,18 @@ xxd -c 1 -ps test.bin | awk 'BEGIN{ i = 0; line = ""}; {i++; line = ($1 line); i
 xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk '{for(i=NF;i>0;i--) printf "%s", $i; print ""}' > test.uvhex
 ```
 
-## output between two patterns
+## range pattern
+
+A `range pattern` is made of two patterns separated by a **comma**, in the form `begpat, endpat`. It is used to match ranges of **consecutive** input records. The first pattern, `begpat`, controls where the range begins, while `endpat` controls where the pattern ends.
+
+Output **records** between two patterns
 
 ```bash
 # Default action for `awk` is to **Print current line**.
 awk '/pattern start/, /pattern end/' text.txt
 ```
+
+In a range pattern, the comma (`,`) has the **lowest** precedence of all the operators (i.e., it is evaluated last).
 
 
 # Debug strategies
@@ -764,6 +770,7 @@ awk '/pattern start/, /pattern end/' text.txt
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
