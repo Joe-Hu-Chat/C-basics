@@ -640,12 +640,20 @@ ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$
 There are **single quotes** around the `awk` program so that the shell won’t interpret any of it as special shell characters.
 
 
-### omission
+### omission and implication
 
 Either the pattern or the action can be omitted, equivalents of the omitted form:
 
 - pattern omitted:  `/.*/ { action }`
 - action omitted:  `/some regex/ { print $0 }`
+
+
+
+implicit staff in awk
+
+`awk { print }` is equivalent of `awk { print $0 }`
+
+
 
 ## awk patterns
 
@@ -774,6 +782,90 @@ compound, $3 < 100 && $4 == "Asia", lines in which third field is less than 100 
 range, NR == 10, NR == 20, tenth to twentieth lines of input inclusive
 
 
+## Awk Actions
+
+Executed if the pattern matches (even if there was no pattern)
+
+Are much like a typical language (such as C)
+
+Have access to a number of build-in variables
+
+Can **create variables** or **call functions** (such as *print*, a built-in function)
+
+Parenthesis in function calls are optional
+
+Can override fields or create new fields
+
+
+### Actions elements
+
+The statements in **actions** can include:
+
+expressions, with constants, variables, assignments, function calls, etc.
+
+For example:
+
+print expression-list
+
+printf(format, expression-list)
+
+if (expression) statement
+
+if (expression) statement else statement
+
+while (expression) statement
+
+for (expression; expression; expression) statement
+
+for (variable in array) statement
+
+do statement while (expression)
+
+break
+
+continue
+
+next
+
+exit
+
+exit expression
+
+{ statements }
+
+
+
+## Build-in Variables
+
+Variable, Meaning, Default
+
+ARGC, number of command-line arguments, -
+
+ARGV, array of command-line arguments, -
+
+FILENAME, name of current input file, -
+
+FNR, record number in current file, -
+
+FS, controls the input field separator, " "
+
+NF, number of fields in current record, -
+
+OFMT, output format for numbers, "%.6g"
+
+OFS, output filed separator, " "
+
+ORS, output record separator, "\n"
+
+RS, controls the input record separator, "\n"
+
+RLENTHG, length of string matched by match function, -
+
+RSTATRT, start of string matched by match function, -
+
+SUBSEP, subscript separator, "\034"
+
+
 ## awk program
 
 Making and Running an awk program
@@ -848,6 +940,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
