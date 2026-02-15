@@ -644,8 +644,9 @@ The `I` modifier to regular-expression matching is a GNU extension which makes s
 `m`: 
 The `M` modifier to regular-expression matching is a GNU sed extension which directs GNU sed to match the regular expression in **multi-line mode**. The modifier causes `^` and `$` to match respectively (in addition to the normal behavior) the empty string after a newline, and the empty string before a newline. There are special character sequences (\` and \') which always match the beginning or the end of the buffer. In addition, the period character does not match a new-line character in multi-line mode.
 
-### Replacement contain match portions:
-The 'replacement' can contain '\n' ('n' being a number of 1 to 9, inclusive) references, which will refer to the portion of the match which is contained between the nth \( and its matching \). Also, the 'replacement' can contain unescaped & characters which reference the whole matched portion of the pattern space.
+### Replace with block references
+
+The 'replacement' can contain '\x' ('x' being a number of 1 to 9, inclusive) references, which will refer to the sub-expressions of the matchs. Each sub-expression is the xth matching group in `\(sub-expr\)`. Also, the 'replacement' can contain unescaped & characters which refers the whole matched portion of the pattern space.
 
 ## Delete empty line:
 ```sed '/^$/d' <input-file> ```## `^`: start, `$`: end, 'd': delete, `^$`: match an empty line
@@ -1435,6 +1436,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
