@@ -41,6 +41,18 @@ ref: https://www.regular-expressions.info/posixbrackets.html
 ![image-20240314102543080](./.06_grep_sed_awk/image-20240314102543080.png)
 
 
+### shorthand character classes
+
+In this case the escape character introduces a special meaning rather than taking it away.
+```
+\s - matches anything which is considered whitespace. This could be a space, tab, line break etc.
+\S - matches the opposite of \s, that is anything which is not considered whitespace.
+\d - matches anything which is considered a digit. ie 0 - 9 (It is effectively a shortcut for [0-9]).
+\D - matches the opposite of \d, that is anything which is not considered a digit.
+\w - matches anything which is considered a word character. That is [A-Za-z0-9_]. Note the inclusion of the underscore character '_'. This is because in programming and other areas we regulaly use the underscore as part of, say, a variable or function name.
+\W - matches the opposite of \w, that is anything which is not considered a word character.
+```
+
 ### character class tips
 
 Special characters lose their special meaning inside **bracket expressions**!
@@ -69,6 +81,8 @@ ref: https://ryanstutorials.net/linuxtutorial/grep.php
 
 `.` (dot) - a single character.
 
+Multipliers:
+
 `?` - the preceding character matches 0 or 1 times only.
 
 `+` - the preceding character matches 1 or more times.
@@ -79,11 +93,15 @@ ref: https://ryanstutorials.net/linuxtutorial/grep.php
 
 `{n,m}` - the preceding character matches at least n times and not more than m times.
 
+Bracket Expressions:
+
 `[agd]` - the character is one of those included within the square brackets.
 
 `[^agd]` - the character is not one of those included within the square brackets.
 
 `[c-f]` - the dash within the square brackets operates as a *range*. In this case it means either the letters c, d, e or f.
+
+Modifiers:
 
 `()` - allows us to **group** several characters to *behave as one*.
 
@@ -135,10 +153,6 @@ Escaped "curly brackets" or "braces" indicate the number of occurrences of a pre
 
 The caret `^` matches the beginning of a line, but sometimes, depending on context, negates the meaning of a set of characters in an RE.
 
-`\`
-
-The backslash escapes a special character, which means that character gets interpreted literally (and therefore no longer special).
-
 `<>`
 
 **Escaped** "angle brackets" `\<...\>` mark word boundaries.
@@ -159,6 +173,16 @@ The `|` ("or") RE operator matches any of a set of alternative characters.
 
 example: `grep 're(a|e)d' misc.txt # will match "read" and "reed"`
 
+
+### Metacharacters
+
+Sometimes we may actually want to search for one of the characters which is a metacharacter. To do this we use a feature called escaping. By placing the backslash ( `\` ) in front of a metacharacter we can remove it's special meaning.
+
+`\` - Escape, or remove the special meaning of the next character
+
+The backslash escapes a special character, which means that character gets interpreted literally (and therefore no longer special).
+
+In some instances of regular expressions we may also use escaping to introduce a special meaning to characters which normally don't have a special meaning.
 
 
 # grep
@@ -1356,6 +1380,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
