@@ -179,10 +179,10 @@ The `\<` and `\>` aren't available in all regular expression tools but `\b` gene
 
 `()`
 
-Parentheses enclose a group of REs. They are useful with the following "`|`" operator and in substring extraction using expr. `\(regexp\)` groups the inner regexp as a whole. this is used to:
+Parentheses enclose a group of REs. They are useful with the following "`|`" operator, and in substring extraction using expression `\(regexp\)` to group the inner `regexp` as a whole. This is used to:
 
 1. Apply postfix operators, like `\(abcd\)*`: search for zero or more sequences of 'abcd', while `abcd*` search for 'abc' followed by zero or more occurrences of 'd'.
-2. Use back references, `regexp1\|regexp2`: matches either *regexp1* or *regexp2*.
+2. Use back references, `\(regexp1\)\|\(regexp2\)`: matches either `regexp1` or `regexp2`.
 
 ---
 
@@ -233,6 +233,11 @@ double character metacharacters, also called **shorthand character classes**
 
 
 ---
+
+### group
+
+Group the regular expression within the parentheses, also known as sub-expression
+
 
 # grep
 https://www.gnu.org/software/grep/manual/grep.html
@@ -1430,6 +1435,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
