@@ -616,14 +616,13 @@ program = pattern { action }
 awk 'pattern{ action }'
 awk 'BEGIN{ action };/regexp/{ action };END{ action }'
 ```
-`$0`: all field
-`$1`: the first field after separated by 'field-separator'
-`$2`: the second field
-`$n`: the nth field
 
-`$NF`: the last field
-
-`$(NF-1`): the second last field
+- `$0`: all field
+- `$1`: the first field after separated by 'field-separator'
+- `$2`: the second field
+- `$n`: the nth field
+- `$NF`: the last field
+- `$(NF-1`): the second last field
 
 ### simple examples
 
@@ -781,6 +780,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
