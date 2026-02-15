@@ -141,7 +141,7 @@ The backslash escapes a special character, which means that character gets inter
 
 `<>`
 
-Escaped "angle brackets" `\<...\>` mark word boundaries.
+**Escaped** "angle brackets" `\<...\>` mark word boundaries.
 
 example: "`\<the\>`" matches the word "the", but not words "them", "there", "other", etc.
 
@@ -1356,6 +1356,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
