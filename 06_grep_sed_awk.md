@@ -1,16 +1,16 @@
 # regexpr
 
-regular expressions
+i.e., regular expression
 
-## character classes and bracket expressions
-
-`[0123456789]` matches any single digit, where as `[^()]` matches any single character that is not an opening or closing parenthesis
+`[0123456789]` matches any **single digit**, where as `[^()]` matches any single character that is not an **opening or closing parenthesis**
 
 range expressions: '[a-d]' = '[abcd]'
 
+## character classes and bracket expressions
+
 ### character class list
 
-**named POSIX classes**
+**named POSIX classes**:
 
 '[:alnum:]' = '[:alpha:]' + '[:digit:]'
 
@@ -39,14 +39,17 @@ ref: https://www.regular-expressions.info/posixbrackets.html
 
 ### character class tips
 
-Special characters lose their special meaning **inside bracket expressions**!
+Special characters lose their special meaning inside **bracket expressions**!
 
+collating symbol
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
 
+equivalence class
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
 
+chracter class
 - '[:' represents the open character class symbol, and should followed by a valid character class name.
 - ':]' represents the close character class symbol.
 
@@ -119,7 +122,10 @@ example: 'a\+b' matches 'ab', 'aab', 'aaab'...
 
 `{n,m}` - the preceding character matches at least n times and not more than m times
 
-Escaped "curly brackets" or "braces" indicate the number of occurrences of a preceding RE to match. "[0-9]\{5\}" matches exactly five digits (characters in the range of 0 to 9). "[0-9]\{i,j\} matches between i and j, inclusive sequences. "[0-9]\{i,\} matches more than or equal to i sequences.
+Escaped "curly brackets" or "braces" indicate the number of occurrences of a preceding RE to match. 
+- "[0-9]\{5\}" matches exactly five digits (characters in the range of 0 to 9). 
+- "[0-9]\{i,j\} matches between i and j, inclusive sequences. 
+- "[0-9]\{i,\} matches more than or equal to i sequences.
 
 `^`
 
@@ -131,23 +137,24 @@ The backslash escapes a special character, which means that character gets inter
 
 `<>`
 
-Escaped "angle brackets" --\<...\>-- mark word boundaries.
+Escaped "angle brackets" `\<...\>` mark word boundaries.
 
-example: "\<the\>" matches the word "the", but not words "them", "there", "other", etc.
+example: "`\<the\>`" matches the word "the", but not words "them", "there", "other", etc.
 
 The only way to be certain that a particular RE works is to test it.
 
 `()`
 
-Parentheses enclose a group of REs. They are useful with the following "`|`" operator and in substring extraction using expr. \(regexp\) groups the inner regexp as a whole. this is used to:
+Parentheses enclose a group of REs. They are useful with the following "`|`" operator and in substring extraction using expr. `\(regexp\)` groups the inner regexp as a whole. this is used to:
+
 1. Apply postfix operators, like `\(abcd\)*`: search for zero or more sequences of 'abcd', while `abcd*` search for 'abc' followed by zero or more occurrences of 'd'.
 2. Use back references, `regexp1\|regexp2`: matches either *regexp1* or *regexp2*.
 
 `|`
 
-The `|` "or" RE operator matches any of a set of alternate characters.
+The `|` ("or") RE operator matches any of a set of alternative characters.
 
-example: `grep 're(a|e)d' misc.txt ## will match "read" and "reed"`
+example: `grep 're(a|e)d' misc.txt # will match "read" and "reed"`
 
 
 
@@ -1346,6 +1353,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
