@@ -165,7 +165,7 @@ The caret `^` matches the beginning of a line, but sometimes, depending on conte
 
 ---
 
-`\<\>` or `\b\b`
+`\<`, `\>` or `\b`
 
 **Escaped** "angle brackets" `\<...\>` mark word boundaries.
 
@@ -1399,6 +1399,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
