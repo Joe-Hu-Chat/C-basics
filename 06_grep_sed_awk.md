@@ -590,14 +590,27 @@ example: `sed ':x;N;/middle/tx;s/\n/,/g'`
 
 
 # awk
+
 https://www.gnu.org/software/gawk/manual/gawk.html
+
+Awk is a command line tool, also a programming language. not a general language, optimized for text processing, turing complete.
+
+Awk is part of posix, so installed everywhere, many of the problems you face are text processing problems, awk is the gold standard of text processing tools
+
+Awk was preceded by sed
+
+Awk's powerful regexes and also its limitations inspired Perl
+
+## usage
 
 ```bash
 awk program input-file1 input-file2 ...
 awk -f program-file input-file1 input-file2 ...
 awk [-F field-separator] program filename```
 ```
-## program = pattern { action }
+
+program = pattern { action }
+
 ```bash
 # Programs in awk consist of pattern–action pairs.
 awk 'pattern{ action }'
@@ -612,6 +625,8 @@ awk 'BEGIN{ action };/regexp/{ action };END{ action }'
 
 `$(NF-1`): the second last field
 
+### simple examples
+
 ```bash
 awk -F "," 'BEGIN{OFS="\n"}; \
 {print $1,$5,$2,$4,$3,"Phase noise",$8,$6,$7,$10,$9,$11,$14,$12,$15}'
@@ -620,10 +635,6 @@ awk -F "," 'BEGIN{OFS="\n"}; \
 # To add as Make targets for all the .c files in current directory
 ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$1}' | sed 's/.c$/.o/g' > objects.mk
 ```
-
-**Interpreter**:
-
-The line beginning with `#!` lists the full file name of an **interpreter** to run and a single optional initial command-line **argument** to pass to that interpreter. 
 
 **single quotes**:
 
@@ -634,17 +645,10 @@ There are **single quotes** around the `awk` program so that the shell won’t i
 
 ### omission
 
-In an `awk` rule, either the pattern or the action can be **omitted**, but not both. 
+Either the pattern or the action can be omitted, equivalents of the omitted form:
 
-- If the pattern is omitted, then the action is performed for *every input line*. 
-- If the action is omitted, the default action is to **print all lines** that match the pattern, i.e. `{ print $0 }`.
-
-An **empty pattern** (i.e., nonexistent) is considered to match *every* input record:
-
-```bash
-# The below command will print the first element of all records in mail-list
-awk '{ print $1 }' mail-list
-```
+- pattern omitted:  `/.*/ { action }`
+- action omitted:  `/some regex/ { print $0 }`
 
 ## pattern elements
 
@@ -703,6 +707,21 @@ BEGINFILE
 
 ENDFILE
 
+## awk program
+
+Making and Running an awk program
+
+```
+#!/usr/bin/env awk -f
+BEGIN { print "Hello, world!" }
+
+./script.awk *.log
+```
+
+
+**Interpreter**:
+
+The line beginning with `#!` lists the full file name of an **interpreter** to run, and a single optional initial command-line **argument** to pass to that interpreter. 
 
 
 
@@ -762,6 +781,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
