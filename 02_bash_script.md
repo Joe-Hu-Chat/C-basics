@@ -31,7 +31,7 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
 
 
 
-# Basic Wildcard characters
+# Wildcard characters
 
 - `*` - represents zero or more characters
 - `?` - represents a single character
@@ -1151,6 +1151,7 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
+
 
 
 
