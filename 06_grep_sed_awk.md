@@ -111,7 +111,7 @@ Modifiers:
 
 `$` - matches the **end** of the line. 
 
-`<word>` - matches a word.
+`\<word\>` or `\bword\b` - matches a word.
 
 
 ### explanation
@@ -122,11 +122,15 @@ The dot matches any one character, except a newline.
 
 example: "13." matches 13 + at least one of any character (including a space): 1133, 1134, but not 13 (additional character missing).
 
+---
+
 `?` - the preceding character matches 0 or 1 times only
 
 The question mark matches zero or one of the previous RE or characters. It is generally used for matching single characters.
 
 example: 'a\?b' matches 'b' or 'ab'
+
+---
 
 `+` - the preceding character matches 1 or more times
 
@@ -134,11 +138,15 @@ The plus matches one or more of the previous RE. It serves a role similar to the
 
 example: 'a\+b' matches 'ab', 'aab', 'aaab'...
 
+---
+
 `*` - the preceding character matches 0 or more times
 
 The asterisk matches any numbers of repeats of the character string or RE preceding it, include zero instances.
 
 example: "1133*" matches 11 + one or more 3's: 113, 1133, 113333, and so forth.
+
+---
 
 `{n}` - the preceding character matches exactly n times.
 
@@ -149,16 +157,23 @@ Escaped "curly brackets" or "braces" indicate the number of occurrences of a pre
 - `[0-9]\{i,j\}` matches between i and j, inclusive sequences. 
 - `[0-9]\{i,\}` matches more than or equal to i sequences.
 
+---
+
 `^`
 
 The caret `^` matches the beginning of a line, but sometimes, depending on context, negates the meaning of a set of characters in an RE.
 
-`<>`
+---
+
+`\<\>` or `\b\b`
 
 **Escaped** "angle brackets" `\<...\>` mark word boundaries.
 
 example: "`\<the\>`" matches the word "the", but not words "them", "there", "other", etc.
 
+The `\<` and `\>` aren't available in all regular expression tools but `\b` generally is so it is the safer one to use.
+
+---
 
 `()`
 
@@ -166,6 +181,8 @@ Parentheses enclose a group of REs. They are useful with the following "`|`" ope
 
 1. Apply postfix operators, like `\(abcd\)*`: search for zero or more sequences of 'abcd', while `abcd*` search for 'abc' followed by zero or more occurrences of 'd'.
 2. Use back references, `regexp1\|regexp2`: matches either *regexp1* or *regexp2*.
+
+---
 
 `|`
 
@@ -1381,6 +1398,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
