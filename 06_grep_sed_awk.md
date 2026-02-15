@@ -114,7 +114,7 @@ Modifiers:
 `\<word\>` or `\bword\b` - matches a word.
 
 
-### explanation
+### Explanation
 
 `.` (dot) - a single character
 
@@ -190,6 +190,7 @@ The `|` ("or") RE operator matches any of a set of alternative characters.
 
 example: `grep 're(a|e)d' misc.txt # will match "read" and "reed"`
 
+---
 
 ### Metacharacters
 
@@ -1398,6 +1399,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
