@@ -1288,7 +1288,7 @@ The `-f` tells AWK that the argument that follows is the file to read the AWK pr
 
 
 ## escape sequences
-beginning with a backslash (`\`), only list uncommon once:
+beginning with a backslash (`\`), only list uncommon ones:
 
 `\a`: The “alert” character, Ctrl-g, ASCII code 7 (BEL). (This often makes some sort of audible noise.)
 
@@ -1331,7 +1331,7 @@ beginning with a backslash (`\`), only list uncommon once:
 
 ```bash
 xxd -c 1 -ps test.bin | awk 'BEGIN{ i = 0; line = ""}; {i++; line = ($1 line); if(i>=16){print line; line = ""; i = 0;} }; END{if(i>0)print line}' | head
-# Firstly,produce hex file by `xxd` in 1 byte a line format, 
+# Firstly, produce hex file by `xxd` in 1 byte a line format, 
 # then accumulate them by `awk` in 16 bytes a line foramt in little endian mode
 # Another way of using `awk`
 xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk '{for(i=NF;i>0;i--) printf "%s", $i; print ""}' > test.uvhex
@@ -1339,10 +1339,11 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 
 # Debug strategies
 
-1. Check typo's first
-2. Re reading references
+1. Check typos first
+2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
