@@ -71,9 +71,9 @@ ref: https://ryanstutorials.net/linuxtutorial/grep.php
 
 `?` - the preceding character matches 0 or 1 times only.
 
-`*` - the preceding character matches 0 or more times.
-
 `+` - the preceding character matches 1 or more times.
+
+`*` - the preceding character matches 0 or more times.
 
 `{n}` - the preceding character matches exactly n times.
 
@@ -98,12 +98,6 @@ ref: https://ryanstutorials.net/linuxtutorial/grep.php
 
 ### explanation
 
-`*` - the preceding character matches 0 or more times
-
-The asterisk matches any numbers of repeats of the character string or RE preceding it, include zero instances.
-
-example: "1133*" matches 11 + one or more 3's: 113, 1133, 113333, and so forth.
-
 `.` (dot) - a single character
 
 The dot matches any one character, except a newline.
@@ -121,6 +115,12 @@ example: 'a\?b' matches 'b' or 'ab'
 The plus matches one or more of the previous RE. It serves a role similar to the *, but does not match zero occurrences.
 
 example: 'a\+b' matches 'ab', 'aab', 'aaab'...
+
+`*` - the preceding character matches 0 or more times
+
+The asterisk matches any numbers of repeats of the character string or RE preceding it, include zero instances.
+
+example: "1133*" matches 11 + one or more 3's: 113, 1133, 113333, and so forth.
 
 `{n}` - the preceding character matches exactly n times.
 
@@ -1356,6 +1356,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
