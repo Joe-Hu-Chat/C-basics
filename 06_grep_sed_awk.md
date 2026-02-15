@@ -670,7 +670,9 @@ awk 'BEGIN{ action };/regexp/{ action };END{ action }'
 - `$NF`: the last field
 - `$(NF-1`): the second last field
 
-### simple examples
+### examples
+
+**Simple example**
 
 ```bash
 awk -F "," 'BEGIN{OFS="\n"}; \
@@ -679,6 +681,16 @@ awk -F "," 'BEGIN{OFS="\n"}; \
 ```shell
 # To add as Make targets for all the .c files in current directory
 ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$1}' | sed 's/.c$/.o/g' > objects.mk
+```
+
+**variables and if statements**
+
+```bash
+xxd -c 1 -ps test.bin | awk 'BEGIN{ i = 0; line = ""}; {i++; line = ($1 line); if(i>=16){print line; line = ""; i = 0;} }; END{if(i>0)print line}' | head
+# Firstly, produce hex file by `xxd` in 1 byte a line format, 
+# then accumulate them by `awk` in 16 bytes a line foramt in little endian mode
+# Another way of using `awk`
+xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk '{for(i=NF;i>0;i--) printf "%s", $i; print ""}' > test.uvhex
 ```
 
 ### single quotes
@@ -1363,23 +1375,13 @@ beginning with a backslash (`\`), only list uncommon ones:
 `.`(period): match single character
 
 
-
-## variables and if statements
-
-```bash
-xxd -c 1 -ps test.bin | awk 'BEGIN{ i = 0; line = ""}; {i++; line = ($1 line); if(i>=16){print line; line = ""; i = 0;} }; END{if(i>0)print line}' | head
-# Firstly, produce hex file by `xxd` in 1 byte a line format, 
-# then accumulate them by `awk` in 16 bytes a line foramt in little endian mode
-# Another way of using `awk`
-xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk '{for(i=NF;i>0;i--) printf "%s", $i; print ""}' > test.uvhex
-```
-
 # Debug strategies
 
 1. Check typos first
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
