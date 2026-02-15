@@ -1161,8 +1161,9 @@ A field variable referencing a non-existent field can be created through assignm
 ​	`$(NF+1) = $(NF-1) / 1000`
 
 
+## Built-in
 
-## Build-in Variables
+### Built-in Variables
 
 Variable, Meaning, Default
 
@@ -1194,7 +1195,7 @@ SUBSEP, subscript separator, "\034"
 
 
 
-## Built-in Math Functions
+### Built-in Math Functions
 
 Function, Value Returned
 
@@ -1217,7 +1218,7 @@ sqrt(x), square root of x
 srand(x), x is new seed for rand()
 
 
-### Build-in String Functions
+### Built-in String Functions
 
 function, description
 
@@ -1342,6 +1343,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
