@@ -234,10 +234,65 @@ double character metacharacters, also called **shorthand character classes**
 
 ---
 
-### group
+### Grouping
 
 Group the regular expression within the parentheses, also known as sub-expression
 
+Examples:
+
+`\b(\d{1,3}.){3}\d{1,3}\b` matches IP addresses.
+
+### Block References
+
+Whenever we match something within *brackets* (parentheses), that value is actually stored in a variable which we may refer to later on in the regular expression. To access these variables we use the escape character ( `\` ) followed by *a digit*. The first set of brackets is referred to with `\1`, the second set of brackets with `\2` and so on.
+
+Examples:
+
+`(\b[A-Z]\w+\b) Smith.*\1 Smith` matches "John Smith but John Smith". 
+
+### Alternation
+
+With alternation we are looking for something or something else. We have seen a very basic example of alternation with the range operator. This allows us to perform alternation with a single character, but sometimes we would like to perform the operation with a larger set of characters. We can achieve this with the pipe symbol ( `|` ) which means **or**.
+
+Examples:
+
+`dog|cat|bird` matches either 'dog' or 'cat' or 'bird' in the sentences below
+
+Harold Smith has two **dog**s, one **cat** and three **bird**s.
+
+### Lookahead and Lookbehind
+
+The main idea of both the lookahead and lookbehind is to see if something matches (or doesn't) and then to throw away what was actually matched.
+
+Both of them operate in one of two modes:
+
+- Positive - in which we are seeking to find something which **matches**.
+- Negative - in which we are seeking to find something which **doesn't match**.
+
+With a lookahead we want to look ahead (hence the name) in our string and see if it matches the given pattern, but then disregard it and move on.
+
+- `(?=x)`, positive lookahead for `x`
+- `(?!x)`, negative lookahead for `x`
+- `(?<=x)`, positive lookbehind for `x`
+- `(?<!x)`, negative lookbehind for `x`
+
+Examples:
+
+---
+
+To identify numbers greater than 4000 but less than 5000, we need to exclude 4000.
+
+`\b4(?!000)\d\d\d\b`, the **negative lookahead** matches `4010` but not `4000`
+
+---
+
+Let's say we would like to find instances of the name 'Smith' but only if they are **a surname**. To achieve this we have said that we want to look at the word before it and if that word begins with a **capital letter** we'll assume it is a surname
+
+`(?<=[A-Z]\w* )Smith` is a **positive lookbehind** to check if the name 'Smith' has a surname before it.
+
+Now we won't identify Smith Francis but we will identify Harold **Smith**.
+
+---
 
 # grep
 https://www.gnu.org/software/grep/manual/grep.html
@@ -1436,6 +1491,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
