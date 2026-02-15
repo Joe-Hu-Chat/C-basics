@@ -647,9 +647,9 @@ awk -F "," 'BEGIN{OFS="\n"}; \
 ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$1}' | sed 's/.c$/.o/g' > objects.mk
 ```
 
-**single quotes**:
+### single quotes
 
-There are **single quotes** around the `awk` program so that the shell won’t interpret any of it as special shell characters.
+There are **single quotes** around the `awk` *program* so that the shell won’t interpret any of it as special shell characters.
 
 
 ### omission and implication
@@ -663,7 +663,7 @@ Either the pattern or the action can be omitted, equivalents of the omitted form
 
 implicit staff in awk
 
-`awk { print }` is equivalent of `awk { print $0 }`
+`awk '{ print }'` is equivalent of `awk '{ print $0 }'`
 
 
 remove leading space
@@ -748,7 +748,7 @@ Any expression may be used in place of */regexpr/* int the context of `~` and `!
 The pattern matches when the input record matches the `regexp`.
 
 ```awk
-/foo|bar|baz/  { buzzwords++ }
+'/foo|bar|baz/  { buzzwords++ }'
 ```
 
 A *regular expression* enclosed in slashes (`/`) is an `awk` pattern that matches every input record whose text belongs to that set. 
@@ -1346,6 +1346,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
