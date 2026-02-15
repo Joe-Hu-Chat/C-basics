@@ -1,6 +1,6 @@
-# regexpr
+# RegExpr
 
-i.e., regular expression
+i.e., Regular Expression
 
 `[0123456789]` matches any **single digit**, where as `[^()]` matches any single character that is not an **opening or closing parenthesis**
 
@@ -1356,6 +1356,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
