@@ -127,9 +127,9 @@ example: 'a\+b' matches 'ab', 'aab', 'aaab'...
 `{n,m}` - the preceding character matches at least n times and not more than m times
 
 Escaped "curly brackets" or "braces" indicate the number of occurrences of a preceding RE to match. 
-- "[0-9]\{5\}" matches exactly five digits (characters in the range of 0 to 9). 
-- "[0-9]\{i,j\} matches between i and j, inclusive sequences. 
-- "[0-9]\{i,\} matches more than or equal to i sequences.
+- `[0-9]\{5\}` matches exactly five digits (characters in the range of 0 to 9). 
+- `[0-9]\{i,j\}` matches between i and j, inclusive sequences. 
+- `[0-9]\{i,\}` matches more than or equal to i sequences.
 
 `^`
 
@@ -1356,6 +1356,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
