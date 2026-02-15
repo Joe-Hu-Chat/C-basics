@@ -591,7 +591,16 @@ example: `sed ':x;N;/middle/tx;s/\n/,/g'`
 
 # awk
 
+ref: 
+
+[Download Free eBook PDF: The Awk Programming Language - nixCraft](https://www.cyberciti.biz/link/download-free-pdf-the-awk-programming-language/)
+
+Awk Tutorial (2016): Jonathan Palardy - https://blog.jpalardy.com/posts/awk-tutorial-part-1/
+
+Awk (2019): Wikipedia - https://en.wikipedia.org/wiki/AWK
+
 https://www.gnu.org/software/gawk/manual/gawk.html
+
 
 Awk is a command line tool, also a programming language. not a general language, optimized for text processing, turing complete.
 
@@ -654,6 +663,13 @@ implicit staff in awk
 `awk { print }` is equivalent of `awk { print $0 }`
 
 
+remove leading space
+
+`awk '{$1=$1}1' file.txt`, removes leading space, equals to
+
+`awk '{ $1 = $1 }; { print }' file.txt`, there is an implicit `;` before the `1`, which is a pattern with action part omitted, i.e., `1{ print}`
+
+
 
 ## awk patterns
 
@@ -671,7 +687,7 @@ Summary of Pattern Types
    1. The statements are executed at each input line that contains a string matched by the *regular expression*.
 5. compound pattern { statements }
    1. A *compound pattern* combines expressions with **&& (AND)**, **||(OR)**, **!(NOT)**, and **parentheses**; the *statements* are executed at each input line where the *compound pattern* is true.
-6. pattern1, pattern2 { statements}
+6. pattern1, pattern2 { statements }
    1. A *range pattern* matches each input line from a line matched by *pattern1*, to the next line matched by *pattern2*, inclusive; the *statements* are executed at each matching line
 
 
@@ -835,6 +851,317 @@ exit expression
 
 
 
+### Expressions
+
+The primary expressions are:
+
+​	numeric and string constants, variables, fields, function calls, array elements
+
+
+
+These operators combine expressions:
+
+​	assignment operators = += -= *= /= %= ^=
+
+​	conditional expression operator ?:
+
+​	logical operators ||(OR), &&(AND), !(NOT)
+
+​	matching operators ~ and !~
+
+​	relational operators < <= == != > >=
+
+​	concatenation (no explicit operator)
+
+​	arithmetic operators + - * / % ^
+
+​	unary + and -
+
+​	increment and decrement operator ++ and -- (prefix and postfix)
+
+​	parentheses for grouping
+
+
+
+### Expression Operators
+
+operation, operators, examples, meaning of example
+
+assignment, = += -+ *= /= %= ^=, x *= 2, x = x * 2
+
+conditional, ?:, x?y:z, if x is true then y, else z
+
+logical OR, ||, x || y, 1 if x or y is true, 0 otherwise
+
+logical AND, &&, x && y, 1 if x and y are true, 0 otherwise
+
+array membership, in, i in a, 1 if a[i] exists, 0 otherwise
+
+matching, ~ !~, $1 ~ /x/,  if the first field contains an x, 0 otherwise
+
+relational, < <= == != >= >, x == y, 1 if x is equal to y, 0 otherwise
+
+concatenation, , "a" "bc", "abc"; there is no explicit concatenation operator
+
+add, subtract, + -, x + y, sum of x and y
+
+multiply, divide, mod, * / %, x % y, remainder of x divided by y
+
+unary plus and minus, + -, -x, negated value of x
+
+logical NOT, !, !$1, 1 if $1 is zero or null, 0 otherwise
+
+exponentiation, ^, x ^ y, y exponentiation of x
+
+increment, decrement, ++ --, ++x x++, add 1 to x
+
+field, $, $i+1, value of i-th field, plus 1
+
+grouping, ( ), ($s)++, add 1 to value of i-th field
+
+
+### Control Flow
+
+Most standard control flow is supported
+
+Syntax is like C
+
+if/esle, while, for
+
+
+
+Control Flow Statement
+
+{ statements }
+
+​	statement grouping
+
+if (expression) statement
+
+​	if *expression* is true, execute *statement*
+
+if (expression) statement else statement
+
+​	if *expression* is true, execute statement, otherwise execute statement
+
+while (expression) statement
+
+​	if expression is true, execute statement, then repeat
+
+for (expression1; expression2; expression3) statement
+
+​	equivalent to *expression1; while (expression2) { statement; expression3}*
+
+for (variable in array) statement
+
+​	execute statement with variable set to each subscript in array in turn
+
+do statement while { expression }
+
+​	execute *statement*, if *expression* is true, repeat
+
+break
+
+​	immediately leave innermost enclosing *while*, *for* or *do*
+
+continue
+
+​	start next iteration of innermost enclosing *while*, *for* or *do*
+
+next
+
+​	start next iteration of main input loop
+
+exit
+
+exit expression
+
+​	go immediately to the END action; if within the END action, exit program entirely.
+
+​	Return *expression* as program status
+
+
+
+example:
+
+*while (expression) statement*
+
+```awk
+{
+	i = 1
+	while (i <= NF) {
+		print $i
+		i++
+	}
+}
+```
+
+
+
+*for (expression; expression; expression) statement*
+
+```awk
+{
+	for (i = 1; i <= NF; i++)
+		print $i
+}
+```
+
+
+
+### Output Statements
+
+print
+
+​	print $0 on standard output
+
+print expression, expression, ...
+
+​	print expression's, separated by OFS, terminated by ORS
+
+print expression, expression, ... >filename
+
+​	print on file *filename* instead of standard output
+
+print expression, expression, ... >>filename
+
+​	append to file *filename* instead of overwriting previous contents
+
+print expression, expression, ... | command
+
+​	print to standard input of *command*
+
+printf(format, expression, expression, ...)
+
+printf(format, expression, expression, ...) >filename
+
+printf(format, expression, expression, ...) >>filename
+
+printf(format, expression, expression, ...) | command
+
+​	printf statements are like print but the first argument specifies output format
+
+close(filename), close(command)
+
+​	break connection between print and *filename* or *command*
+
+system(command)
+
+​	execute *command*; value is status return of command
+
+
+
+Printf % characters
+
+character, print expression as
+
+c, ASCII character
+
+d, decimal integer
+
+e, [-]d.ddddddE[+/-]dd
+
+f, [-]ddd.dddddd
+
+g, e or f conversion, whichever is shorter, with nonsignificant zeros suppressed
+
+o, unsigned octal number
+
+s, string
+
+x, unsigned hexadecimal number
+
+%, print a %, no argument is consumed
+
+
+
+### String Concatenation
+
+Example: Concatenate fields 2 and 3:
+
+`print $2 $3`
+
+Concatenate:
+
+`print "hello" "world"
+
+Outputs: "helloworld"
+
+
+
+### Variable Types
+
+Strings
+
+"String literal"
+
+Numbers:
+
+`+1 1.0 1e0 0.1e+1 10E-1 001`
+
+Types will be automatically coerced when needed
+
+
+
+### Variables and call functions
+
+```
+# like wc command
+{
+	w += NF
+	c = length + 1
+}
+END { print NR, w, c}
+```
+
+
+
+Define Functions
+
+```
+function add_threee (number) {
+	return number + 3
+}
+
+(pattern) { print add_three(36) } # Outputs '''39'''
+```
+
+
+
+### Arrays
+
+Arrays are one dimensional
+
+For Strings or Numbers
+
+Arrays and elements do not need to be declared
+
+All arrays are associative
+
+Iterate with: `for (variable in array)`
+
+Delete element: `delete array[subscript]`
+
+Set or replace element (string key): `Array["one"] = 2`
+
+Set or replace element (integer key): `Array[5] = "two"`
+
+Even with an integer key, the array is still associative!
+
+
+
+### Field Manipulation
+
+Fields can be specified by expression:
+
+​	`$(NF-1)` is second to last, `$NF` is last, etc.
+
+A field variable referencing a non-existent field can be created through assignment, Initial value is empty string:
+
+​	`$(NF+1) = $(NF-1) / 1000`
+
+
+
 ## Build-in Variables
 
 Variable, Meaning, Default
@@ -866,6 +1193,70 @@ RSTATRT, start of string matched by match function, -
 SUBSEP, subscript separator, "\034"
 
 
+
+## Built-in Math Functions
+
+Function, Value Returned
+
+atan2(y,x), arctangent of y/x in the range -pi to pi
+
+cos(x), cosine of x, with x in radians
+
+exp(x), exponential function of x
+
+int(x), integer part of x; truncated towards 0 when x > 0
+
+log(x), natural (base e) logarithm of x
+
+rand(), random number r, where 0 <= r < 1
+
+sin(x), sine of x, with x in radians
+
+sqrt(x), square root of x
+
+srand(x), x is new seed for rand()
+
+
+### Build-in String Functions
+
+function, description
+
+gsub(r,s), substitute s for r globally in $0, return number of substitutions made
+
+gsub(r,s,t), substitute s for r globally in string t, return number of substitutions made
+
+index(s,t), return first position of string t in s, or 0 if t is not present
+
+length(s), return number of characters in s
+
+match(s,r), test whether s contains a substring matched by r, return index or 0; sets RSTART and RLENGTH
+
+split(s,a), split s into array a on FS, return number of fields
+
+split(s,a,fs) split s into array a on field separator fs, return number of fields
+
+sprintf(fmt, expr-list), return expr-list formatted according to format string fmt
+
+sub(r,s), substitute s for the leftmost longest substring of $0 matched by r, return number of substitutions made
+
+sub(r,s,t), substitute s for the leftmost longest substring of t matched by r, return number of substitutions made
+
+substr(s,p), return suffix of s starting at position p
+
+substr(s,p,n), return substring of s of length n starting at position p
+
+
+
+example:
+
+{ gsub(/USA/, "United States"); print } # implicit arguments
+
+gsub(/ana/, "anda", "banana") # explicit arguments
+
+
+
+
+
 ## awk program
 
 Making and Running an awk program
@@ -881,6 +1272,17 @@ BEGIN { print "Hello, world!" }
 **Interpreter**:
 
 The line beginning with `#!` lists the full file name of an **interpreter** to run, and a single optional initial command-line **argument** to pass to that interpreter. 
+
+### Self-contained Scripts
+
+```gawk
+#!/usr/bin/awk -f
+{ print }
+```
+
+It can be invoked with `./print.awk <filename>`
+
+The `-f` tells AWK that the argument that follows is the file to read the AWK program from, which is the same flag that is used in sed. Since they are often used for one-liners, both these programs default to executing a program given as command-line argument, rather than a separate file.
 
 
 
@@ -940,6 +1342,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
