@@ -41,7 +41,9 @@ ref: https://www.regular-expressions.info/posixbrackets.html
 ![image-20240314102543080](./.06_grep_sed_awk/image-20240314102543080.png)
 
 
-### shorthand metacharacter classes
+### shorthand character classes
+
+You will find it sort of funny that some metacharacters are metacharacters alone and when we use backslash before them they are converted into literal characters. While some metacharacters have a backslash with them, they have their special behavior in the presence of this backslash. And if this backslash is dropped they lose their special behavior and become a literal character. Actually these special metacharacters are also called as **shorthand character classes**. As you can match a group of characters with one metacharacter. And the question about how to escape these simply avoid the backslash.
 
 In this case the escape character introduces a special meaning rather than taking it away.
 ```
@@ -194,14 +196,43 @@ example: `grep 're(a|e)d' misc.txt # will match "read" and "reed"`
 
 ### Metacharacters
 
-Sometimes we may actually want to search for one of the characters which is a metacharacter. To do this we use a feature called escaping. By placing the backslash ( `\` ) in front of a metacharacter we can remove it's special meaning.
+There are two basic types of metacharacters. 
+
+- Single character metacharacters and 
+- Double character metacharacters.
+
+Sometimes we may actually want to search for one of the characters which is a metacharacter. To do this we use a feature called **escaping**. By placing the backslash ( `\` ) in front of a metacharacter we can remove it's special meaning.
 
 `\` - Escape, or remove the special meaning of the next character
 
 The backslash escapes a special character, which means that character gets interpreted literally (and therefore no longer special).
 
-In some instances of regular expressions we may also use escaping to introduce a special meaning to characters which normally don't have a special meaning.
+In some instances of regular expressions we may also use escaping to introduce a special meaning to characters which normally don't have a special meaning. We call this escaping sequences as *double character metacharacters*.
 
+---
+
+single character metacharacters
+```
+1. Backslash		\
+2. Caret			^
+3. Pipe				|
+4. Period			.
+5. Dollar Sign		$
+6. Question Mark	?
+7. Asterisk			*
+8. Plus Sign		.
+9. Opening Parenthesis	(
+10. Closing Parenthesis	)
+11. Opening Square Bracket	[
+12. Opening curly Bracket	{
+```
+
+---
+
+double character metacharacters, also called **shorthand character classes**
+
+
+---
 
 # grep
 https://www.gnu.org/software/grep/manual/grep.html
@@ -1399,6 +1430,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
