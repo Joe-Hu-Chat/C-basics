@@ -601,12 +601,12 @@ Awk was preceded by sed
 
 Awk's powerful regexes and also its limitations inspired Perl
 
-## usage
+## program usage
 
 ```bash
 awk program input-file1 input-file2 ...
 awk -f program-file input-file1 input-file2 ...
-awk [-F field-separator] program filename```
+awk [-F field-separator] program filename ...
 ```
 
 program = pattern { action }
@@ -640,8 +640,6 @@ ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$
 There are **single quotes** around the `awk` program so that the shell won’t interpret any of it as special shell characters.
 
 
-
-
 ### omission
 
 Either the pattern or the action can be omitted, equivalents of the omitted form:
@@ -649,25 +647,29 @@ Either the pattern or the action can be omitted, equivalents of the omitted form
 - pattern omitted:  `/.*/ { action }`
 - action omitted:  `/some regex/ { print $0 }`
 
-## pattern elements
+## awk patterns
+
+Awk **patterns** are basically just "if" statements to decide to execute the **action**
+
+Summary of Pattern Types
+
+1. BEGIN { statements } (special pattern)
+   1. The statement are executed once before any input has been read.
+2. END { statements } (special pattern)
+   1. The statements are executed once after all input has been read.
+3. expression { statements }
+   1. The statements are executed at each input line where the *expression* is true, that is, nonzero or nonnull.
+4. /regular expression/ { statements }
+   1. The statements are executed at each input line that contains a string matched by the *regular expression*.
+5. compound pattern { statements }
+   1. A *compound pattern* combines expressions with **&& (AND)**, **||(OR)**, **!(NOT)**, and **parentheses**; the *statements* are executed at each input line where the *compound pattern* is true.
+6. pattern1, pattern2 { statements}
+   1. A *range pattern* matches each input line from a line matched by *pattern1*, to the next line matched by *pattern2*, inclusive; the *statements* are executed at each matching line
+
 
 Patterns in `awk` control the execution of rules -- a rule is executed when its pattern matches the current input record.
 
 ref: https://www.gnu.org/software/gawk/manual/gawk.html#Expressions-as-Patterns
-
-### /regular expression/
-
-The pattern matches when the input record matches the `regexp`.
-
-```awk
-/foo|bar|baz/  { buzzwords++ }
-```
-
-A regular expression enclosed in slashes (`/`) is an `awk` pattern that matches every input record whose text belongs to that set. 
-
-regular expression comparisons ( **match or not** ):
-
-The two operators `~` and `!~` perform **regular expression comparisons**.
 
 
 ### expression
@@ -680,6 +682,53 @@ The expression is reevaluated each time the rule is tested against a new input r
 # if the 1rst element equals "li", print the 2nd one
 awk '$1 == "li" { print $2 }' mail-list
 ```
+
+
+#### Comparison Operators
+
+< less than, NF < 10 # Num Fields less than 10
+
+<= less than or equal to, NR <= 150 # Num Records less than or equal to 150
+
+== equal to, $1 == "SomeString"
+
+!= not equal to, 
+
+\>= greater than or equal to, $2/$3 >= 0.5
+
+\> greater than
+
+~ matched by, $4 ~ /linux/ (or "linux") # The 4th field matches "linux"
+
+!~ not matched by, $5 !~ /awk/ # The 5th field not matches "awk"
+
+
+
+#### String-Matching Patterns
+
+1. /regexpr/ implies "$0 ~"
+   1. Matches when the current input line contains a substring matched by regexpr
+2. expression ~ /regexpr/
+   1. Matches if the string value of *expression* contains a substring matched by *regexpr*
+3. expression ~! /regexpr/
+   1. Matches if the string value of *expression* does not contain a substring matched by *regexpr*
+
+Any expression may be used in place of */regexpr/* int the context of `~` and `!~`
+
+
+### /regular expression/
+
+The pattern matches when the input record matches the `regexp`.
+
+```awk
+/foo|bar|baz/  { buzzwords++ }
+```
+
+A *regular expression* enclosed in slashes (`/`) is an `awk` pattern that matches every input record whose text belongs to that set. 
+
+regular expression comparisons ( **match or not** ):
+
+The two operators `~` and `!~` perform **regular expression comparisons**.
 
 
 ### range pattern
@@ -696,15 +745,34 @@ awk '/pattern start/, /pattern end/' text.txt
 In a range pattern, the comma (`,`) has the **lowest** precedence of all the operators (i.e., it is evaluated last).
 
 
-### special patterns
+Range Patterns
 
-BEGIN
+A range pattern consists of two patterns separated by a comma
 
-END
+A range patten matches each line between an occurrence of pattern1 and the next occurrence of pattern2 inclusive
 
-BEGINFILE
+If no instance of the second pattern is subsequently found, then all lines to the end of the input are matched.
 
-ENDFILE
+`NR == 1, NR == 10 { print $0 }`, Applies action to lines 1 through 10.
+
+
+
+### Awk Patterns Summary
+
+Pattern, Example, Matches
+
+BEGIN, BGEIN, before any input has been read
+
+END, END, after all input has been read
+
+expression, $3 < 100, lines in which third field is less than 100
+
+string-matching, (regex) /Asia/, lines that contain "Asia"
+
+compound, $3 < 100 && $4 == "Asia", lines in which third field is less than 100 and fourth field is "Asia"
+
+range, NR == 10, NR == 20, tenth to twentieth lines of input inclusive
+
 
 ## awk program
 
@@ -780,6 +848,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
