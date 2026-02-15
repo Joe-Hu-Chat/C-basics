@@ -8,7 +8,7 @@ regular expressions
 
 range expressions: '[a-d]' = '[abcd]'
 
-### class list
+### character class list
 
 **named POSIX classes**
 
@@ -39,54 +39,57 @@ ref: https://www.regular-expressions.info/posixbrackets.html
 
 ### character class tips
 
-Special characters lose their special meaning **inside bracket expressions**!!!
-
-']' ends the bracket expression if it's not the first list item. So if you want to make the ']' character a list item, you must put it first.
+Special characters lose their special meaning **inside bracket expressions**!
 
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
+
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
 
 - '[:' represents the open character class symbol, and should followed by a valid character class name.
 - ':]' represents the close character class symbol.
 
+']' ends the bracket expression if it's not the first list item. So if you want to make the ']' character a list item, you must put it first.
+
 '-' represents the range if it's not first or last in a list or the ending point of a range.
+
 '^' represents the characters not in the list. If you want to make the '^' character a list item, place it anywhere but first.
 
-## basics
+## regexpr basics
 
 ref: https://ryanstutorials.net/linuxtutorial/grep.php
 
-**.** (dot) - a single character.
+`.` (dot) - a single character.
 
-**?** - the preceding character matches 0 or 1 times only.
+`?` - the preceding character matches 0 or 1 times only.
 
-***** - the preceding character matches 0 or more times.
+`*` - the preceding character matches 0 or more times.
 
-**+** - the preceding character matches 1 or more times.
+`+` - the preceding character matches 1 or more times.
 
-**{n}** - the preceding character matches exactly n times.
+`{n}` - the preceding character matches exactly n times.
 
-**{n,m}** - the preceding character matches at least n times and not more than m times.
+`{n,m}` - the preceding character matches at least n times and not more than m times.
 
-**[agd]** - the character is one of those included within the square brackets.
+`[agd]` - the character is one of those included within the square brackets.
 
-**[^agd]** - the character is not one of those included within the square brackets.
+`[^agd]` - the character is not one of those included within the square brackets.
 
-**[c-f]** - the dash within the square brackets operates as a range. In this case it means either the letters c, d, e or f.
+`[c-f]` - the dash within the square brackets operates as a *range*. In this case it means either the letters c, d, e or f.
 
-**()** - allows us to group several characters to behave as one.
+`()` - allows us to **group** several characters to *behave as one*.
 
-**|** (pipe symbol) - the logical OR operation.
+`|` (pipe symbol) - the logical **OR** operation.
 
-**^** - matches the beginning of the line.
+`^` - matches the **beginning** of the line.
 
-**$** - matches the end of the line. 
+`$` - matches the **end** of the line. 
 
-**<word>** - matches a word.
+`<word>` - matches a word.
 
 
+### explanation
 
 `*` - the preceding character matches 0 or more times
 
@@ -1343,6 +1346,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
