@@ -59,6 +59,16 @@ In this case the escape character introduces a special meaning rather than takin
 
 Special characters lose their special meaning inside **bracket expressions**!
 
+']' ends the bracket expression if it's not the first list item. So if you want to make the ']' character a list item, you must put it first.
+
+'-' represents the range if it's not first or last in a list or the ending point of a range.
+
+'^' represents the characters not in the list. If you want to make the '^' character a list item, place it anywhere but first.
+
+character class
+- '[:' represents the open character class symbol, and should followed by a valid character class name.
+- ':]' represents the close character class symbol.
+
 collating symbol
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
@@ -66,16 +76,6 @@ collating symbol
 equivalence class
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
-
-chracter class
-- '[:' represents the open character class symbol, and should followed by a valid character class name.
-- ':]' represents the close character class symbol.
-
-']' ends the bracket expression if it's not the first list item. So if you want to make the ']' character a list item, you must put it first.
-
-'-' represents the range if it's not first or last in a list or the ending point of a range.
-
-'^' represents the characters not in the list. If you want to make the '^' character a list item, place it anywhere but first.
 
 ## regexpr basics
 
@@ -1491,6 +1491,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
