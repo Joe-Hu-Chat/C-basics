@@ -55,6 +55,34 @@ In this case the escape character introduces a special meaning rather than takin
 \W - matches the opposite of \w, that is anything which is not considered a word character.
 ```
 
+### RE bracket expression
+
+A bracket expression (an expression enclosed in square brackets, "[]" ) is an RE that shall match 
+- a specific set of single characters, and may match
+- a specific set of multi-character **collating elements**, based on the non-empty set of **list expressions** contained in the bracket expression.
+
+A bracket expression is either a matching list expression or a non-matching list expression. It consists of one or more expressions: *ordinary characters*, *collating elements*, *collating symbols*, *equivalence classes*, *character classes*, or *range expressions*.
+
+
+character classes
+- '[:' represents the open character class symbol, and should followed by a valid character class name.
+- ':]' represents the close character class symbol.
+
+An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
+
+collating symbols
+-  '[.' represents the open collating symbol.
+-  '.]' represents the close collating symbol.
+
+equivalence classes
+-  '[=' represents the open equivalence class.
+-  '=]' represents the close equivalence class.
+
+
+locale definition usage in RE bracket expressions
+
+in the locale definition, the expression `[[.ch.]]` shall be treated as an RE containing the collating symbol `ch`, while `[ch]` shall be treated as an RE matching `c` or `h`. Collating symbols are recognized only **inside bracket expressions**. If the string is not a collating element in the current locale, the expression is invalid.
+
 ### character class tips
 
 Special characters lose their special meaning inside **bracket expressions**!
@@ -64,30 +92,6 @@ Special characters lose their special meaning inside **bracket expressions**!
 '-' represents the range if it's not first or last in a list or the ending point of a range.
 
 '^' represents the characters not in the list. If you want to make the '^' character a list item, place it anywhere but first.
-
-character class
-- '[:' represents the open character class symbol, and should followed by a valid character class name.
-- ':]' represents the close character class symbol.
-
-locale definitions usage in RE bracket expressions
-
-An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
-
-collating symbol
--  '[.' represents the open collating symbol.
--  '.]' represents the close collating symbol.
-
-equivalence class
--  '[=' represents the open equivalence class.
--  '=]' represents the close equivalence class.
-
-### RE bracket expression
-
-A bracket expression (an expression enclosed in square brackets, "[]" ) is an RE that shall match 
-- a specific set of single characters, and may match
-- a specific set of multi-character **collating elements**, based on the non-empty set of **list expressions** contained in the bracket expression.
-
-in the locale definition, the expression `[[.ch.]]` shall be treated as an RE containing the collating symbol `ch`, while `[ch]` shall be treated as an RE matching `c` or `h`. Collating symbols are recognized only **inside bracket expressions**. If the string is not a collating element in the current locale, the expression is invalid.
 
 
 ## regexpr basics
@@ -1504,6 +1508,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
