@@ -1143,9 +1143,9 @@ while (expression) statement
 
 ​	if expression is true, execute statement, then repeat
 
-for (expression1; expression2; expression3) statement
+for (expression<sub>1</sub>; expression<sub>2</sub>; expression<sub>3</sub>) statement
 
-​	equivalent to *expression1; while (expression2) { statement; expression3}*
+​   equivalent to *expression1; while (expression2) { statement; expression3}*
 
 for (variable in array) statement
 
@@ -1208,23 +1208,23 @@ example:
 
 print
 
-​	print $0 on standard output
+​   print $0 on standard output
 
 print expression, expression, ...
 
-​	print expression's, separated by OFS, terminated by ORS
+​   print expression's, separated by OFS, terminated by ORS
 
 print expression, expression, ... >filename
 
-​	print on file *filename* instead of standard output
+   print on file *filename* instead of standard output
 
 print expression, expression, ... >>filename
 
-​	append to file *filename* instead of overwriting previous contents
+​   append to file *filename* instead of overwriting previous contents
 
 print expression, expression, ... | command
 
-​	print to standard input of *command*
+​   print to standard input of *command*
 
 printf(format, expression, expression, ...)
 
@@ -1234,15 +1234,15 @@ printf(format, expression, expression, ...) >>filename
 
 printf(format, expression, expression, ...) | command
 
-​	printf statements are like print but the first argument specifies output format
+​   printf statements are like print but the first argument specifies output format
 
 close(filename), close(command)
 
-​	break connection between print and *filename* or *command*
+​   break connection between print and *filename* or *command*
 
 system(command)
 
-​	execute *command*; value is status return of command
+​   execute *command*; value is status return of command
 
 
 
@@ -1444,11 +1444,11 @@ substr(s,p,n), return substring of s of length n starting at position p
 
 
 example:
-
+```
 { gsub(/USA/, "United States"); print } # implicit arguments
 
 gsub(/ana/, "anda", "banana") # explicit arguments
-
+```
 
 
 
@@ -1527,6 +1527,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
