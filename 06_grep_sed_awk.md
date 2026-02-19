@@ -12,9 +12,11 @@ range expressions: '[a-d]' = '[abcd]'
 
 ## character classes and bracket expressions
 
-### character class list
+### character classes
 
-**named POSIX classes**:
+**POSIX locale classes**:
+
+ref: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_03_02_04
 
 '[:alnum:]' = '[:alpha:]' + '[:digit:]'
 
@@ -71,6 +73,8 @@ character class
 
 locale definitions usage in RE bracket expressions
 
+An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
+
 collating symbol
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
@@ -78,6 +82,11 @@ collating symbol
 equivalence class
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
+
+### bracket expression
+
+in the locale definition, the expression `[[.ch.]]` shall be treated as an RE containing the collating symbol `ch`, while `[ch]` shall be treated as an RE matching `c` or `h`. Collating symbols are recognized only **inside bracket expressions**. If the string is not a collating element in the current locale, the expression is invalid.
+
 
 ## regexpr basics
 
@@ -1493,6 +1502,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
