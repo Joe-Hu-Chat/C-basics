@@ -1106,7 +1106,7 @@ unary plus and minus, + -, -x, negated value of x
 
 logical NOT, !, !$1, 1 if $1 is zero or null, 0 otherwise
 
-exponentiation, ^, x ^ y, y exponentiation of x
+exponentiation, ^, x ^ y, x<sup>y</sup>
 
 increment, decrement, ++ --, ++x x++, add 1 to x
 
@@ -1527,6 +1527,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
