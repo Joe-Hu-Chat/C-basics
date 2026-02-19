@@ -58,11 +58,18 @@ In this case the escape character introduces a special meaning rather than takin
 ### RE bracket expression
 
 A bracket expression (an expression enclosed in square brackets, "[]" ) is an RE that shall match 
-- a specific set of single characters, and may match
+- a specific set of **single characters**, and may match
 - a specific set of multi-character **collating elements**, based on the non-empty set of **list expressions** contained in the bracket expression.
+
 
 A bracket expression is either a **matching list expression** or a **non-matching list expression**. It consists of one or more expressions: *ordinary characters*, *collating elements*, *collating symbols*, *equivalence classes*, *character classes*, or *range expressions*.
 
+---
+
+collating elements
+
+
+---
 
 character classes
 - '[:' represents the open character class symbol, and should followed by a valid character class name.
@@ -70,25 +77,30 @@ character classes
 
 ---
 
-A **collating symbol** is a **collating element** enclosed within bracket-period ( `[.` and `.]` ) delimiters.
-
 collating symbols
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
 
----
+A **collating symbol** is a **collating element** enclosed within bracket-period ( `[.` and `.]` ) delimiters.
 
-An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
+In the locale definition, the expression `[[.ch.]]` shall be treated as an RE containing the collating symbol `ch`, while `[ch]` shall be treated as an RE matching `c` or `h`. **Collating symbols** are recognized only **inside bracket expressions**. If the string is not a collating element in the current locale, the expression is invalid.
+
+---
 
 equivalence classes
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
 
+An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
+
 ---
 
+range expressions
+
+In the POSIX locale, a range expression represents the set of collating elements that fall between two elements in the collation sequence, inclusive. In other locales, a range expression has unspecified behavior: strictly conforming applications shall not rely on whether the range expression is valid, or on the set of collating elements matched. A range expression shall be expressed as the starting point and the ending point separated by a <hyphen-minus> ( '-' ).
 locale definition usage in RE bracket expressions
 
-in the locale definition, the expression `[[.ch.]]` shall be treated as an RE containing the collating symbol `ch`, while `[ch]` shall be treated as an RE matching `c` or `h`. Collating symbols are recognized only **inside bracket expressions**. If the string is not a collating element in the current locale, the expression is invalid.
+---
 
 ### character class tips
 
@@ -1515,6 +1527,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
