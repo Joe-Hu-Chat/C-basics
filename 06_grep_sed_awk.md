@@ -69,6 +69,8 @@ character class
 - '[:' represents the open character class symbol, and should followed by a valid character class name.
 - ':]' represents the close character class symbol.
 
+locale definitions usage in RE bracket expressions
+
 collating symbol
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
@@ -1491,6 +1493,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
