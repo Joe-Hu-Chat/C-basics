@@ -14,9 +14,7 @@ range expressions: '[a-d]' = '[abcd]'
 
 ### character classes
 
-**POSIX locale classes**:
-
-ref: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_03_02_04
+[POSIX locale classes](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_03_02_04):
 
 '[:alnum:]' = '[:alpha:]' + '[:digit:]'
 
@@ -1502,6 +1500,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
