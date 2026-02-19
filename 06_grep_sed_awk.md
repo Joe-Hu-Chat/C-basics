@@ -1398,7 +1398,7 @@ atan2(y,x), arctangent of y/x in the range -pi to pi
 
 cos(x), cosine of x, with x in radians
 
-exp(x), exponential function of x
+exp(x), exponential function of x, e<sup>x</sup>
 
 int(x), integer part of x; truncated towards 0 when x > 0
 
@@ -1527,6 +1527,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
