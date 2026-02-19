@@ -68,16 +68,23 @@ character classes
 - '[:' represents the open character class symbol, and should followed by a valid character class name.
 - ':]' represents the close character class symbol.
 
-An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
+---
+
+A **collating symbol** is a **collating element** enclosed within bracket-period ( `[.` and `.]` ) delimiters.
 
 collating symbols
 -  '[.' represents the open collating symbol.
 -  '.]' represents the close collating symbol.
 
+---
+
+An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
+
 equivalence classes
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
 
+---
 
 locale definition usage in RE bracket expressions
 
@@ -1508,6 +1515,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
