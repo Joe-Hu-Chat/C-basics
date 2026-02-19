@@ -61,7 +61,7 @@ A bracket expression (an expression enclosed in square brackets, "[]" ) is an RE
 - a specific set of single characters, and may match
 - a specific set of multi-character **collating elements**, based on the non-empty set of **list expressions** contained in the bracket expression.
 
-A bracket expression is either a matching list expression or a non-matching list expression. It consists of one or more expressions: *ordinary characters*, *collating elements*, *collating symbols*, *equivalence classes*, *character classes*, or *range expressions*.
+A bracket expression is either a **matching list expression** or a **non-matching list expression**. It consists of one or more expressions: *ordinary characters*, *collating elements*, *collating symbols*, *equivalence classes*, *character classes*, or *range expressions*.
 
 
 character classes
@@ -1508,6 +1508,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
