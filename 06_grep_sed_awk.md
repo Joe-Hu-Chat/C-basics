@@ -73,6 +73,12 @@ Collating elements include characters and **multi-character collating elements**
 
 **multi-character collating elements**: sequences of two or more characters to be collated as an entity, provided by the [LC_COLLATE category](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_03_02_04)
 
+The collating-element Keyword
+
+In addition to the collating elements in the *character set*, the **collating-element** keyword can be used to define **multi-character collating elements**. The syntax is as follows:
+
+"collating-element %s from \"%s\"\n", <collating-symbol>, <string>
+
 ---
 
 character classes
@@ -1531,6 +1537,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
