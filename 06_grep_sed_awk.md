@@ -852,7 +852,7 @@ example: `sed ':x;N;/middle/tx;s/\n/,/g'`
 
 # awk
 
-ref: 
+reference:
 
 [Download Free eBook PDF: The Awk Programming Language - nixCraft](https://www.cyberciti.biz/link/download-free-pdf-the-awk-programming-language/)
 
@@ -862,6 +862,7 @@ Awk (2019): Wikipedia - https://en.wikipedia.org/wiki/AWK
 
 https://www.gnu.org/software/gawk/manual/gawk.html
 
+---
 
 Awk is a command line tool, also a programming language. not a general language, optimized for text processing, turing complete.
 
@@ -870,6 +871,8 @@ Awk is part of posix, so installed everywhere, many of the problems you face are
 Awk was preceded by sed
 
 Awk's powerful regexes and also its limitations inspired Perl
+
+---
 
 ## program usage
 
@@ -906,6 +909,8 @@ awk -F "," 'BEGIN{OFS="\n"}; \
 # To add as Make targets for all the .c files in current directory
 ls *.c | awk 'BEGIN{OFS="\n\r"}{print}' | awk '{OFS=" "}{print "build_objs +=",$1}' | sed 's/.c$/.o/g' > objects.mk
 ```
+
+---
 
 **variables and if statements**
 
@@ -1605,6 +1610,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
