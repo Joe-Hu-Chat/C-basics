@@ -95,6 +95,8 @@ A **collating symbol** is a **collating element** enclosed within bracket-period
 
 In the locale definition, the expression `[[.ch.]]` shall be treated as an RE containing the **collating symbol** `ch`, while `[ch]` shall be treated as an RE matching `c` or `h`. **Collating symbols** are recognized only **inside bracket expressions**. If the string is not a collating element in the current locale, the expression is invalid.
 
+The `collating-symbol` keyword defines a symbolic name that can be associated with a **relative position** in the **character order sequence**. While such a symbolic name does not represent any collating element, it can be used as a **weight**.
+
 ---
 
 equivalence classes
@@ -1537,6 +1539,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
