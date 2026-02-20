@@ -43,9 +43,11 @@ ref: https://www.regular-expressions.info/posixbrackets.html
 
 ### shorthand character classes
 
-You will find it sort of funny that some metacharacters are metacharacters alone and when we use backslash before them they are converted into literal characters. While some metacharacters have a backslash with them, they have their special behavior in the presence of this backslash. And if this backslash is dropped they lose their special behavior and become a literal character. Actually these special metacharacters are also called as **shorthand character classes**. As you can match a group of characters with one metacharacter. And the question about how to escape these simply avoid the backslash.
+You will find it sort of funny that some metacharacters are metacharacters alone and when we use backslash before them they are converted into literal characters. While some metacharacters have a backslash with them, they have their special behavior in the presence of this backslash. And if this backslash is dropped they lose their special behavior and become a literal character.
 
-In this case the escape character introduces a special meaning rather than taking it away.
+Actually these special metacharacters are also called as **shorthand character classes**. As you can match a group of characters with one metacharacter. And the question about how to escape these simply avoid the backslash.
+
+In this case the **escape character** introduces a special meaning rather than taking it away.
 ```
 \s - matches anything which is considered whitespace. This could be a space, tab, line break etc.
 \S - matches the opposite of \s, that is anything which is not considered whitespace.
@@ -1602,6 +1604,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
