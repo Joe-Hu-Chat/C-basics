@@ -77,7 +77,7 @@ The collating-element Keyword
 
 In addition to the collating elements in the *character set*, the **collating-element** keyword can be used to define **multi-character collating elements**. The syntax is as follows:
 
-"collating-element %s from \"%s\"\n", <collating-symbol>, <string>
+> `"collating-element %s from \"%s\"\n", <collating-symbol>, <string>`
 
 ---
 
@@ -1537,6 +1537,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
