@@ -111,6 +111,8 @@ equivalence classes
 -  '[=' represents the open equivalence class.
 -  '=]' represents the close equivalence class.
 
+Two or more **collation-elements** can be assigned the same **weight**; they belong to the same <mark>"equivalence class"</mark> if they have the same primary weight.
+
 An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
 
 ---
@@ -1547,6 +1549,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
