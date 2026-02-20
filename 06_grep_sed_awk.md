@@ -68,7 +68,8 @@ A bracket expression is either a **matching list expression** or a **non-matchin
 
 collating elements
 
-A **collating element** is the smallest unit of text that is considered **indivisible** for the purpose of sorting and comparing strings
+A **collating element** is the smallest unit of text that is considered **indivisible** for the purpose of sorting and comparing strings.
+Collating elements include characters and **multi-character collating elements**. Here in the case of **bracket expression**, the **collating elements** emphasize the latter scenario, in comparison with **ordinary characters**.
 
 ---
 
@@ -1528,6 +1529,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
