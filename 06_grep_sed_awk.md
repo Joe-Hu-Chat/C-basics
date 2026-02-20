@@ -115,6 +115,40 @@ Two or more **collation-elements** can be assigned the same **weight**; they bel
 
 An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
 
+Collation Order
+
+The order_start keyword shall be followed by collating identifier entries. The syntax for the collating element entries is as follows:
+```
+"%s %s;%s;...;%s\n", <collating-identifier>, <weight>, <weight>, ...
+```
+
+For example:
+```
+order_start  forward;backward
+<LOW>
+<space>      <LOW>;<space>
+...          <LOW>;...
+<a>          <a>;<a>
+<a-acute>    <a>;<a-acute>
+<a-grave>    <a>;<a-grave>
+<A>          <a>;<A>
+<A-acute>    <a>;<A-acute>
+<A-grave>    <a>;<A-grave>
+<ch>         <ch>;<ch>
+<Ch>         <ch>;<Ch>
+<s>          <s>;<s>
+<eszet>      "<s><s>";"<eszet><eszet>"
+UNDEFINED    IGNORE;...
+order_end
+```
+
+This example is interpreted as follows:
+
+1. All characters between `<space>` and `a` shall have the same **primary equivalence class** and individual secondary weights based on their ordinal encoded values.
+2. All characters based on the *uppercase* or *lowercase* character 'a' belong to the same **primary equivalence class**.
+3. The multi-character collating element `<ch>` is represented by the collating symbol `<ch>` and belongs to the same primary equivalence class as the multi-character collating element `<Ch>`.
+4. The `UNDEFINED` means that all characters not specified in this definition (explicitly or via the ellipsis) shall be ignored when comparing primary weights, and have individual secondary weights based on their ordinal encoded values.
+
 ---
 
 range expressions
@@ -1549,6 +1583,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
