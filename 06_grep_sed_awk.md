@@ -57,7 +57,7 @@ In this case the escape character introduces a special meaning rather than takin
 
 ### RE bracket expression
 
-A bracket expression (an expression enclosed in square brackets, "<mark>[]</mark>" ) is an RE that shall match 
+A bracket expression (an expression enclosed in square brackets, <mark>[]</mark> ) is an RE that shall match 
 - a specific set of **single characters**, and may match
 - a specific set of **multi-character collating elements**, based on the non-empty set of **list expressions** contained in the bracket expression.
 
@@ -1549,6 +1549,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
