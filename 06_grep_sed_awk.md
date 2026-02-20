@@ -924,7 +924,7 @@ xxd -g 16 test.bin | cut -d " " -f 2 | sed 's/ //g' | sed 's/\(..\)/\1 /g' |awk 
 
 ### single quotes
 
-There are **single quotes** around the `awk` *program* so that the shell won’t interpret any of it as special shell characters.
+There are **single quotes** around the awk *program* so that the shell won’t interpret any of it as special shell characters.
 
 
 ### omission and implication
@@ -973,6 +973,17 @@ Patterns in `awk` control the execution of rules -- a rule is executed when its 
 
 ref: https://www.gnu.org/software/gawk/manual/gawk.html#Expressions-as-Patterns
 
+Brief:
+
+| Pattern | Example | Matches |
+| --- | --- | --- |
+| BEGIN | BGEIN | before any input has been read |
+| END | END | after all input has been read |
+| expression | $3 < 100 | lines in which third field is less than 100 |
+| string-matching | (regex) /Asia/ | lines that contain "Asia" |
+| compound | $3 < 100 && $4 == "Asia" | lines in which third field is less than 100 and fourth field is "Asia" |
+| range | NR == 10, NR == 20 | tenth to twentieth lines of input inclusive |
+
 
 ### expression
 
@@ -988,22 +999,16 @@ awk '$1 == "li" { print $2 }' mail-list
 
 #### Comparison Operators
 
-< less than, NF < 10 # Num Fields less than 10
-
-<= less than or equal to, NR <= 150 # Num Records less than or equal to 150
-
-== equal to, $1 == "SomeString"
-
-!= not equal to, 
-
-\>= greater than or equal to, $2/$3 >= 0.5
-
-\> greater than
-
-~ matched by, $4 ~ /linux/ (or "linux") # The 4th field matches "linux"
-
-!~ not matched by, $5 !~ /awk/ # The 5th field not matches "awk"
-
+| symbol | explanation | example | comments |
+| --- | --- | --- | --- |
+| < | less than | NF < 10 | # Num Fields less than 10 | 
+| <= | less than or equal to | NR <= 150 | # Num Records less than or equal to 150 |
+| == | equal to | $1 == "SomeString" | |
+| != | not equal to | | | 
+| \>= | greater than or equal to | $2/$3 >= 0.5 | |
+| \> | greater than | | |
+| ~ | matched by | $4 ~ /linux/ (or "linux") | # The 4th field matches "linux" |
+| !~ | not matched by | $5 !~ /awk/ | # The 5th field not matches "awk" |
 
 
 #### String-Matching Patterns
@@ -1057,23 +1062,6 @@ If no instance of the second pattern is subsequently found, then all lines to th
 
 `NR == 1, NR == 10 { print $0 }`, Applies action to lines 1 through 10.
 
-
-
-### Awk Patterns Summary
-
-Pattern, Example, Matches
-
-BEGIN, BGEIN, before any input has been read
-
-END, END, after all input has been read
-
-expression, $3 < 100, lines in which third field is less than 100
-
-string-matching, (regex) /Asia/, lines that contain "Asia"
-
-compound, $3 < 100 && $4 == "Asia", lines in which third field is less than 100 and fourth field is "Asia"
-
-range, NR == 10, NR == 20, tenth to twentieth lines of input inclusive
 
 
 ## Awk Actions
@@ -1610,6 +1598,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
