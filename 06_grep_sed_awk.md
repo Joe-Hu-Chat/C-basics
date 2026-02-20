@@ -328,13 +328,30 @@ double character metacharacters, also called **shorthand character classes**
 
 ---
 
-### Grouping
+### Group - Subexpression
 
 Group the regular expression within the parentheses, also known as sub-expression
 
 Examples:
 
 `\b(\d{1,3}.){3}\d{1,3}\b` matches IP addresses.
+
+#### BRE vs ERE
+
+`\(\)` subexpression in Basic RE vs `()` in Extended RE
+
+In <mark>Extended RE</mark>, the `(` and `)` characters are [special](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_03_05) outside of bracket expressions.
+
+[ERE special characters](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_03_06): `.[\()*+?{|^$`
+
+In <mark>Basic RE</mark>, the `(` and `)` are ordinary characters that will match themselves. The **escape characters** `\(` and `\)` can group subexpressions.
+
+[BRE special characters](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_03_06): `.[\*^$`
+
+The <mark>extended regular expression</mark> (ERE) notation and construction rules shall apply to utilities defined as <mark>using extended regular expressions</mark>; any exceptions to the following rules are noted in the descriptions of the specific utilities using EREs.
+
+For example, `grep -E` applies the Extended RE matching, while `grep` applies the Basic RE matching.
+
 
 ### Block References
 
@@ -1585,6 +1602,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
