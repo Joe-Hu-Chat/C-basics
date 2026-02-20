@@ -71,6 +71,8 @@ collating elements
 A **collating element** is the smallest unit of text that is considered **indivisible** for the purpose of sorting and comparing strings.
 Collating elements include characters and **multi-character collating elements**. Here in the case of **bracket expression**, the **collating elements** emphasize the latter scenario, in comparison with **ordinary characters**.
 
+**multi-character collating elements**: sequences of two or more characters to be collated as an entity, provided by the [LC_COLLATE category](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_03_02_04)
+
 ---
 
 character classes
@@ -1529,6 +1531,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
