@@ -8,7 +8,8 @@ range expressions: '[a-d]' = '[abcd]'
 
 ## test
 
-**The only way to be certain that a particular RE works is to test it.**
+<mark>The only way to be certain that a particular RE works is to test it.</mark>
+
 
 ## character classes and bracket expressions
 
@@ -1604,6 +1605,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
