@@ -115,7 +115,7 @@ Two or more **collation-elements** can be assigned the same **weight**; they bel
 
 An **equivalence class** expression shall represent the set of **collating elements** belonging to an **equivalence class**.
 
-Collation Order
+[Collation Order](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_03_02_04)
 
 The order_start keyword shall be followed by collating identifier entries. The syntax for the collating element entries is as follows:
 ```
@@ -148,6 +148,8 @@ This example is interpreted as follows:
 2. All characters based on the *uppercase* or *lowercase* character 'a' belong to the same **primary equivalence class**.
 3. The multi-character collating element `<ch>` is represented by the collating symbol `<ch>` and belongs to the same primary equivalence class as the multi-character collating element `<Ch>`.
 4. The `UNDEFINED` means that all characters not specified in this definition (explicitly or via the ellipsis) shall be ignored when comparing primary weights, and have individual secondary weights based on their ordinal encoded values.
+
+Then, the `[=a=]` can be used to match both 'A' and 'a' characters.
 
 ---
 
@@ -1583,6 +1585,7 @@ beginning with a backslash (`\`), only list uncommon ones:
 2. Re-reading references
 3. Break pattern down into individual components and test each individually
 4. Examine the output
+
 
 
 
