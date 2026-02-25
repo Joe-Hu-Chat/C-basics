@@ -47,12 +47,17 @@ A practical example:
 # 1. Check out the branch containing the commits you want to move
 git checkout feature-branch
 
-# 2. Rebase a specific range of commits onto the new base
+# 2. Rebase a branch onto the new base from the old base
 git rebase --onto main <since> feature-branch
-```
-This command tells Git: "Find the commits from B (exclusive) to feature-branch (inclusive), and replay them onto main."
 
-To move commits E and F from feature-branch to be based on `main` instead of old-base:
+# 3. Move a serial of commits from a branch to another branch
+git checkout source-branch
+git rebase --onto target-branch <since> <until>
+```
+
+---
+
+The example 2 tells git: "Find the commits from B (exclusive) to feature-branch (inclusive), and replay them onto main."
 ```
 A---B---C---D  main
      \
@@ -63,6 +68,27 @@ The result is a cleaner history:
 A---B---C---D  main
              \
               E'---F'  feature-branch
+```
+
+---
+
+The example 3 tells git: "Find the commits from C to D, replay them onto target-branch."
+```
+A---B---C---D  source-branch
+     \
+      E---F  target-branch
+```
+Then, the git history becomes:
+```
+A---B---C---D  source-branch
+     \
+      E---F---C'---D'  target-branch
+```
+
+In this case, the command sequence is the same as:
+```
+git checkout target-branch
+git cherry-pick C D
 ```
 
 ## Discard local changes diverged from remote
