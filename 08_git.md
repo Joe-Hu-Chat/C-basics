@@ -50,7 +50,7 @@ git rebase --onto main <since> feature-branch
 
 # 2. Move a serial of commits from a branch to another branch
 git checkout source-branch
-git rebase --onto target-branch <since> <until>
+git rebase --onto target-branch <before> <until>
 ```
 
 ---
@@ -70,7 +70,7 @@ A---B---C---D  main
 
 ---
 
-The example 2 tells git: "Find the commits from C to D, replay them onto target-branch."
+The example 2 tells git: "Find the commits after commit B until commit D, replay them onto target-branch."
 ```
 A---B---C---D  source-branch
      \
@@ -88,6 +88,8 @@ In this case, the command sequence is the same as:
 git checkout target-branch
 git cherry-pick C D
 ```
+
+---
 
 ## Discard local changes diverged from remote
 
