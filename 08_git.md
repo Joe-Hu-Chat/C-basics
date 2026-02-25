@@ -118,15 +118,15 @@ or
 # Recover deleted commits
 
 1. View history of changes to current branch
-> `git reflog`
+   > `git reflog`
 
-1. Identify the commit to recover from the from reflog output
+1. Identify the commit to recover from the reflog output
 
 1. Reset the branch to desired commit
-> `git reset --hard <commit-hash>`
+   > `git reset --hard <commit-hash>`
 
 1. Verify the recovery
-> `git log`
+   > `git log`
 
 
 # Discard local commits and pull from remote
