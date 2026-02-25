@@ -78,7 +78,7 @@ A---B---C---D  source-branch
 ```
 Then, the git history becomes:
 ```
-A---B---C---D  source-branch
+A---B  source-branch
      \
       E---F---C'---D'  target-branch
 ```
