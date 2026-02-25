@@ -2,10 +2,10 @@
 # Remedy commits
 
 Revert the full commit by creating a new commit:
-`git revert hash_tag`
+> `git revert hash_tag`
 
 Remove the last commit in history:
-`git reset HEAD^ --hard`
+> `git reset HEAD^ --hard`
 
 Edit or Remove the non-last commits in history:
 ```bash
@@ -117,15 +117,15 @@ or
 
 # Recover deleted commits
 
-View history of changes to current branch
+1. View history of changes to current branch
 > `git reflog`
 
-Identify the commit to recover from the from reflog output
+1. Identify the commit to recover from the from reflog output
 
-Reset the branch to desired commit
+1. Reset the branch to desired commit
 > `git reset --hard <commit-hash>`
 
-Verify the recovery
+1. Verify the recovery
 > `git log`
 
 
