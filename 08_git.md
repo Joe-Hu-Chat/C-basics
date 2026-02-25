@@ -115,6 +115,19 @@ or
 
 `git restore --source <commit-hash>^ filename.txt`
 
+# Recover deleted commits
+
+View history of changes to current branch
+> `git reflog`
+
+Identify the commit to recover from the from reflog output
+
+Reset the branch to desired commit
+> `git reset --hard <commit-hash>`
+
+Verify the recovery
+> `git log`
+
 
 # Discard local commits and pull from remote
 ```bash
