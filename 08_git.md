@@ -35,7 +35,7 @@ Rebase changes with conflict resolution
 
 `git rebase --continue`: Continue after amending commits
 
-### precise rebase
+### Precise rebase
 
 `git rebase --onto <newbase> <since> <until>`
 - `<newbase>`: The branch or commit onto which you will replay your commits (the new base).
@@ -44,20 +44,18 @@ Rebase changes with conflict resolution
 
 A practical example:
 ```
-# 1. Check out the branch containing the commits you want to move
+# 1. Rebase a branch onto the new base from the old base
 git checkout feature-branch
-
-# 2. Rebase a branch onto the new base from the old base
 git rebase --onto main <since> feature-branch
 
-# 3. Move a serial of commits from a branch to another branch
+# 2. Move a serial of commits from a branch to another branch
 git checkout source-branch
 git rebase --onto target-branch <since> <until>
 ```
 
 ---
 
-The example 2 tells git: "Find the commits from B (exclusive) to feature-branch (inclusive), and replay them onto main."
+The example 1 tells git: "Find the commits from B (exclusive) to feature-branch (inclusive), and replay them onto main."
 ```
 A---B---C---D  main
      \
@@ -72,7 +70,7 @@ A---B---C---D  main
 
 ---
 
-The example 3 tells git: "Find the commits from C to D, replay them onto target-branch."
+The example 2 tells git: "Find the commits from C to D, replay them onto target-branch."
 ```
 A---B---C---D  source-branch
      \
