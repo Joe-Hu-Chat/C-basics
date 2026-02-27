@@ -83,6 +83,14 @@ A---B  source-branch
       E---F---C'---D'  target-branch
 ```
 
+> [!CAUTION]
+>
+> This rebase method might not work!!!
+> If so, a safe way is to use cherry-pick
+>
+
+
+
 In this case, the command sequence is the same as:
 ```
 git checkout target-branch
