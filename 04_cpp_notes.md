@@ -523,7 +523,8 @@ If a class has a user-provided constructor that matches the argument types, then
 
 ## overloading
 
-Compile-Time polymorphism, including `function overloading` and `operator overloading`. Doing different operation depending parameter numbers or objects' class type.
+**Compile-Time** polymorphism, including `function overloading` and `operator overloading`.
+Doing different operation depending parameter numbers or objects' class type.
 
 ### operator overloading
 
@@ -534,7 +535,18 @@ Compile-Time polymorphism, including `function overloading` and `operator overlo
 
 ## overriding
 
-Run-Time polymorphism, with keywords `virtual` and `override`. Doing different operation through overriding the virtual functions. (Changes the virtual function tables in objests)
+**Run-Time** polymorphism, with keywords `virtual` and `override`.
+Doing different operation through overriding the virtual functions. (Changes the virtual function tables in objests)
+
+`overrride` keyword:
+
+- Ensures overriding a `virtual` function;
+- If the signature doesn't match any base class `virutal` function, compilers give out an error
+
+`final` keyword:
+
+- In `virtual` funcition, stop drived classes from overriding it again
+- In class, stop classes from being inherited
 
 ## struct
 
