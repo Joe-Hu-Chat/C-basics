@@ -589,6 +589,20 @@ A function object (also called a **functor**) in C++ is any object that can be c
 This is achieved by defining the function call operator `operator()` for a class or struct.
 When an object of such a type is used with **parentheses** and arguments, it behaves like a function.
 
+```c++
+struct MyFunctor {
+    void operator()(int x) const { /* do something with x */ }
+};
+
+MyFunctor f;
+f(42); // Calls operator()(42)
+```
+
+Lambdas are the most common function objects in modern C++:
+```c++
+auto lambda = [](int x) { /* do something with x */ };
+lambda(42); // Calls the lambda with 42
+```
 
 # try-catch
 
