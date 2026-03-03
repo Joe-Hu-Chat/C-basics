@@ -583,6 +583,11 @@ int main() {
 
 ```
 
+## function object
+
+A function object (also called a **functor**) in C++ is any object that can be called as if it were a function.
+This is achieved by defining the function call operator `operator()` for a class or struct.
+When an object of such a type is used with **parentheses** and arguments, it behaves like a function.
 
 
 # try-catch
