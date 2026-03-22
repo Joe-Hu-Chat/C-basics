@@ -26,17 +26,25 @@ Containers are implemented as **class templates**, allowing them to work with di
 
 Containers **handle memory allocation and deallocation automatically**, simplifying resource management.
 
-## std
 
-`std::remove_pointer_t<FacadePtr>`: obtain the type that `FacadePtr` points to.
 
-## dynamic_cast
+## array
 
-In C++, dynamic_cast is an operator used to safely convert pointers or references to classes up, down, or across an inheritance hierarchy, particularly when working with polymorphic types (classes with at least one virtual function). It performs a runtime check to ensure that the cast is valid.
+Todo: Add `array` container introduction
 
-If the cast if valid, it returns a valid pointer, If not, it returns `nullptr`.
 
-## map
+
+## vector
+
+`std::vector`: A sequence container that stores elements in a dynamically allocated array.
+
+Store elements in **contiguous** memory locations, allowing fast random access using indexes like regular arrays.
+
+Preferred when random access to elements is required
+
+
+
+## map vs unordered_map
 
 `std::map`: **Key-Value** Storage, each element in a map consists of a unique key and its associated value.
 
@@ -54,7 +62,11 @@ map<string, int> myMap;
 
 
 
-## set
+Todo: Add container of `map` and `unordered_map` details
+
+
+
+## set vs unordered_set
 
 `std::set` is an associative container that contains a sorted set of unique objects of type Key. Sorting is done using the key comparison function *Compare*. Search, removal, and insertion operations have logarithmic complexity. Sets are usually implemented as **Red-black tress**.
 
@@ -62,15 +74,47 @@ Everywhere the standard library uses the *Compare* requirements, uniqueness is d
 
 
 
-## vector
+Todo: Add container of `set` and `unordered_set` details
 
-`std::vector`: A sequence container that stores elements in a dynamically allocated array.
 
-Store elements in **contiguous** memory locations, allowing fast random access using indexes like regular arrays.
 
-Preferred when random access to elements is required
+## queue
 
-## std::span
+Todo: Add `queue` container introduction
+
+
+
+## priority_queue
+
+Default implementation a max `heap`
+
+
+
+## list
+
+`std:list`: Doubly-linked list, providing sequential access to its elements.
+
+Store elements in a **non-contiguous** way
+
+Preferred when random access to elements is not needed
+
+
+
+## heap
+
+Todo: Add introduction to `heap`
+
+`std::make_heap(first, last)`: Constructs a heap in range `[first, last)`
+
+
+
+## stack
+
+Todo: Add introduction to `stack`
+
+
+
+## span
 
 The use of `std::span` is significant: it creates a lightweight, non-owning view over the contents of m_srcBuffer, which is typically a container like `std::vector`, `std::array`, or a raw array. By passing a `std::span` instead of the container itself, the code allows setData to access the buffer's data and size **without** copying the underlying elements. This approach improves efficiency and flexibility, as `std::span` can adapt to various container types and array sources.
 
@@ -78,7 +122,33 @@ A potential 'gotcha' is that `std::span` does not manage the lifetime of the dat
 
 `std::span` works like a non-owning view or lightweight pointer to a sequence of elements. Declaring a `std::span` as `const` (e.g., const std::span<T> buf) only prevents you from modifying the span itself (such as changing its size or reassigning it), but it does not make the underlying data immutable.
 
-## next
+
+
+## string_view
+
+Todo: Add `string_view` here to compare with `span`.
+
+- `span` is a non-own view
+
+- `string_view` is a non-own and read-only view
+
+
+
+## pointers in C++
+
+Pointer related notes
+
+### remove_pointer_t
+
+`std::remove_pointer_t<FacadePtr>`: obtain the type that `FacadePtr` points to.
+
+### dynamic_cast
+
+In C++, dynamic_cast is an operator used to safely convert pointers or references to classes up, down, or across an inheritance hierarchy, particularly when working with polymorphic types (classes with at least one virtual function). It performs a runtime check to ensure that the cast is valid.
+
+If the cast if valid, it returns a valid pointer, If not, it returns `nullptr`.
+
+### next
 
 `std::next` is a standard library **function** that returns an iterator pointing to an element a specified numbers of 
 positions ahead of a given iterator. It does not modify the orriginal iterator; instead, it creates a new one. 
@@ -90,13 +160,6 @@ container has fewer than `n` elements, the returned iterator will be equal to th
 helps write clear and concise code when working with `range`s and iterators.
 
 
-## list
-
-`std:list`: Doubly-linked list, providing sequential access to its elements.
-
-Store elements in a **non-contiguous** way
-
-Preferred when random access to elements is not needed
 
 
 ## union-like template
@@ -548,6 +611,8 @@ Doing different operation through overriding the virtual functions. (Changes the
 - In `virtual` funcition, stop drived classes from overriding it again
 - In class, stop classes from being inherited
 
+
+
 ## struct
 
 Compatible with `class` and C type `struct`.
@@ -558,7 +623,9 @@ The members and classes of a `struct` are `public` by default, while in `class`,
 
 
 
-## Anonymous object
+## object
+
+### Anonymous object
 
 `Classname({parameters});`
 
@@ -583,10 +650,10 @@ int main() {
 
 ```
 
-## function object
+### function object
 
 A function object (also called a **functor**) in C++ is any object that can be called as if it were a function.
-This is achieved by defining the function call operator `operator()` for a class or struct.
+This is achieved by `overloading` the function call operator: `operator()` for a `class` or `struct`.
 When an object of such a type is used with **parentheses** and arguments, it behaves like a function.
 
 ```c++
@@ -604,33 +671,11 @@ auto lambda = [](int x) { /* do something with x */ };
 lambda(42); // Calls the lambda with 42
 ```
 
-# try-catch
+函数对象的核心优势
 
-`try-catch` block is used to handle exceptions:
-
-```c++
-void foo() {
-    throw std::runtime_error("error");
-    // Code here will NOT run
-}
-
-int main() {
-    try {
-        foo();
-    } catch (const std::runtime_error& e) {
-        std::cout << "Caught: " << e.what() << std::endl;
-    }
-    // Program continues here after handling
-}
-
-```
-
-Things behind the `try-catch` block:
-
-1. Stops executing at the `throw` statement (where a exception is thrown out);
-2. Unwinds stack up until a matching `catch` block, all local objects are properly destroyed while unwinding the call stack (Destructors for these local objects are called as part of this cleanup;
-3. Handles the exception by executing code inside the `catch` block
-4. If no matching `catch` block is found, the program terminates abnormally. (by the time the stack is fully unwound, calls `std::terminate` and exits abnormally)
+- **状态保持**：函数对象可以有成员变量，这意味着它们可以记住上次调用的状态，例如计数器或配置参数。
+- **作为模板参数**：由于函数对象本质是类型，它们可以轻松地作为模板参数传递，这对泛型编程非常有用。
+- **高效性**：因为其调用机制对编译器来说是透明的，相比函数指针（需要动态跳转），编译器通常能将 `operator()` 更好地进行内联优化。
 
 
 
@@ -721,6 +766,53 @@ auto [a, b] = pair;       // copies
 auto& [x, y] = pair;      // binds by reference
 const auto& [m, n] = pair; // binds by const reference
 ```
+
+Using `std::tie` to decompose values to **existing** objects, `std::ignore` is used to ignore certain elements
+
+```c++
+int i;
+std::pair<int, float> myPair = {10, 5.5f};
+// 只需要第一个值，忽略第二个
+std::tie(i, std::ignore) = myPair;
+```
+
+
+
+## std::tie
+
+Creates a `tuple` of `lvalue` references to its arguments or instances of [std::ignore](https://en.cppreference.com/w/cpp/utility/tuple/ignore.html).
+
+
+
+# try-catch
+
+`try-catch` block is used to handle exceptions:
+
+```c++
+void foo() {
+    throw std::runtime_error("error");
+    // Code here will NOT run
+}
+
+int main() {
+    try {
+        foo();
+    } catch (const std::runtime_error& e) {
+        std::cout << "Caught: " << e.what() << std::endl;
+    }
+    // Program continues here after handling
+}
+
+```
+
+Things behind the `try-catch` block:
+
+1. Stops executing at the `throw` statement (where a exception is thrown out);
+2. Unwinds stack up until a matching `catch` block, all local objects are properly destroyed while unwinding the call stack (Destructors for these local objects are called as part of this cleanup;
+3. Handles the exception by executing code inside the `catch` block
+4. If no matching `catch` block is found, the program terminates abnormally. (by the time the stack is fully unwound, calls `std::terminate` and exits abnormally)
+
+
 
 # keywords
 
