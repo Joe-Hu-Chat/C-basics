@@ -86,7 +86,7 @@ Todo: Add `queue` container introduction
 
 ## priority_queue
 
-Default implementation a max `heap`
+Default implementation a max `heap`, as the default comparator is `std::less` or `operator <`.
 
 
 
@@ -510,7 +510,7 @@ Advantages:
 
 ### initialization style
 **Value Initialization** and **Aggregate Initialization** are two important concepts in C++ that
-descripbes how objects are initialized using braces `{}` or other syntax.
+describes how objects are initialized using braces `{}` or other syntax.
 
 ```c++
 // Different initialization styles
@@ -519,6 +519,8 @@ Car car2 = Car("Chevy", 2022, 26000.0); // Copy initialization
 Car car3{"Nissan", 2021, 24000.0};    // Uniform initialization
 ```
 
+
+
 #### Uniform Initialization
 
 The use of braces `{}` for initialization is a modern C++ practice known as **uniform initialization**, which prevent
@@ -526,10 +528,12 @@ The use of braces `{}` for initialization is a modern C++ practice known as **un
 
 The use of **brace-initialization** ensures the correct constructor is called, or all members are **value-initialized**.
 
-#### Value Initialization:
 
-The use of **empty braces** (`{}`) ensures **all members are value-initialised**, which is a safe and modern C++ practice.
-This approach helps prevent uninitialised data, espacially for complex types or structs.
+
+#### Value-Initialization:
+
+The use of **empty braces** (`{}`) ensures **all members are value-initialized**, which is a safe and modern C++ practice.
+This approach helps prevent uninitialized data, especially for complex types or structs.
 
 For **primitive types**, this means *zero-initialization*; for **class types**, it means calling the **default** constructor.
 
@@ -555,7 +559,10 @@ int main() {
 }
 ```
 
-#### Aggregate Initialization:
+
+
+#### Aggregate-Initialization:
+
 Aggregate Initialization is used for initializing **aggregates**, which are arrays or
 classes/structs **with only public members and no user-provided constructors, base classes,
 or virtual functions**. When you use braces `{}` with a list of values, each member is
