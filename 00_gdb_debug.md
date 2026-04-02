@@ -30,7 +30,7 @@ ref: https://www.sourceware.org/gdb/documentation/
    - `stepi` - Step one assembly instruction `si`
    - `stepi 5` - Step a specific number of instructions
    - `nexti` - Step over one instruction `ni`
-   - 'until *0x7d44210` - Step until specific address
+   - `until *0x7d44210` - Step until specific address
   
 4. Inspecting variables & memory
    - `print <var>` - Display a variable's value
