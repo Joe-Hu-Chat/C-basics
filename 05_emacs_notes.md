@@ -273,7 +273,7 @@ The difference between "killing" and "deleting" is that "killed" text can be rei
 
 ## Mark & Region
 
-Each buffer remembers previous locations of the mark, in the *mark ring*. Commands that set the mark also push the old mark onto this ring. One of the use of mark ring is to remember spots that you may want to go back to.
+Each buffer remembers previous locations of the **mark**, in the *mark ring*. Commands that set the mark also push the old mark onto this ring. One of the use of mark ring is to remember spots that you may want to go back to.
 
 `C-SPC C-SPC`
 
@@ -283,7 +283,10 @@ Each buffer remembers previous locations of the mark, in the *mark ring*. Comman
 
 ​	Move point to where the mark was, and **restore the mark** from the ring of former marks (**set-mark-command**)
 
-`C-x C-x` Set the mark at point, and activate it; then move point where the mark used to be (**exchange-point-and-mark**)
+`C-x C-x`
+
+	Set the mark at point, and activate it; then move point where the mark used to be (**exchange-point-and-mark**)
+
 
 
 The **region** is the portion of the buffer between the *mark* and the *current point*.
@@ -373,7 +376,6 @@ can be used outside Emacs Lisp mode.
 ## Lines
 
 
-
 `M-^` **Join** two lines by deleting the intervening newline, along with any indentation following it (**delete-indentation**)
 
 
@@ -422,7 +424,10 @@ In Emacs, you can break long lines based on a maximum line width (e.g., 80 chara
 
 	Emacs may truncate long lines with `$` markers in narrow terminals. This command toggles it with the wrapping display.
 
+
 `fill-column` settings:
+
+`C-x f` Set fill-column number (**set-fill-column**)
 
 ```elisp
 ;; Set default fill-column width
@@ -454,13 +459,7 @@ Filling text means breaking it up into lines that fit a specified width. Emacs d
 ​	In Auto Fill mode, break lines when appropriate
 
 
-
-`C-x f` Set the fill column (**set-fill-column**)
-
-`M-x fill-region` Fill each paragraph in the region (**fill-region**)
-
 `M-x center-line` Center a line
-
 
 
 ## Rectangles
@@ -633,19 +632,20 @@ Abbrevs expand only when Abbrev mode, a buffer local minor mode, is enabled.
 
 ## Numeric arguments
 
-also called a prefix argument.
+Also called a prefix argument.
 
 `M-5 0 C-n` Move down fifty lines.
 
 `C-u n` Specify a numeric argument by some digits (**universal-argument**)
 
+`M--` / `C--` **negative-argument**, prefix to perform negative commands
 
 
 ## Fix Typo
 
 ### Undo
 
-`C-x u` `C-/` Undo a command (**undo**)
+`C-x u` / `C-/` Undo a command (**undo**)
 
 `C-g C-/` Redo a command (**redo** Bring the reverted changes back)
 
@@ -1139,7 +1139,13 @@ Each Emacs window displays one Emacs buffer at any time.
 
 ​	Similar, but select *buffer* in a separate **frame** (**switch-to-buffer-other-frame**)
 
+`C-x <left>`
 
+	Switch to the previous buffer (**previous-buffer**)
+
+`C-x <right>`
+
+	Switch to the next buffer (**next-buffer**)
 
 ## List Existing Buffers
 
