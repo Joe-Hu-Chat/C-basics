@@ -24,9 +24,15 @@ ref: https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html
 
 `C-s C-w` Start an incremental search, then add the word or symbol under point to your search
 
+
 **Overview**
 
 `M-s o` Have an overview of all occurrences in `isearch` in the `Occur` buffer
+
+**Highlight**
+
+`M-s h .` Highlight all the occurrences at **point**
+
 
 **Unconditional Replace:**
 
