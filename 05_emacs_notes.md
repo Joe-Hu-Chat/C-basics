@@ -33,6 +33,7 @@ ref: https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html
 
 `M-s h .` Highlight all the occurrences at **point**
 
+`M-s h u` Unhighlight regexp (Input nothing in the minibuffer)
 
 **Unconditional Replace:**
 
