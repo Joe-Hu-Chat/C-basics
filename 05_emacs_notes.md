@@ -4,7 +4,7 @@
 
 ref: https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html
 
-**Search:**
+**isearch:**
 
 `C-s` Begin incremental search (**isearch-forward**) (**isearch-repeat-forward**)
 
@@ -23,6 +23,10 @@ ref: https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html
 `M-s .` Start a symbol incremental search forward with the symbol found near point added to the search string initially (**isearch-forward-symbol-at-point**)
 
 `C-s C-w` Start an incremental search, then add the word or symbol under point to your search
+
+**Overview**
+
+`M-s o` Have an overview of all occurrences in `isearch` in the `Occur` buffer
 
 **Unconditional Replace:**
 
