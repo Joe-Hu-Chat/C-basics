@@ -2,6 +2,8 @@
 
 ## Search & Replace
 
+ref: https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html
+
 **Search:**
 
 `C-s` Begin incremental search (**isearch-forward**) (**isearch-repeat-forward**)
