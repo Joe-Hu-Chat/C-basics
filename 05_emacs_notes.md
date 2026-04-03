@@ -520,17 +520,20 @@ For this purpose, the position of the first non-whitespace character on the prec
 `C-q TAB` Insert a tab character in the buffer.
 
 
-
 `C-M-o` Split the current line at point (**split-line**).
 
 ​	The text on the line after point becomes a new line, indented to the same column where point is located. This command first moves point forward over any spaces and tabs. Afterward, point is positioned before the inserted newline.
 
-`M-^` Merge the previous and the current line (**delete-indentation**). This joins the two lines cleanly, by replacing any indentation at the front of the current line, together with the line boundary, with a single space.
+`M-^` Merge the previous and the current line (**delete-indentation**).
+
+	This joins the two lines cleanly, by replacing any indentation at the front of the current line, together with the line boundary, with a single space.
+
+`M-- M-^` Merge the current line and following line
 
 As special case (useful for Lisp code), the single space is omitted if the characters to be joined are consecutive opening and closing parentheses, or if the junction follows another newline
 
-`M-m` Move (forward or back) to the first non-whitespace character on the current line (**back-to-indentation**)
 
+`M-m` Move (forward or back) to the first non-whitespace character on the current line (**back-to-indentation**)
 
 
 `M-i` Indent whitespace at point, up to the next tab stop (**tab-to-tab_stop**)
@@ -1027,6 +1030,8 @@ Visiting a file means reading its contents into an Emacs buffer so you can edit 
 
 `C-x 5 f` Visit a file, in a new frame (**find-file-other-frame**)
 
+`C-x i` Insert file contents to current file (**insert-file**)
+
 `M-x find-file-literally` 
 
 ​	Visit a file with no conversion of the contents
@@ -1280,7 +1285,9 @@ Each window has its own mode line, which displays the buffer name, modification 
 
 `C-x 3` Split the selected window into two windows, positioned side by side (**split-window-right**)
 
-`C-x o` **Select** another window (**other-window**)
+`C-x o` **Select** next window (**other-window**)
+
+`C-x O` **Select** previous window
 
 `C-M-v` Scroll the next window upward (**scroll-other-window**)
 
