@@ -583,6 +583,7 @@ Completion is normally done in the minibuffer, but you can also complete symbol 
 
 `M-/` Completes words based on the text present in the current buffer and other buffers (**dabbrev-expand**)
 
+`M-C-/` Dabbrev (word) completion (**dabbrev-completion**) (`C-M` combo seems bugging on my keyboard)
 
 
 variable **completion-at-point-functions**
@@ -644,9 +645,9 @@ also called a prefix argument.
 
 ### Undo
 
-`C-x u` Undo a command
+`C-x u` `C-/` Undo a command (**undo**)
 
-`C-/` Redo a command (Bring the reverted changes back)
+`C-g C-/` Redo a command (**redo** Bring the reverted changes back)
 
 
 
