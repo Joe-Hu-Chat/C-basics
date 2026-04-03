@@ -12,6 +12,10 @@ ref: https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html
 
 `C-s` and `C-r` will repeat the previous search forward/backward and preserve the searching mode.
 
+**Word Search**
+
+`M-s w` Begin an incremental forward word search (**isearch-forward-word**)
+
 **Symbol Search:**
 
 `M-s _` Begin or change to an incremental forward symbol search (**isearch-forward-symbol**)
