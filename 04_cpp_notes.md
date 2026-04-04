@@ -44,6 +44,18 @@ Preferred when random access to elements is required
 
 
 
+## string
+
+`std::string` = `std::basic_string<char>`
+
+`substr`:
+
+`````
+basic_string substr( size_type pos = 0, size_type count = npos ) const;
+`````
+
+
+
 ## map vs unordered_map
 
 `std::map`: **Key-Value** Storage, each element in a map consists of a unique key and its associated value.
@@ -84,13 +96,7 @@ Todo: Add `queue` container introduction
 
 
 
-## priority_queue
-
-Default implementation a max `heap`, as the default comparator is `std::less` or `operator <`.
-
-
-
-## list
+## linked list
 
 `std:list`: Doubly-linked list, providing sequential access to its elements.
 
@@ -108,9 +114,19 @@ Todo: Add introduction to `heap`
 
 
 
+### priority_queue
+
+Default implementation a max `heap`, as the default comparator is `std::less` or `operator <`.
+
+
+
+
+
 ## stack
 
 Todo: Add introduction to `stack`
+
+`std::stack`
 
 
 
@@ -217,6 +233,32 @@ std::cout << i << " "; // Output: 1 2 3 4 5
 return 0;
 }
 ```
+
+
+
+### reverse
+
+Reverses the order of the elements in the range [`first`, `last`).
+
+
+
+### binary search operations
+
+`upper_bound`: Searches for the first element in the partitioned range [`first`, `last`) which is **not** ordered before value.
+
+`lower_bound`: Searches for the first element in the partitioned range [`first`, `last`) which is ordered after value.
+
+`equal_range`: Returns a range containing all elements equivalent to value in the partitioned range [`first`, `last`).
+
+`binary_search`: Checks if an element equivalent to value appears within the partitioned range [`first`, `last`).
+
+
+
+### swap
+
+Swaps the values `a` and `b`.
+
+
 
 # class
 
