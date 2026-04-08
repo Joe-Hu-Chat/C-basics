@@ -134,12 +134,11 @@ Add the following lines to `.emacs` if the shortcuts are not active.
 
 - `M-<` `M->` Move to the top/end of the buffer (**beginning-of-buffer**/**end-of-buffer**)
 
+**Synchronize scrolling**:
 
-**Synchronise scrolling**:
 - `M-x scroll-all-mode`
 
-Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirroed in all others
-
+Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirrored in all others
 
 **Window**
 
@@ -364,11 +363,11 @@ For example, after re-writing a function, you can evaluate the function definiti
 take effect for subsequent function calls. These commands are also available globally, and
 can be used outside Emacs Lisp mode.
 
-- `M-:` Read a single Emacs Lisp expression in the minibuffer, evaluate it, and print the value in the echo area (**eval-expression**).
-- `C-x C-e` Evaluate the Emacs Lisp expression before point, and print the value in the echo area (**eval-last-sexp**).
+- `M-:` Read a single Emacs Lisp expression in the `minibuffer`, evaluate it, and print the value in the echo area (**eval-expression**).
+- `C-x C-e` **Evaluate** the Emacs Lisp expression before point, and print the value in the echo area (**eval-last-sexp**).
 - `C-M-x` (in Emacs Lisp mode)
   `M-x eval-defun`
-  Evaluate the defun containing or after point, and print the value in the echo area (**eval-defun**).
+  Evaluate the `defun` containing or after point, and print the value in the echo area (**eval-defun**).
 - `M-x eval-region`
   Evaluate all the Emacs Lisp expressions in the region.
 - `M-x eval-buffer`
