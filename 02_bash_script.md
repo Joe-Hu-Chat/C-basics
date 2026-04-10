@@ -162,6 +162,11 @@ Also, it looks like a combination of `$()` and `()`, while the latter is **sub-s
 
 ![image-20240816144552040](./.02_bash_script/image-20240816144552040.png)
 
+```bash
+# bit shift operation
+echo $((1<<32))
+```
+
 
 
 ### let
@@ -183,6 +188,8 @@ Operations may be `arithmetic`, `comparison`, `string`, or `logical`.
 **example**:
 
 ![image-20240816141602829](./.02_bash_script/image-20240816141602829.png)
+
+`expr` don't support `<<` and `>>` operation. Should you use `$((...))` operation when needing to do bit shift operation.
 
 
 
@@ -1151,7 +1158,6 @@ Unmount a block device:
    ls /mnt
    sudo umount /mnt
    ```
-
 
 
 
