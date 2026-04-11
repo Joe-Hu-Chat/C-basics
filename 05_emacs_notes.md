@@ -107,6 +107,7 @@ The location of the cursor in the text is also called "point". To paraphrase, th
 
 
 - `M-n` `M-p` Scroll down/up one screen line (Customized elisp function and key binding)
+- `C-,` `C-.` As backup key bindings for scrolling up and down
 
 Add the following lines to `.emacs` if the shortcuts are not active.
 
