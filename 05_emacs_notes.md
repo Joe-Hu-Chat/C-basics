@@ -1115,6 +1115,14 @@ All the usual Emacs cursor motion commands are available in Dired buffers. The k
 
 - `x`	Delete files flagged for deletion (**dired-do-flagged-delete**)
 
+
+
+## Renaming
+
+- `R`   Rename the file name under current cursor in `minibuffer`, (`M-n` to prefill the `minibuffer` with old name)
+
+
+
 ## Visiting
 
 There are several Dired commands for visiting or examining the files listed in the Dired buffer. All of them apply to the current line's file; if that file is really a directory, these commands invoke Dired on that subdirectory (making a separate Dired buffer)
