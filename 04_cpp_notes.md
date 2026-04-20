@@ -1095,8 +1095,29 @@ void printWidth( Box box )
 
 ## auto
 
-Tells the compiler to **deduce** the type of the object so that you don't have to type it explicitly.
+Tells the compiler to **deduce** the type of the object so that you don't have to type it explicitly. `auto` is a placeholder, instead of declaration of a variable.
 
+`auto` defined variables always need an initializer.
+
+
+### auto&
+The `auto` keyword deduces a variable’s type from its initializer, but by default it **drops top-level `const` and reference qualifiers** during deduction. This means that if a function returns a reference, `auto` without `&` will deduce a value type and create a **copy** instead of binding to the original object.
+
+`auto` is powerful for type deduction, but explicitly adding `&` or `const&` is **essential** when you want to preserve **reference semantics** and avoid unintended copies.
+
+
+Best practices:
+
+Use `auto&` when you want to bind to an existing object and avoid copies.
+
+Use `const auto&` when you want to bind to a read-only reference.
+
+Use plain `auto` when you want a copy or are working with small, cheap-to-copy types.
+
+
+### auto*
+
+The `auto*` enforces "initializer must be a pointer". I tells the compiler "a raw pointer" is expected.
 
 
 ### auto -> trailing return type
