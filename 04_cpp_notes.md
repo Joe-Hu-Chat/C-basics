@@ -1093,7 +1093,9 @@ void printWidth( Box box )
 
 
 
-## auto
+## Type inference
+
+### auto
 
 Tells the compiler to **deduce** the type of the object so that you don't have to type it explicitly. `auto` is a placeholder, instead of declaration of a variable.
 
@@ -1221,7 +1223,7 @@ int main(){
 
 
 
-## decltype
+### decltype
 
 Inspects the **declared type** of an *entity* or the type and value category of an *expression*. It yields a type from the expression.
 
