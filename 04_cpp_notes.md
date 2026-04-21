@@ -647,7 +647,7 @@ Doing different operation depending parameter numbers or objects' class type.
 
 ## overriding
 
-**Run-Time** polymorphism, with keywords `virtual` and `override`.
+**Run-Time** polymorphism (not necessarily run-time, for example the interface/implelementation split practice), with keywords `virtual` and `override`.
 Doing different operation through overriding the virtual functions. (Changes the virtual function tables in objests)
 
 `overrride` keyword:
