@@ -1103,7 +1103,10 @@ Tells the compiler to **deduce** the type of the object so that you don't have t
 
 
 ### auto&
-The `auto` keyword deduces a variable’s type from its initializer, but by default it **drops top-level `const` and reference qualifiers** during deduction. This means that if a function returns a reference, `auto` without `&` will deduce a value type and create a **copy** instead of binding to the original object.
+
+`auto&` infers to a **referrence** variant of the `auto` type.
+
+The `auto` keyword deduces a variable’s type from its initializer, but by default it **drops top-level `const` and reference qualifiers** during deduction (as of Template Argument Deduction machanism). This means that if a function returns a reference, `auto` without `&` will deduce a value type and create a **copy** instead of binding to the original object.
 
 `auto` is powerful for type deduction, but explicitly adding `&` or `const&` is **essential** when you want to preserve **reference semantics** and avoid unintended copies.
 
@@ -1116,10 +1119,28 @@ Use `const auto&` when you want to bind to a read-only reference.
 
 Use plain `auto` when you want a copy or are working with small, cheap-to-copy types.
 
+#### auto&&
+
+`auto&&` infers to a **lvalue** variant of the `auto` type.
+
+For **non-const-lvalue-reference**, for example:
+
+```c++
+for (auto&& x : {1, 2, 3})
+```
 
 ### auto*
 
-The `auto*` enforces "initializer must be a pointer". I tells the compiler "a raw pointer" is expected.
+Similar to `auto&`, `auto*` converts the inferred type to a pointer variant of that type.
+
+The `auto*` enforces "initializer must be a pointer". It tells the compiler "a raw pointer" is expected.
+
+### auto and const
+
+**high-level const** is a pointer is a constant;
+**low-level const** is a pointer pointing to a constant;
+
+In `auto` keyword type deduction, the high-level const will be dropped.
 
 
 ### auto -> trailing return type
