@@ -193,6 +193,30 @@ Operations may be `arithmetic`, `comparison`, `string`, or `logical`.
 
 
 
+### Integer exponentiation 
+
+```bash
+# Arithmetic expansion (operator: **)
+echo $(( 2 ** 3 ))  # Output: 8
+
+# Variable Assignment
+base=5
+exp=2
+result=$(( base ** exp ))
+echo $result  # Output: 25
+
+# Using let
+let "result = 10 ** 3"
+echo $result  # Output: 1000
+
+# AWK tools (operator: ^)
+awk 'BEGIN {print 2 ^ 10}'
+```
+
+
+
+
+
 ## Double and Single Quotes
 
 There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
