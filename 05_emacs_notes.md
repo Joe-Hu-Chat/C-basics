@@ -953,9 +953,9 @@ it continues in any case. When the compilation ends, for whatever reason, the mo
 of the *compilation* buffer changes to say ‘exit’ (followed by the exit code: ‘[0]’ for a
 normal exit), or ‘signal’ (if a signal terminated the process).
 
-`M-x compile`
+`M-x compile` keybinding (`M-g c`)
 
-`M-x recompile`
+`M-x recompile` keybinding (`M-g r`)
 
 `M-x kill-compilation` Kill the running compilation subprocess
 
