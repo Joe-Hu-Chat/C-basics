@@ -959,6 +959,9 @@ normal exit), or ‘signal’ (if a signal terminated the process).
 
 `M-x kill-compilation` Kill the running compilation subprocess
 
+`g`: typing `g` in the buffer to rerun the command
+
+
 **Compilation Mode**:
 
 The *compilation* buffer uses a major mode called Compilation mode. Compilation mode
