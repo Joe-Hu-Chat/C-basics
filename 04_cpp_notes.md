@@ -1679,7 +1679,39 @@ compound requirements:
 
 ![image-20250422233138884](./.04_cpp_notes/image-20250422233138884.png)
 
+### expression vs typename
 
+`requires expression` Yields a prvalue expression of type `bool` that describes the constraints.
+
+simple requirement
+```c++
+requires { expression; }
+// For example
+// This is a simple requirement. It asks:
+// “Is T::x a valid expression?”
+requires { T::x; }
+```
+
+type requirement
+```c++
+requires { typename type-name; }
+// For example
+// This is a type requirement. It asks:
+// “Does T::x name a type?”
+requires { typename T::x; }
+```
+
+That distinction matters because a `type` is not an `expression`.
+
+Real example: `requires { Drm::DrmModeControl; }`
+
+  That does not ask whether `Drm::DrmModeControl` is a nested type. It asks whether it is a usable `expression`.
+
+  But on Gainsborough, DrmModeControl is a nested type, like:
+
+  `using DrmModeControl = ...;`
+
+  So the simple requirement **fails**, because `Drm::DrmModeControl` is a type name, not an expression.
 
 ## Ranges
 
