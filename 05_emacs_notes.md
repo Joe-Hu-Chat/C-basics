@@ -1022,6 +1022,52 @@ Add a function to a hook:
 ```(add-hook 'text-mode-hook 'auto-fill-mode)```
 
 
+## Ido Cheatsheet
+
+IDO mode, a flexible and very powerful **completion package** for Emacs.
+
+Here’s a quick cheatsheet of all the interesting Ido commands.
+
+The “Available In” column indicates where the keybinding is available. “All” means that it is a feature inherent to ido-completing-read and as such is available in all the completion engines. “Files”, “Dirs” and “Buffers” means it is only available in one of those.
+
+### General-purpose Commands
+
+C-b Reverts to the old switch-buffer completion engine. Available in Buffers.
+
+`C-f` Reverts to the old find-file completion engine. Available in Files.
+
+`C-d` Opens a dired buffer in the current directory. Available in Dirs / Files.
+
+C-a Toggles showing ignored files (see ido-ignore-files). Available in Files / Buffers.
+
+C-c Toggles if searching of buffer and file names should ignore case. (see ido-case-fold). Available in Dirs / Files / Buffers.
+
+TAB Attempt to complete the input like the normal completing read functionality. Available in Dirs / Files / Buffers.
+
+C-p Toggles prefix matching; when it’s on the input will only match the beginning of a filename instead of any part of it.
+
+C-s / C-r Moves to the next and previous match, respectively. Available everywhere.
+
+C-t Toggles matching by Emacs regular expression.. Available everywhere.
+
+Backspace Deletes characters as usual or goes up one directory if it makes sense to do so.. Available everywhere.
+
+C-SPC / C-@ Restricts the completion list to anything that matches your current input. Available everywhere.
+
+// Like most Linux shells two forward slashes in a path means “ignore the preceding path, and go back to the top-most directory”. Works the same in Ido but it’s more interactive: it will go to the root / (or the root of the current drive in Windows) Available in Files.
+
+~/ Jumps to the home directory. On Windows this would be typically be %USERPROFILE% or %HOME%, if it is defined. Available in Files / Dirs.
+
+M-d Searches for the input in all sub-directories to the directory you’re in.. Available in Files.
+
+C-k Kills the currently focused buffer or deletes the file depending on the mode.. Available in Files / Buffers.
+
+M-m Creates a new sub-directory to the directory you’re in. Available in Files.
+
+OK, so you probably won’t get in the habit of using all the commands. That’s fine, but some are more important to remember than others, like: Backspace; C-s and C-r; // and ~/; and C-d.
+
+If Ido is getting in your way, remember the fallback commands: C-f for files; C-b for buffers.
+
 
 
 # File Handling
