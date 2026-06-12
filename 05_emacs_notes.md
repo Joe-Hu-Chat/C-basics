@@ -1092,6 +1092,14 @@ Visiting a file means reading its contents into an Emacs buffer so you can edit 
 
 ​	Visit a file with no conversion of the contents
 
+
+### Project commands
+
+A project is a collection of files used for producing one or more programs.
+
+`C-x p f` Visit a project file, can omit the leading directories (**project-find-file**)
+
+
 ## Save
 
 `C-x C-s` Save a file (**save-buffer**)
