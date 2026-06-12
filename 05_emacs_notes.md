@@ -1022,6 +1022,17 @@ Add a function to a hook:
 ```(add-hook 'text-mode-hook 'auto-fill-mode)```
 
 
+## eval-expression
+
+`M-:` Invoke **eval-expression**
+
+Example:
+
+Get the full path: Run `M-:` (invoke `eval-expression`) and type `(buffer-file-name)`, then press `Enter`.
+
+Extract the directory: Pass the result of `buffer-file-name` to `file-name-directory`. In `eval-expression` (`M-:`), run `(file-name-directory (buffer-file-name))`.
+
+
 ## Ido Cheatsheet
 
 IDO mode, a flexible and very powerful **completion package** for Emacs.
