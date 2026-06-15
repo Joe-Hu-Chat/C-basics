@@ -961,10 +961,12 @@ normal exit), or ‘signal’ (if a signal terminated the process).
 
 `g`: typing `g` in the buffer to rerun the command
 
+`C-u M-x compile RET` with universal **prefix arg**, compilation buffer will be in comint mode, i.e. **interactive**.
+
 
 **Compilation Mode**:
 
-The *compilation* buffer uses a major mode called Compilation mode. Compilation mode
+The *compilation* buffer uses a major mode called **Compilation mode**. Compilation mode
 turns each error message in the buffer into a hyperlink; you can move point to it and type
 RET, to visit the locus of the error message in a separate window. The locus is the specific position in a
 file where that error occurred.
