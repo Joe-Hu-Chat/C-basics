@@ -1205,7 +1205,7 @@ There are several Dired commands for visiting or examining the files listed in t
 
 `^`	Visit the parent directory of the current directory (**dired-up-directory**)
 
-
+`g` Update the entire contents of the Dired buffer (**revert-buffer**).
 
 
 
