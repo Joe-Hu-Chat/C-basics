@@ -994,6 +994,16 @@ Just as you can run a compiler from Emacs and then visit the lines with compilat
 `M-x grep-find` Run `grep` via `find`
 
 
+## Shell Command
+
+`M-x shell` Open a shell in emacs buffer
+
+`M-!` Run a command in mode line (**shell-command**)
+
+`C-u M-!` Insert the output of the shell command into the current buffer at point
+
+`M-|` Run a shell command using the region as input (**shell-command-on-region**)
+
 
 ## Variables
 
