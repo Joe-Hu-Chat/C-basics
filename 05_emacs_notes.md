@@ -1275,6 +1275,11 @@ If several buffers are modified, it may be time to save some with `C-x s`.
 
 ​	Scroll through buffer `buffer` in View mode.
 
+`C-x x g` Go back to the saved version of the file (**revert-buffer-quick**).
+
+`M-x revert-buffer`
+
+Revert the changes and go back to the saved version of the file. Prompts more than `M-x revert-buffer-quick`
 
 
 ## Kill Buffers
