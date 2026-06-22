@@ -342,7 +342,7 @@ Each programming language mode has its own definition of a `balanced expression`
 
 Tips:
 
-`sexp` or `sexpr` means **S-expressions **or Symbol expressions in Lisp
+`sexp` or `sexpr` means **S-expressions** or Symbol expressions in Lisp
 
 **Lisp** means List Processing
 
