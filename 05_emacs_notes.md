@@ -378,6 +378,16 @@ can be used outside Emacs Lisp mode.
 
 `C-x C-a C-p` Evaluate the expression at point (**gud-print**). If Emacs does not print the exact expression that you want, mark it as a region first.
 
+### eval-expression
+
+`M-:` Invoke **eval-expression**
+
+Example:
+
+Get the full path: Run `M-:` (invoke `eval-expression`) and type `(buffer-file-name)`, then press `Enter`.
+
+Extract the directory: Pass the result of `buffer-file-name` to `file-name-directory`. In `eval-expression` (`M-:`), run `(file-name-directory (buffer-file-name))`.
+
 
 
 ## Lines
@@ -1033,16 +1043,6 @@ Add a function to a hook:
 
 ```(add-hook 'text-mode-hook 'auto-fill-mode)```
 
-
-## eval-expression
-
-`M-:` Invoke **eval-expression**
-
-Example:
-
-Get the full path: Run `M-:` (invoke `eval-expression`) and type `(buffer-file-name)`, then press `Enter`.
-
-Extract the directory: Pass the result of `buffer-file-name` to `file-name-directory`. In `eval-expression` (`M-:`), run `(file-name-directory (buffer-file-name))`.
 
 
 ## Ido Cheatsheet
