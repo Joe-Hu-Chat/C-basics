@@ -783,6 +783,13 @@ The Append command will append text the next line and the Insert command will ap
 sed 's/$/text_to_append/' input.txt
 ```
 
+#### Prepend a string at the beginning of each line
+```
+# Prepend "PREFIX" to each line
+sed 's/^/PREFIX/' input.txt
+```
+
+
 ### flag
 The `s` command can be followed by **zero or more** of the following flags:
 
