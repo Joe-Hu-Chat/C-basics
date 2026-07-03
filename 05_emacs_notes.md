@@ -898,11 +898,59 @@ The manipulations in the list can be directly performance by prefixing `C-h`, li
 
 ## Extending The Command Set
 
-There are many, many more Emacs commands than could possibly be put on all the control and meta characters. Emacs get around this with the X (eXtend) command. This comes in two flavors:
+There are many, many more Emacs commands than could possibly be put on all the **control** and **meta** characters. Emacs get around this with the **X** (eXtend) command. This comes in two flavors:
 
 - `C-x` Character eXtend. Followed by **one character**
 - `M-x` Named command eXtend. Followed by **a long name**
 
+
+### Prefix-Key
+
+The definitions of C-c, C-x, C-h, and ESC as prefix keys appear in the global map, so these
+prefix keys are always available.
+
+Some prefix keymaps are stored in variables with names:
+- `ctl-x-map` is the variable name for the map used for characters that follow `C-x`.
+- `help-map` is for characters that follow `C-h`.
+- `esc-map` is for characters that follow `ESC`. Thus, all Meta characters are actually defined
+by this map.
+- `ctl-x-4-map` is for characters that follow `C-x 4`.
+- `mode-specific-map` is for characters that follow `C-c`.
+- `project-prefix-map` is for characters that follow `C-x p`, used for project-related commands
+
+
+### Project commands
+
+A project is a collection of files used for producing one or more programs.
+
+`C-x p f` Visit a project file, can omit the leading directories (**project-find-file**)
+
+`C-x p g` Find matches for a regexp in all files that belong to the current project
+(**project-find-regexp**).
+
+`M-x project-search`
+Interactively search for regexp matches in all files that belong to the current
+project.
+
+`C-x p r` Perform query-replace for a regexp in all files that belong to the current project
+(project-query-replace-regexp).
+
+`C-x p D` Run Dired in the current project’s root directory (project-dired).
+
+C-x p v Run vc-dir in the current project’s root directory (project-vc-dir).
+
+C-x p s Start an inferior shell in the current project’s root directory (project-shell).
+
+C-x p e Start Eshell in the current project’s root directory (project-eshell).
+
+C-x p c Run compilation in the current project’s root directory (project-compile).
+
+C-x p ! Run shell command in the current project’s root directory (project-shellcommand).
+
+C-x p & Run shell command asynchronously in the current project’s root directory
+(project-async-shell-command).
+
+C-x p o Run the next command in the current project (project-any-command).
 
 
 ## Key Binding
@@ -912,7 +960,6 @@ If you want to use a different key-binding, you can add the following to your Em
 ```lisp
 (global-set-key (kbd "C-c /") 'dabbrev-expand)
 ```
-
 
 
 Check current keybindings:
@@ -1117,12 +1164,6 @@ Visiting a file means reading its contents into an Emacs buffer so you can edit 
 
 ​	Visit a file with no conversion of the contents
 
-
-### Project commands
-
-A project is a collection of files used for producing one or more programs.
-
-`C-x p f` Visit a project file, can omit the leading directories (**project-find-file**)
 
 
 ## Save
