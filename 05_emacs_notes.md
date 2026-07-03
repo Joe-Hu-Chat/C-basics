@@ -995,16 +995,18 @@ face directly instead.
 
 
 
-**grep**:
+### grep
 
 Just as you can run a compiler from Emacs and then visit the lines with compilation errors, you can also run grep and then visit the lines on which matches were found. This works by treating the matches reported by grep as if they were errors. The output buffer uses Grep mode, which is a variant of Compilation mode
 
 `M-x grep` Run `grep` command like compiling
 
-`M-x grep-find` Run `grep` via `find`
+`M-x grep-find` `M-x find-grep` Run `grep` via `find`
+
+`M-x find-grep-dired` Run `find` and `grep` commands with 2 minibuffer arguemnts, *directory* and *regexp*.
 
 
-## Shell Command
+### Shell Command
 
 `M-x shell` Open a shell in emacs buffer
 
