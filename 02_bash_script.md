@@ -488,10 +488,83 @@ Tar stands for **T**ape **AR**chive and is a popular means for combining and  co
 
 
 
-#  scp
+# scp
 
 The `scp` (Secure Copy) is a quick, easy and secure way to copy files between different  machines.  It is part of the SSH (Secure SHell) suite of tools.  With it you may copy files to and from your local machine and a remote machine.
 
+
+# rsync
+
+```bash
+# rsync [option] source destination
+rsync -av /path/to/source/ /path/to/destination/
+rsync -avz /local/path/ username@remote_host:/remote/path/
+rsync -avz username@remote_host:/remote/path/ /local/path/
+```
+
+`/` at the end of the directory path:
+- have a `/` will sync the content in the directory
+- have no `/` will sync the directory itself
+
+example:
+```bash
+# 将本地目录同步到远程服务器，使用压缩
+rsync -avz /data/backups/ user@example.com:/remote/backups/
+```
+
+```bash
+# 同步但排除 .tmp 文件和 log 目录
+rsync -av --exclude='*.tmp' --exclude='log/' /source/ /destination/
+```
+
+```bash
+# 保持两端完全一致（删除目标端多余文件）
+rsync -av --delete /source/ /destination/
+```
+
+```bash
+# 使用 SSH 自定义端口
+rsync -avz -e 'ssh -p 2222' /local/path/ user@host:/remote/path/
+```
+
+```bash
+# 带宽限制（限制为 500KB/s）
+rsync -avz --bwlimit=500 /source/ /destination/
+```
+
+```bash
+# 部分传输（只传输大于100KB的文件）
+rsync -av --min-size=100K /source/ /destination/
+```
+
+```bash
+# 定时备份脚本
+#!/bin/bash
+rsync -avz --delete /important/data/ backup@server:/backups/data/
+echo "Backup completed at $(date)" >> /var/log/backup.log
+```
+
+```bash
+# 恢复中断的 rsync 传输
+rsync -av --partial /source/ /destination/
+```
+
+```bash
+# 使用 -n (dry-run) 选项
+rsync -avn /source/ /destination/
+```
+
+```bash
+最佳实践建议
+测试先行：使用 -n 选项先进行模拟运行
+日志记录：添加 --log-file=rsync.log 记录操作
+权限管理：考虑使用 --chmod 统一文件权限
+定时任务：结合 crontab 实现自动备份
+安全传输：始终通过 SSH 进行远程传输
+```
+
+
+https://www.runoob.com/linux/linux-comm-rsync.html
 
 
 # sort -u
