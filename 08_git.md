@@ -11,7 +11,7 @@ Edit or Remove the non-last commits in history:
 ```bash
 git rebase -i hash_tag_to_remove^
 
-# Then edit/delete the commit lines in an editor
+# Then edit/drop/delete the commit lines in an editor
 # There will be command prompt after edit and exit the editor
 ```
 
