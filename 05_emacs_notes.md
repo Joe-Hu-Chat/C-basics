@@ -1052,6 +1052,8 @@ Just as you can run a compiler from Emacs and then visit the lines with compilat
 
 `M-x find-grep-dired` Run `find` and `grep` commands with 2 minibuffer arguemnts, *directory* and *regexp*.
 
+`M-x find-name-dired` Match filenames with a regex (Grep for filenames)
+
 
 ### Shell Command
 
