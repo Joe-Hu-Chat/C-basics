@@ -15,6 +15,32 @@ git rebase -i hash_tag_to_remove^
 # There will be command prompt after edit and exit the editor
 ```
 
+Directly create a fixup to a commit:
+```bash
+git commit --fixup=<hash_tag>
+
+--fixup=[(amend|reword):]<commit>
+           Create a new commit which "fixes up" <commit> when applied with git rebase --autosquash. Plain --fixup=<commit> creates a "fixup!" commit
+           which changes the content of <commit> but leaves its log message untouched.  --fixup=amend:<commit> is similar but creates an "amend!" commit
+           which also replaces the log message of <commit> with the log message of the "amend!" commit.  --fixup=reword:<commit> creates an "amend!"
+           commit which replaces the log message of <commit> with its own log message but makes no changes to the content of <commit>.
+
+           The commit created by plain --fixup=<commit> has a subject composed of "fixup!" followed by the subject line from <commit>, and is recognized
+           specially by git rebase --autosquash. The -m option may be used to supplement the log message of the created commit, but the additional
+           commentary will be thrown away once the "fixup!" commit is squashed into <commit> by git rebase --autosquash.
+
+           The commit created by --fixup=amend:<commit> is similar but its subject is instead prefixed with "amend!". The log message of <commit> is
+           copied into the log message of the "amend!" commit and opened in an editor so it can be refined. When git rebase --autosquash squashes the
+           "amend!" commit into <commit>, the log message of <commit> is replaced by the refined log message from the "amend!" commit. It is an error
+           for the "amend!" commit’s log message to be empty unless --allow-empty-message is specified.
+
+           --fixup=reword:<commit> is shorthand for --fixup=amend:<commit> --only. It creates an "amend!" commit with only a log message (ignoring any
+           changes staged in the index). When squashed by git rebase --autosquash, it replaces the log message of <commit> without making any other
+           changes.
+
+           Neither "fixup!" nor "amend!" commits change authorship of <commit> when applied by git rebase --autosquash. See git-rebase(1) for details.
+```
+
 ## Rebase changes
 
 `git fetch origin`: Update local repo
