@@ -1095,6 +1095,27 @@ Add a function to a hook:
 ```(add-hook 'text-mode-hook 'auto-fill-mode)```
 
 
+# Extentions
+
+## Inline blame
+
+install `blame-reveal` directly:
+
+```
+M-x package-vc-install RET
+https://github.com/LuciusChen/blame-reveal RET
+```
+
+Once installed, you can manually enable the mode in any buffer by running the command `M-x blame-reveal-mode`.
+
+install `blamer` diretly:
+
+```
+M-x package-vc-install RET
+https://github.com/artawower/blamer.el.git
+```
+
+Then enable the mode: `M-x blame-mode`
 
 ## Ido Cheatsheet
 
