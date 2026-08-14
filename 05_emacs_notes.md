@@ -1115,7 +1115,7 @@ M-x package-vc-install RET
 https://github.com/artawower/blamer.el.git
 ```
 
-Then enable the mode: `M-x blame-mode`
+Then enable the mode: `M-x blamer-mode`
 
 ## Ido Cheatsheet
 
