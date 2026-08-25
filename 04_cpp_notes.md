@@ -1119,12 +1119,40 @@ Best practices:
 
 #### auto&&
 
-`auto&&` infers to a **lvalue** variant of the `auto` type.
+```c++
+auto&& x = expr;
+```
 
-For **non-const-lvalue-reference**, for example:
+Deduce the type of x, and make it a *forwarding reference* (formerly called **universal reference**)
+
+```c++
+int n = 42;
+
+auto&& a = n;    // lvalue
+auto&& b = 42;   // rvalue
+```
+
+The deduced types are:
+```c++
+a : int&    // lvalue reference
+b : int&&   // rvalue reference
+```
+
+Here is another example of **rvalue reference** deduction:
+
+The `auto&&` infers to a **lvalue** variant of the `auto` type.
+For **non-const-lvalue-reference**:
 
 ```c++
 for (auto&& x : {1, 2, 3})
+```
+
+The magic of reference colapsing:
+```c++
+T&  &  -> T&
+T&  && -> T&
+T&& &  -> T&
+T&& && -> T&& // deduction to rvalue reference only happens at both are rvalue reference type 
 ```
 
 
