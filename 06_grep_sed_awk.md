@@ -859,25 +859,21 @@ example: `sed ':x;N;/middle/tx;s/\n/,/g'`
 
 # awk
 
-reference:
-
-[Download Free eBook PDF: The Awk Programming Language - nixCraft](https://www.cyberciti.biz/link/download-free-pdf-the-awk-programming-language/)
-
-Awk Tutorial (2016): Jonathan Palardy - https://blog.jpalardy.com/posts/awk-tutorial-part-1/
-
-Awk (2019): Wikipedia - https://en.wikipedia.org/wiki/AWK
-
-https://www.gnu.org/software/gawk/manual/gawk.html
+Reference:
+- [The Awk Programming Language - nixCraft](https://www.cyberciti.biz/link/download-free-pdf-the-awk-programming-language/)
+- [Awk Tutorial (2016): Jonathan Palardy](https://blog.jpalardy.com/posts/awk-tutorial-part-1/)
+- [Awk (2019): Wikipedia](https://en.wikipedia.org/wiki/AWK)
+- [Awk manual](https://www.gnu.org/software/gawk/manual/gawk.html)
 
 ---
 
 Awk is a command line tool, also a programming language. not a general language, optimized for text processing, turing complete.
 
-Awk is part of posix, so installed everywhere, many of the problems you face are text processing problems, awk is the gold standard of text processing tools
+Awk is part of **posix**, so installed everywhere, many of the problems you face are text processing problems, awk is the gold standard of text processing tools
 
-Awk was preceded by sed
+Awk was preceded by `sed`
 
-Awk's powerful regexes and also its limitations inspired Perl
+Awk's powerful regexes and also its limitations inspired `Perl`
 
 ---
 
@@ -889,7 +885,9 @@ awk -f program-file input-file1 input-file2 ...
 awk [-F field-separator] program filename ...
 ```
 
-program = pattern { action }
+### pattern-action
+
+program = pattern{ action }
 
 ```bash
 # Programs in awk consist of pattern–action pairs.
@@ -906,7 +904,7 @@ awk 'BEGIN{ action };/regexp/{ action };END{ action }'
 
 ### examples
 
-**Simple example**
+**simple example**
 
 ```bash
 awk -F "," 'BEGIN{OFS="\n"}; \
@@ -956,31 +954,32 @@ remove leading space
 
 
 
-## awk patterns
+## Awk Patterns
 
 Awk **patterns** are basically just "if" statements to decide to execute the **action**
 
 Summary of Pattern Types
 
-1. BEGIN { statements } (special pattern)
-   1. The statement are executed once before any input has been read.
-2. END { statements } (special pattern)
-   1. The statements are executed once after all input has been read.
-3. expression { statements }
-   1. The statements are executed at each input line where the *expression* is true, that is, nonzero or nonnull.
-4. /regular expression/ { statements }
-   1. The statements are executed at each input line that contains a string matched by the *regular expression*.
-5. compound pattern { statements }
-   1. A *compound pattern* combines expressions with **&& (AND)**, **||(OR)**, **!(NOT)**, and **parentheses**; the *statements* are executed at each input line where the *compound pattern* is true.
-6. pattern1, pattern2 { statements }
-   1. A *range pattern* matches each input line from a line matched by *pattern1*, to the next line matched by *pattern2*, inclusive; the *statements* are executed at each matching line
+1. `BEGIN { statements }` (special pattern)
+   - The statement are executed once before any input has been read.
+2. `END { statements }` (special pattern)
+   - The statements are executed once after all input has been read.
+3. `expression { statements }`
+   - The statements are executed at each input line where the *expression* is true, that is, nonzero or nonnull.
+4. `/regular expression/ { statements }`
+   - The statements are executed at each input line that contains a string matched by the *regular expression*.
+5. `compound pattern { statements }`
+   - A *compound pattern* combines expressions with **&& (AND)**, **||(OR)**, **!(NOT)**, and **parentheses**; the *statements* are executed at each input line where the *compound pattern* is true.
+6. `pattern1, pattern2 { statements }` (range pattern)
+   - A *range pattern* matches each input line from a line matched by *pattern1*, to the next line matched by *pattern2*, inclusive; the *statements* are executed at each matching line
 
 
 Patterns in `awk` control the execution of rules -- a rule is executed when its pattern matches the current input record.
 
 ref: https://www.gnu.org/software/gawk/manual/gawk.html#Expressions-as-Patterns
 
-Brief:
+---
+**Brief**
 
 | Pattern | Example | Matches |
 | --- | --- | --- |
@@ -992,19 +991,8 @@ Brief:
 | range | NR == 10, NR == 20 | tenth to twentieth lines of input inclusive |
 
 
-### expression
-
-The pattern matches if the **expression**'s value is nonzero (if a number) or non-null (if a string).
-
-The expression is reevaluated each time the rule is tested against a new input record.
-
-```
-# if the 1rst element equals "li", print the 2nd one
-awk '$1 == "li" { print $2 }' mail-list
-```
-
-
-#### Comparison Operators
+---
+**Comparison Operators**
 
 | symbol | explanation | example | comments |
 | --- | --- | --- | --- |
@@ -1017,110 +1005,91 @@ awk '$1 == "li" { print $2 }' mail-list
 | ~ | matched by | $4 ~ /linux/ (or "linux") | # The 4th field matches "linux" |
 | !~ | not matched by | $5 !~ /awk/ | # The 5th field not matches "awk" |
 
+---
+**String-Matching Patterns**
 
-#### String-Matching Patterns
+1. `/regexpr/` implies `$0 ~`
+   - Matches when the current input line contains a substring matched by `regexpr`
+2. `expression ~ /regexpr/`
+   - Matches if the string value of `expression` contains a substring matched by `regexpr`
+3. `expression ~! /regexpr/`
+   - Matches if the string value of `expression` does **not** contain a substring matched by `regexpr`
 
-1. /regexpr/ implies "$0 ~"
-   1. Matches when the current input line contains a substring matched by regexpr
-2. expression ~ /regexpr/
-   1. Matches if the string value of *expression* contains a substring matched by *regexpr*
-3. expression ~! /regexpr/
-   1. Matches if the string value of *expression* does not contain a substring matched by *regexpr*
+Any expression may be used in place of `/regexpr/` in the context of `~` and `!~`
 
-Any expression may be used in place of */regexpr/* int the context of `~` and `!~`
+---
+**/regular expression/**
 
-
-### /regular expression/
-
-The pattern matches when the input record matches the `regexp`.
+The pattern matches when the input record matches the `regexpr`.
 
 ```awk
 '/foo|bar|baz/  { buzzwords++ }'
 ```
 
-A *regular expression* enclosed in slashes (`/`) is an `awk` pattern that matches every input record whose text belongs to that set. 
+A *regular expression* enclosed in slashes (`/`) is an `awk pattern` that matches every input record whose text belongs to that set. 
 
-regular expression comparisons ( **match or not** ):
-
-The two operators `~` and `!~` perform **regular expression comparisons**.
-
-
-### range pattern
-
-A `range pattern` is made of two patterns separated by a **comma**, in the form `begpat, endpat`. It is used to match ranges of **consecutive** input records. The first pattern, `begpat`, controls where the range begins, while `endpat` controls where the pattern ends.
-
-Output **records** between two patterns
+---
+**range pattern**
 
 ```bash
 # Default action for `awk` is to **Print current line**.
 awk '/pattern start/, /pattern end/' text.txt
 ```
 
+A `range pattern` is made of two patterns separated by a **comma**, in the form `begpat, endpat`. It is used to match ranges of **consecutive** input records. The first pattern, `begpat`, controls where the range begins, while `endpat` controls where the pattern **ends**(If no instance of the second pattern is subsequently found, then all lines to the end of the input are matched.).
+
 In a range pattern, the comma (`,`) has the **lowest** precedence of all the operators (i.e., it is evaluated last).
 
 
-Range Patterns
+`NR == 1, NR == 10 { print $0 }` applies action to lines 1 through 10.
 
-A range pattern consists of two patterns separated by a comma
-
-A range patten matches each line between an occurrence of pattern1 and the next occurrence of pattern2 inclusive
-
-If no instance of the second pattern is subsequently found, then all lines to the end of the input are matched.
-
-`NR == 1, NR == 10 { print $0 }`, Applies action to lines 1 through 10.
-
+---
 
 
 ## Awk Actions
 
-Executed if the pattern matches (even if there was no pattern)
-
-Are much like a typical language (such as C)
-
-Have access to a number of build-in variables
-
-Can **create variables** or **call functions** (such as *print*, a built-in function)
-
-Parenthesis in function calls are optional
-
-Can override fields or create new fields
+- Executed if the pattern matches (even if there was no pattern)
+- Are much like a typical language (such as C)
+- Have access to a number of build-in variables
+- Can **create variables** or **call functions** (such as *print*, a built-in function)
+- Parenthesis in function calls are optional
+- Can override fields or create new fields
 
 
 ### Actions elements
 
 The statements in **actions** can include:
-
-expressions, with constants, variables, assignments, function calls, etc.
+- *expressions*, with constants, variables, assignments, function calls, etc.
 
 For example:
 
-print expression-list
+- `print expression-list`
 
-printf(format, expression-list)
+- `printf(format, expression-list)`
 
-if (expression) statement
+- `if (expression) statement`
 
-if (expression) statement else statement
+- `if (expression) statement else statement`
 
-while (expression) statement
+- `while (expression) statement`
 
-for (expression; expression; expression) statement
+- `for (expression; expression; expression) statement`
 
-for (variable in array) statement
+- `for (variable in array) statement`
 
-do statement while (expression)
+- `do statement while (expression)`
 
-break
+- `break`
 
-continue
+- `continue`
 
-next
+- `next`
 
-exit
+- `exit`
 
-exit expression
+- `exit expression`
 
-{ statements }
+- `{ statements }`
 
 
 
@@ -1195,69 +1164,12 @@ grouping, ( ), ($s)++, add 1 to value of i-th field
 
 ### Control Flow
 
-Most standard control flow is supported
+Most standard control flow is supported. Syntax is like `C`:
+- `if/esle`, `while`, `for`
 
-Syntax is like C
+For example:
 
-if/esle, while, for
-
-
-
-Control Flow Statement
-
-{ statements }
-
-​	statement grouping
-
-if (expression) statement
-
-​	if *expression* is true, execute *statement*
-
-if (expression) statement else statement
-
-​	if *expression* is true, execute statement, otherwise execute statement
-
-while (expression) statement
-
-​	if expression is true, execute statement, then repeat
-
-for (expression<sub>1</sub>; expression<sub>2</sub>; expression<sub>3</sub>) statement
-
-​   equivalent to *expression1; while (expression2) { statement; expression3}*
-
-for (variable in array) statement
-
-​	execute statement with variable set to each subscript in array in turn
-
-do statement while { expression }
-
-​	execute *statement*, if *expression* is true, repeat
-
-break
-
-​	immediately leave innermost enclosing *while*, *for* or *do*
-
-continue
-
-​	start next iteration of innermost enclosing *while*, *for* or *do*
-
-next
-
-​	start next iteration of main input loop
-
-exit
-
-exit expression
-
-​	go immediately to the END action; if within the END action, exit program entirely.
-
-​	Return *expression* as program status
-
-
-
-example:
-
-*while (expression) statement*
+`while (expression) statement`
 
 ```awk
 {
@@ -1269,9 +1181,7 @@ example:
 }
 ```
 
-
-
-*for (expression; expression; expression) statement*
+`for (expression; expression; expression) statement`
 
 ```awk
 {
@@ -1279,6 +1189,43 @@ example:
 		print $i
 }
 ```
+
+
+Control Flow Statement:
+
+- `{ statements }`
+  - statement grouping
+
+- `if (expression) statement`
+  - if `expression` is true, execute `statement`
+
+- `if (expression) statement1 else statement2`
+  - if `expression` is true, execute `statement1`, otherwise execute `statement2`
+
+- `while (expression) statement`
+  - if `expression` is true, execute `statement`, then repeat
+
+- `for (expression<sub>1</sub>; expression<sub>2</sub>; expression<sub>3</sub>) statement`
+  - equivalent to `expression1; while (expression2) { statement; expression3}`
+
+- `for (variable in array) statement`
+  - execute `statement` with `variable` set to each subscript in `array` in turn
+
+- `do statement while { expression }`
+  - execute `statement`, if `expression` is true, repeat
+
+- `break`
+  - immediately leave innermost enclosing `while`, `for` or `do`
+
+- `continue`
+  - start next iteration of innermost enclosing `while`, `for` or `do`
+
+- `next`
+  - start next iteration of main input loop
+
+- `exit` / `exit expression`
+  - go immediately to the END action; if within the END action, exit program entirely.
+  - Return `expression` as program status
 
 
 
