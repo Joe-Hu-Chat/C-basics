@@ -1,4 +1,4 @@
-# RegExpr
+# **RegExpr**
 
 i.e., Regular Expression
 
@@ -1058,8 +1058,7 @@ In a range pattern, the comma (`,`) has the **lowest** precedence of all the ope
 
 ### Actions elements
 
-The statements in **actions** can include:
-- *expressions*, with constants, variables, assignments, function calls, etc.
+The statements in **actions** can include *expressions*, with constants, variables, assignments, function calls, etc.
 
 For example:
 
@@ -1095,71 +1094,29 @@ For example:
 
 ### Expressions
 
-The primary expressions are:
-
-​	numeric and string constants, variables, fields, function calls, array elements
+The primary expressions are *numeric* and *string* constants, *variables*, *fields*, *function calls*, *array* elements
 
 
+**Expression Operators**
 
-These operators combine expressions:
-
-​	assignment operators = += -= *= /= %= ^=
-
-​	conditional expression operator ?:
-
-​	logical operators ||(OR), &&(AND), !(NOT)
-
-​	matching operators ~ and !~
-
-​	relational operators < <= == != > >=
-
-​	concatenation (no explicit operator)
-
-​	arithmetic operators + - * / % ^
-
-​	unary + and -
-
-​	increment and decrement operator ++ and -- (prefix and postfix)
-
-​	parentheses for grouping
-
-
-
-### Expression Operators
-
-operation, operators, examples, meaning of example
-
-assignment, = += -+ *= /= %= ^=, x *= 2, x = x * 2
-
-conditional, ?:, x?y:z, if x is true then y, else z
-
-logical OR, ||, x || y, 1 if x or y is true, 0 otherwise
-
-logical AND, &&, x && y, 1 if x and y are true, 0 otherwise
-
-array membership, in, i in a, 1 if a[i] exists, 0 otherwise
-
-matching, ~ !~, $1 ~ /x/,  if the first field contains an x, 0 otherwise
-
-relational, < <= == != >= >, x == y, 1 if x is equal to y, 0 otherwise
-
-concatenation, , "a" "bc", "abc"; there is no explicit concatenation operator
-
-add, subtract, + -, x + y, sum of x and y
-
-multiply, divide, mod, * / %, x % y, remainder of x divided by y
-
-unary plus and minus, + -, -x, negated value of x
-
-logical NOT, !, !$1, 1 if $1 is zero or null, 0 otherwise
-
-exponentiation, ^, x ^ y, x<sup>y</sup>
-
-increment, decrement, ++ --, ++x x++, add 1 to x
-
-field, $, $i+1, value of i-th field, plus 1
-
-grouping, ( ), ($s)++, add 1 to value of i-th field
+| operation             | operators                         | examples    | meaning of example                                 |
+|-----------------------|-----------------------------------|-------------|----------------------------------------------------|
+| assignment            | `=` `+=` `-+` `*=` `/=` `%=` `^=` | `x *= 2`    | x = x * 2                                          |
+| conditional           | `?:`                              | `x ? y : z` | if x is true then y, else z                        |
+| logical OR            | `||`                              | `x || y`    | 1 if x or y is true, 0 otherwise                   |
+| logical AND           | `&&`                              | `x && y`    | 1 if x and y are true, 0 otherwise                 |
+| logical NOT           | `!`                               | `!$1`       | 1 if $1 is zero or null, 0 otherwise               |
+| array membership      | `in`                              | `i in a`    | 1 if a[i] exists, 0 otherwise                      |
+| matching              | `~` `!~`                          | `$1 ~ /x/`  | if the first field contains an x, 0 otherwise      |
+| relational            | `<` `<=` `==` `!=` `>=` `>`       | `x == y`    | 1 if x is equal to y, 0 otherwise                  |
+| concatenation         | (no explicit operator)            | `"a" "bc"`  | "abc"; there is no explicit concatenation operator |
+| add, subtract         | + -                               | x + y       | sum of x and y                                     |
+| multiply, divide, mod | * / %                             | x % y       | remainder of x divided by y                        |
+| unary plus and minus  | + -                               | -x          | negated value of x                                 |
+| exponentiation        | `^`                               | `x ^ y`     | x<sup>y</sup>                                      |
+| increment, decrement  | `++` `--`                         | `++x` `x++` | add 1 to x                                         |
+| field                 | `$`                               | `$i+1`      | value of i-th field, plus 1                        |
+| grouping              | `( )`                             | `($s)++`    | add 1 to value of i-th field                       |
 
 
 ### Control Flow
@@ -1231,43 +1188,25 @@ Control Flow Statement:
 
 ### Output Statements
 
-print
-
-​   print $0 on standard output
-
-print expression, expression, ...
-
-​   print expression's, separated by OFS, terminated by ORS
-
-print expression, expression, ... >filename
-
-   print on file *filename* instead of standard output
-
-print expression, expression, ... >>filename
-
-​   append to file *filename* instead of overwriting previous contents
-
-print expression, expression, ... | command
-
-​   print to standard input of *command*
-
-printf(format, expression, expression, ...)
-
-printf(format, expression, expression, ...) >filename
-
-printf(format, expression, expression, ...) >>filename
-
-printf(format, expression, expression, ...) | command
-
-​   printf statements are like print but the first argument specifies output format
-
-close(filename), close(command)
-
-​   break connection between print and *filename* or *command*
-
-system(command)
-
-​   execute *command*; value is status return of command
+- print
+  - print $0 on standard output
+- print expression, expression, ...
+  - print expression's, separated by OFS, terminated by ORS
+- print expression, expression, ... >filename
+  - print on file *filename* instead of standard output
+- print expression, expression, ... >>filename
+  - append to file *filename* instead of overwriting previous contents
+- print expression, expression, ... | command
+  - print to standard input of *command*
+- printf(format, expression, expression, ...)
+- printf(format, expression, expression, ...) >filename
+- printf(format, expression, expression, ...) >>filename
+- printf(format, expression, expression, ...) | command
+  - printf statements are like print but the first argument specifies output format
+- close(filename), close(command)
+  - break connection between print and *filename* or *command*
+- system(command)
+  - execute *command*; value is status return of command
 
 
 
