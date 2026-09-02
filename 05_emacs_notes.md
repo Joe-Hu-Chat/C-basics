@@ -1497,6 +1497,45 @@ Each window has its own mode line, which displays the buffer name, modification 
 `C-x +` Balance the sizes of all the windows of the selected frame (**balance-windows**)
 
 
+## Demystify Window Manager
+
+ref: https://www.masteringemacs.org/article/demystifying-emacs-window-manager
+
+**Dedicating Windows**: Dedicated windows are locked to the buffer it was dedicated to, and so any attempt to switch its buffer will merely display that buffer in another window.
+
+Switching buffers manually with `C-x b` fails with an error in a *dedicated window*.
+
+You can customize `switch-to-buffer-in-dedicated-window` and control how it behaves.
+
+Splitting a dedicated window with `C-x 2` and `C-x 3` fails with an error.
+
+Emacs will not switch buffers in dedicated windows
+
+You can still delete the windows with `C-x 0` and `C-x 1`; kill the buffers they belong to; or resize them.
+
+
+
+**Sidebars**: Sidebars are like their kin in other IDEs: they are a full-length (or full-width) windows that resist switching and splitting. With a sidebar you can finally dedicate sides of a frame to specialized buffers, like the Calendar, Org Agenda, Compilation Output, GDB, you name it. And thanks to a handy command, you can toggle the sidebars to hide or show them all at once
+
+
+
+**Override window and buffer placement**: Almost all window customization now involve one - albeit elephantine - variable that controls all of it. Much like Emacs's reformed `minibuffer completion system` you're able to precisely control how Emacs creates and shapes windows using a **tiered system of overrides**.
+
+
+
+`display-buffer`: the ultimate arbiter of where your buffer and/or window goes.
+
+Arbitration list:
+
+1. `display-buffer-overriding-action`, for Lisp use only
+2. `display-buffer-alist`
+3. `ACTION` argument
+4. `display-buffer-base-action`, catch-all default
+5. `display-buffer-fallback-action`, for Lisp only
+
+
+
+
 # Mode
 
 ## The Echo Area
