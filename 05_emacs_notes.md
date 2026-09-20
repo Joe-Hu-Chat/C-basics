@@ -1184,9 +1184,10 @@ Visiting a file means reading its contents into an Emacs buffer so you can edit 
 `C-x i` Insert file contents to current file (**insert-file**)
 
 `M-x find-file-literally` 
+- Visit a file with no conversion of the contents
 
-​	Visit a file with no conversion of the contents
-
+`M-x find-file-at-point`
+- Find files and RULs at point
 
 
 ## Save
