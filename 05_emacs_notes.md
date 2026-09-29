@@ -906,7 +906,7 @@ There are many, many more Emacs commands than could possibly be put on all the *
 
 ### Prefix-Key
 
-The definitions of C-c, C-x, C-h, and ESC as prefix keys appear in the global map, so these
+The definitions of `C-c`, `C-x`, `C-h`, and `ESC` as prefix keys appear in the global map, so these
 prefix keys are always available.
 
 Some prefix keymaps are stored in variables with names:
@@ -1101,7 +1101,7 @@ Add a function to a hook:
 
 install `blame-reveal` directly:
 
-```
+```bash
 M-x package-vc-install RET
 https://github.com/LuciusChen/blame-reveal RET
 ```
@@ -1110,12 +1110,41 @@ Once installed, you can manually enable the mode in any buffer by running the co
 
 install `blamer` diretly:
 
-```
+```bash
 M-x package-vc-install RET
 https://github.com/artawower/blamer.el.git
 ```
 
 Then enable the mode: `M-x blamer-mode`
+
+## CSV mode
+
+install `csv-mode` manually:
+
+```bash
+# Download csv-mode.el from https://github.com/emacsmirror/csv-mode.git
+git clone https://github.com/emacsmirror/csv-mode.git
+
+# Install it like `package-vc` package
+mkdir -p ~/.emacs.d/site-lisp/csv-mode
+cp csv-mode.el ~/.emacs.d/site-lisp/csv-mode/
+
+# Update emacs init file
+(add-to-list 'load-path "~/.emacs.d/site-lisp/csv-mode")
+(require 'csv-mode)
+```
+
+Quick **table view**: 
+
+- `C-c C-a`  Set to table alignment view (**csv-align-mode**)
+
+The CSV file will display as something like:
+```
+Name     Age  City
+Alice    30   Boston
+Bob      25   Seattle
+Charlie  40   Austin
+```
 
 ## Ido Cheatsheet
 
