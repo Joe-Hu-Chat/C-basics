@@ -89,35 +89,27 @@ The location of the cursor in the text is also called "point". To paraphrase, th
 - `M-f` `M-b` Move forward/backward one **word** (**forward-word**/**backward-word**)
 - `M-<` `M->` Move to the beginning/end of the **buffer** (**beginning-of-buffer**/**end-of-buffer**)
 - `M-{` `M-}` Move back/forward to previous/next **paragraph** beginning/end (**backward-paragraph**/**forward-paragraph**).
-
 - `M-m` Move (forward or back) to the first non-whitespace character on the current line (**back-to-indentation**)
 
 ### Scroll
 
-`M-x scroll-up-line`
-
-`M-x scroll-down-line`
-
-​	To scroll the current window by one line at a time
-
-
-
-`(setq scroll-step 1)` : **Scroll one line** when reaching the bottom of the screen with `C-v`
-
-
-
+- `C-v` `M-v` Scroll the display one screen forward/backward (**scroll-up-command**/**scroll-down-command**) 
+  - (If your meta key is not working, in order to type a key that contains meta, you can instead type `ESC`, then the remaining keys. Here `M-v` equals `ESC v`.)
+  - `(setq scroll-step 1)` : **Scroll one line** when reaching the bottom of the screen with `C-v`
+- `M-<` `M->` Move to the top/end of the buffer (**beginning-of-buffer**/**end-of-buffer**)
+- `M-x scroll-up-line`
+- `M-x scroll-down-line`
+  - To scroll the current window by one line at a time
 - `M-n` `M-p` Scroll down/up one screen line (Customized elisp function and key binding)
 - `C-,` `C-.` As backup key bindings for scrolling up and down
 
 Add the following lines to `.emacs` if the shortcuts are not active.
-
 ```
 ;; Useful shortcut to scroll back and forth
 (defun scroll-up-keep-cursor ()
   "Scroll up without moving cursor."
   (interactive)
   (scroll-up 1))
-
 (defun scroll-down-keep-cursor ()
   "Scroll down without moving cursor."
   (interactive)
@@ -128,20 +120,23 @@ Add the following lines to `.emacs` if the shortcuts are not active.
 ```
 
 
+**Horizontal Scrolling**
 
-- `C-v` `M-v` Scroll the display one screen forward/backward (**scroll-up-command**/**scroll-down-command**) 
+- `C-x <` Scroll text in current window to the left (**scroll-left**).
+- `C-x >` Scroll to the right (**scroll-right**).
 
-  (If your meta key is not working, in order to type a key that contains meta, you can instead type `ESC`, then the remaining keys. Here `M-v` equals `ESC` `v`.)
+To disable automatic horizontal scrolling entirely, set the variable **auto-hscroll-mode** to `nil`.
+Note that when the automatic horizontal scrolling is turned off, if point moves off the edge
+of the screen, the cursor disappears to indicate that. (On text terminals, the cursor is left
+at the edge instead.)
 
-- `M-<` `M->` Move to the top/end of the buffer (**beginning-of-buffer**/**end-of-buffer**)
-
-**Synchronize scrolling**:
+**Synchronize Scrolling**:
 
 - `M-x scroll-all-mode`
 
 Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirrored in all others
 
-**Window**
+**Move Point vs Scroll Window**
 
 - `M-r` Move the point to the three lines, in cyclic order (**move-to-window-line-top-bottom**)
   - the center-most text line of the screen, 
@@ -151,20 +146,6 @@ Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirrore
   - the center of the screen, 
   - then top of the screen, 
   - and then the bottom.
-
-
-
-**Specified position**:
-
-`M-g c` Read a number `n` and move point to buffer position `n`.
-
-`M-g g` Read a number `n` and move point to the beginning of line number `n` (**goto-line**).
-
-
-
-**In Sentence**
-
-`M-m` Move (forward or back) to the first non-whitespace character on the current line (**back-to-indentation**)
 
 
 
@@ -193,6 +174,19 @@ Any scrolling command (e.g., `C-v`, `M-v`) applied in one window will be mirrore
 `C-SPC C-SPC` Set the mark, pushing it onto the **mark ring**. without activating it
 
 `C-u C-SPC` Move point to where the mark was, and restore the mark from the ring of former marks
+
+
+**To specified position**:
+
+`M-g c` Read a number `n` and move point to buffer position `n`.
+
+`M-g g` Read a number `n` and move point to the beginning of line number `n` (**goto-line**).
+
+
+
+**In Sentence**
+
+`M-m` Move (forward or back) to the first non-whitespace character on the current line (**back-to-indentation**)
 
 
 
