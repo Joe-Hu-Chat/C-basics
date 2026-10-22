@@ -235,3 +235,22 @@ Apply and create a commit from the patch:
 
 `git am <patch-file>`
 
+
+# Worktree
+
+```bash
+# Checkout a branch to a worktree
+git worktree add ../worker-1 bran1
+
+# Checkout a new branch to a worktree
+git worktree add ../worker-1 bran-new
+
+# List all worktree
+git worktree list
+
+# Remove a worktree
+git worktree remove ../worker-N
+
+# Clear obsolete records in .git/worktrees/
+git worktree prune
+```
