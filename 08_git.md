@@ -243,7 +243,7 @@ Apply and create a commit from the patch:
 git worktree add ../worker-1 bran1
 
 # Checkout a new branch to a worktree
-git worktree add ../worker-1 bran-new
+git worktree add ../worker-1 -b bran-new
 
 # List all worktree
 git worktree list
