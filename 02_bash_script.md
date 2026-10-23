@@ -17,7 +17,19 @@ ref: [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/
 -x  ：将使用到的 script 内容显示到萤幕上，这是很有用的参数！
 ```
 
+Template:
 
+```bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+main() {
+    echo "Hello"
+}
+
+main "$@"
+```
 
 # Sub-shell (...)
 
