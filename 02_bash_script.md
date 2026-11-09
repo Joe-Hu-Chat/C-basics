@@ -41,6 +41,29 @@ main "$@"
   # continue in original dir
 ```
 
+# OpenSSH Fozen issue
+
+SSH runs over a **TCP connection**. If the remote machine reboots abruptly, it may disappear without sending TCP **FIN** or **RST**. The client therefore may not realize the connection is dead and continues waiting on a socket its local TCP stack still considers potentially valid. Even after the server comes back, the **old TCP/SSH connection cannot be restored**, so the terminal can appear frozen.
+
+*Ctrl+C* may not help because SSH normally sends it to the **remote terminal**, rather than terminating the local ssh process. To escape locally, use the OpenSSH escape sequence:
+
+```Plain Text
+Enter
+~.
+```
+
+That is, press `Enter`, then `~`, then `.`. OpenSSH recognizes `~.` locally and immediately terminates the SSH connection. The ~ must be entered at the beginning of a line, which is why pressing Enter first is useful.
+
+To avoid long hangs in the future, configure SSH keepalives in `~/.ssh/config`:
+
+```Plain Text
+sshconfig isn’t fully supported. Syntax highlighting is based on Plain Text.
+Host *
+ServerAliveInterval 30
+ServerAliveCountMax 3
+```
+
+This makes SSH detect an unresponsive connection and give up after roughly **90 seconds**.
 
 
 # Wildcard characters
