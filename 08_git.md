@@ -41,6 +41,12 @@ git commit --fixup=<hash_tag>
            Neither "fixup!" nor "amend!" commits change authorship of <commit> when applied by git rebase --autosquash. See git-rebase(1) for details.
 ```
 
+```bash
+# squash commits from last to abc1234, inclusive
+git reset --soft abc1234
+git commit
+```
+
 ## Rebase changes
 
 `git fetch origin`: Update local repo
