@@ -49,10 +49,10 @@ SSH runs over a **TCP connection**. If the remote machine reboots abruptly, it m
 
 ```Plain Text
 Enter
-~.
+~{n}.
 ```
 
-That is, press `Enter`, then `~`, then `.`. OpenSSH recognizes `~.` locally and immediately terminates the SSH connection. The ~ must be entered at the beginning of a line, which is why pressing Enter first is useful.
+That is, press `Enter`, then `~` n times, then `.`. OpenSSH recognizes `~.` locally and immediately terminates the SSH connection. `~~.` will terminate at the second hop in a nested session. The ~ must be entered at the beginning of a line, which is why pressing Enter first is useful.
 
 To avoid long hangs in the future, configure SSH keepalives in `~/.ssh/config`:
 
@@ -65,6 +65,17 @@ ServerAliveCountMax 3
 
 This makes SSH detect an unresponsive connection and give up after roughly **90 seconds**.
 
+## OpenSSH escape sequence
+
+An OpenSSH escape sequence is a special key combination processed directly by your local SSH client rather than the remote server. By default, these sequences start with a tilde (`~`) and only work immediately after a newline (press `Enter` first).
+
+- `~.` Terminate connection
+- `~?` Show help
+- `~^Z` Suspend SSH
+- `~#` List forwarded connection
+- `~~` Send literal tilde
+
+`~` is the default escape character. Then, `~~.` will be passed to the second hop in a nested session, with the prefix `~` removed, i.e., the sequence reached at the second hop OpenSSH client is `~.`.
 
 # Wildcard characters
 
